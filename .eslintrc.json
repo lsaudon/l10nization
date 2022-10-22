@@ -1,0 +1,47 @@
+{
+  "root": true,
+  "env": {
+    "mocha": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "eslint:all",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:@typescript-eslint/strict",
+    "prettier"
+  ],
+  "rules": {
+    "array-element-newline": "off",
+    "consistent-return": "off",
+    "class-methods-use-this": "off",
+    "capitalized-comments": "off",
+    "function-call-argument-newline": "off",
+    "padded-blocks": "off",
+    "one-var": "off",
+    "func-style": "off",
+    "max-len": "off",
+    "max-lines-per-function": "off",
+    "multiline-comment-style": "off",
+    "no-magic-numbers": "off",
+    "id-length": "off",
+    "object-curly-spacing": "off",
+    "space-before-function-paren": "off",
+    "no-console": "warn",
+    "no-ternary": "off",
+    "prefer-named-capture-group": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "prettier/prettier": "error",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off"
+  },
+  "ignorePatterns": ["out", "dist", "**/*.d.ts"]
+}

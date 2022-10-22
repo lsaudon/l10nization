@@ -1,0 +1,53 @@
+{
+  "name": "flutter-l10n",
+  "displayName": "Flutter l10n",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:samples.quickInput",
+    "onLanguage:dart"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "samples.quickInput",
+        "title": "Quick Input Samples"
+      }
+    ]
+  },
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run check-lint && npm run check-format",
+    "check-lint": "eslint src --ext ts",
+    "lint": "eslint src --ext ts --fix",
+    "check-format": "prettier --ignore-path .gitignore --config .prettierrc  \"**/*.+(js|ts|json|md|yaml|.prettierrc)\" --check",
+    "format": "prettier --ignore-path .gitignore --config .prettierrc  \"**/*.+(js|ts|json|md|yaml|.prettierrc)\" --write",
+    "lint-format": "npm run lint && npm run format",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.72.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "@vscode/test-electron": "^2.2.0",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  }
+}

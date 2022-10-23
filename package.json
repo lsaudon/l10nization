@@ -26,10 +26,11 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run check-lint && npm run check-format",
+    "pretest": "npm run compile && npm run check-lint-format",
     "check-lint": "eslint src --ext ts",
-    "lint": "eslint src --ext ts --fix",
     "check-format": "prettier --ignore-path .gitignore --config .prettierrc  \"**/*.+(js|ts|json|md|yaml|.prettierrc)\" --check",
+    "check-lint-format": "npm run check-lint && npm run check-format",
+    "lint": "eslint src --ext ts --fix",
     "format": "prettier --ignore-path .gitignore --config .prettierrc  \"**/*.+(js|ts|json|md|yaml|.prettierrc)\" --write",
     "lint-format": "npm run lint && npm run format",
     "test": "node ./out/test/runTest.js"

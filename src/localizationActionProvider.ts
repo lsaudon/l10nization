@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { KeyValuePair } from './keyValuePair';
 import { LocalizationCommand } from './localizationCommand';
 import { ReplaceParameters } from './replaceParameters';
 
@@ -46,7 +47,11 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
       vscode.CodeActionKind.RefactorExtract
     );
     codeAction.command = new LocalizationCommand([
-      new ReplaceParameters(document, range, this.camelize(value))
+      new ReplaceParameters(
+        document.uri,
+        range,
+        new KeyValuePair(this.camelize(value), value)
+      )
     ]);
     return codeAction;
   }

@@ -1,19 +1,20 @@
 import * as vscode from 'vscode';
+import { KeyValuePair } from './keyValuePair';
 
 export class ReplaceParameters {
-  document: vscode.TextDocument;
+  documentUri: vscode.Uri;
 
   range: vscode.Range;
 
-  value: string;
+  keyValuePair: KeyValuePair;
 
   constructor(
-    document: vscode.TextDocument,
+    documentUri: vscode.Uri,
     range: vscode.Range,
-    value: string
+    keyValuePair: KeyValuePair
   ) {
-    this.document = document;
+    this.documentUri = documentUri;
     this.range = range;
-    this.value = value;
+    this.keyValuePair = keyValuePair;
   }
 }

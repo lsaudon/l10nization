@@ -1,6 +1,6 @@
-# flutter-l10n README
+# l10nization README
 
-This is the README for your extension "flutter-l10n". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "l10nization". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 

@@ -4,23 +4,29 @@ import { ReplaceParameters } from './replaceParameters';
 const localizationClass = 'l10n';
 
 export function localizationInputBox(
-  workspaceEditParameters: ReplaceParameters
+  replaceParameters: ReplaceParameters
 ): void {
   const inputBox = vscode.window.createInputBox();
-  inputBox.value = workspaceEditParameters.value;
-  inputBox.onDidHide(() => inputBox.dispose());
+  inputBox.value = replaceParameters.value;
   inputBox.onDidAccept(() => {
     const workspaceEdit = new vscode.WorkspaceEdit();
     workspaceEdit.replace(
-      workspaceEditParameters.document.uri,
-      workspaceEditParameters.range,
+      replaceParameters.document.uri,
+      replaceParameters.range,
+      `${localizationClass}.${inputBox.value}`
+    );
+    workspaceEdit.replace(
+      vscode.Uri.parse(
+        replaceParameters.document.uri
+          .toString()
+          .replace('main.dart', 'l10n/arb/app_en.arb')
+      ),
+      new vscode.Range(new vscode.Position(0, 0), new vscode.Position(0, 0)),
       `${localizationClass}.${inputBox.value}`
     );
     inputBox.hide();
     return vscode.workspace.applyEdit(workspaceEdit);
   });
-  inputBox.onDidChangeValue((e) =>
-    vscode.window.showInformationMessage(`onDidChangeValue: ${e}`)
-  );
+  inputBox.onDidHide(() => inputBox.dispose());
   inputBox.show();
 }

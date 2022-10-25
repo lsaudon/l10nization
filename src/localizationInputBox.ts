@@ -15,6 +15,10 @@ async function getArbFiles(workspaceFolder: vscode.WorkspaceFolder) {
   return files;
 }
 
+interface Truc {
+  key: string;
+}
+
 export function localizationInputBox(
   replaceParameters: ReplaceParameters
 ): void {
@@ -39,8 +43,8 @@ export function localizationInputBox(
       const contents = await Promise.all(results);
       contents.forEach((content) => {
         const text = content.getText();
-        const json = Object.entries(JSON.parse(text) as [string, unknown][]);
-        console.log(json);
+        const map = new Map(Object.entries<string>(JSON.parse(text) as string));
+        map.set('a', 'a');
         // ajouter un élément dans la liste.
       });
       // workspaceEdit.replace(

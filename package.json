@@ -1,14 +1,34 @@
 {
+  "preview": true,
   "name": "l10nization",
   "displayName": "L10nization",
-  "description": "",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.72.0"
+  "version": "0.1.0",
+  "publisher": "lsaudon",
+  "description": "A tool for extracting text to arb files in a Flutter application.",
+  "author": {
+    "name": "Lucas SAUDON"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lsaudon/l10nization.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lsaudon/l10nization/issues"
   },
   "categories": [
     "Other"
   ],
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "keywords": [
+    "flutter",
+    "dart",
+    "l10n",
+    "localization",
+    "arb"
+  ],
+  "license": "MIT",
   "activationEvents": [
     "onLanguage:dart"
   ],

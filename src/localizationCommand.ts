@@ -5,7 +5,7 @@ export class LocalizationCommand implements vscode.Command {
   public static readonly commandName = 'l10nization.inputBox';
 
   constructor(args: ReplaceParameters[]) {
-    this.title = 'extract for l10n';
+    this.title = 'Extract to arb files';
     this.command = LocalizationCommand.commandName;
     this.arguments = args;
   }

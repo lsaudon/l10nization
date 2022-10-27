@@ -1,9 +1,9 @@
-# Change Log
+# Changelog
 
-All notable changes to the "l10nization" extension will be documented in this file.
+## [0.1.0]
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### Added
 
-## [Unreleased]
+- Add string to all arb files.
 
-- Initial release
+[0.1.0]: https://github.com/lsaudon/l10nization/releases/tag/v0.1.0

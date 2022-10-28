@@ -8,7 +8,7 @@
 1. In the action code you will find `Extract 'Hello World' to arb files`.
 1. You can change the name of the `key` via the command.
 
-![Extract 'Hello World' to arb files](images/extract-to-arb-files.gif)
+![Extract 'Hello World' to arb files](https://github.com/lsaudon/l10nization/blob/main/images/extract-to-arb-files.gif?raw=true)
 
 ## Release Notes
 

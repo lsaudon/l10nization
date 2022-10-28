@@ -1,5 +1,5 @@
 {
-  "preview": true,
+  "icon": "images/logo.png",
   "name": "l10nization",
   "displayName": "L10nization",
   "version": "0.1.0",
@@ -30,14 +30,18 @@
   ],
   "license": "MIT",
   "activationEvents": [
-    "onLanguage:dart"
+    "onLanguage:dart",
+    "workspaceContains:**/*.dart"
   ],
-  "main": "./out/extension.js",
+  "main": "./dist/extension.js",
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run check-lint-format",
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "check-lint": "eslint src --ext ts",
     "check-format": "prettier --ignore-path .gitignore --config .prettierrc  \"**/*.+(js|ts|json|md|yaml|.prettierrc)\" --check",
     "check-lint-format": "npm run check-lint && npm run check-format",
@@ -61,6 +65,9 @@
     "mocha": "^10.1.0",
     "prettier": "^2.7.1",
     "typescript": "^4.8.4",
+    "ts-loader": "^9.4.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
     "yaml": "^2.1.3"
   }
 }

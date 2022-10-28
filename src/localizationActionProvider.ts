@@ -3,8 +3,8 @@ import { KeyValuePair } from './keyValuePair';
 import { LocalizationCommand } from './localizationCommand';
 import { ReplaceParameters } from './replaceParameters';
 
-const empty = '';
-const quotes = ['"', "'"];
+const empty = '',
+  quotes = ['"', "'"];
 
 export class LocalizationActionProvider implements vscode.CodeActionProvider {
   public static readonly providedCodeActionKinds = [

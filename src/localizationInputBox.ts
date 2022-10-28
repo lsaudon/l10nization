@@ -36,13 +36,13 @@ async function getChangesForArbFiles(
     return new vscode.WorkspaceEdit();
   }
 
-  const files = await getArbFiles(workspaceFolder.uri);
-  const results: Thenable<vscode.TextDocument>[] = [];
+  const files = await getArbFiles(workspaceFolder.uri),
+    results: Thenable<vscode.TextDocument>[] = [];
   files.forEach((file) => {
     results.push(vscode.workspace.openTextDocument(file));
   });
-  const workspaceEdit = new vscode.WorkspaceEdit();
-  const { value } = replaceParameters.keyValuePair;
+  const workspaceEdit = new vscode.WorkspaceEdit(),
+    { value } = replaceParameters.keyValuePair;
   (await Promise.all(results)).forEach((content, index) => {
     workspaceEdit.replace(
       files[index],

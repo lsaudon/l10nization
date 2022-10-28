@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.1]
+
+### Changed
+
+- Disable Open VSX
+
 ## [0.1.0]
 
 ### Added

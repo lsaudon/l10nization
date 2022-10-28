@@ -1,6 +1,6 @@
 # L10nization README
 
-"Lionization" is a tool for extracting text to arb files in a Flutter application.
+"L10nization" is a tool for extracting text to arb files in a Flutter application.
 
 ## Features
 

@@ -6,8 +6,10 @@ const parentSection = 'l10nization';
 const appLocalizationsVariableSection = 'appLocalizationsVariable';
 const defaultVariable = 'l10n';
 
-async function getArbFiles(uri: vscode.Uri) {
-  const l10nFile = vscode.Uri.parse(`${uri.toString()}/l10n.yaml`);
+async function getArbFiles() {
+  const l10nFiles = await vscode.workspace.findFiles(`**/l10n.yaml`);
+  const first = 0;
+  const l10nFile = l10nFiles[first];
   const textDocument = await vscode.workspace.openTextDocument(l10nFile);
   const arbDir = yaml
     .parseDocument(textDocument.getText())
@@ -31,15 +33,8 @@ async function getChangesForArbFiles(
   key: string,
   replaceParameters: ReplaceParameters
 ): Promise<vscode.WorkspaceEdit> {
-  const workspaceFolder = vscode.workspace.getWorkspaceFolder(
-    replaceParameters.documentUri
-  );
-  if (!workspaceFolder) {
-    return new vscode.WorkspaceEdit();
-  }
-
-  const files = await getArbFiles(workspaceFolder.uri),
-    results: Thenable<vscode.TextDocument>[] = [];
+  const files = await getArbFiles();
+  const results: Thenable<vscode.TextDocument>[] = [];
   files.forEach((file) => {
     results.push(vscode.workspace.openTextDocument(file));
   });

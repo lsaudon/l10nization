@@ -1,5 +1,11 @@
 # Changelog
 
+## [Future release]
+
+### Added
+
+- Flutter project can be in a sub-folder
+
 ## [0.2.0]
 
 ### Added

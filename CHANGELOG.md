@@ -5,6 +5,7 @@
 ### Added
 
 - Add setting `l10nization.appLocalizationsVariable`
+- Enable Open VSX
 
 ## [0.1.1]
 

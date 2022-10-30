@@ -10,6 +10,12 @@
 
 ![Extract 'Hello World' to arb files](https://github.com/lsaudon/l10nization/blob/main/images/extract-to-arb-files.gif?raw=true)
 
+By default, the variable used for AppLocalizations is `l10n` you can change it in the parameters as if below:
+
+```json
+"l10nization.appLocalizationsVariable": "yourVariable"
+```
+
 ## Release Notes
 
 For full release notes, see the [changelog](CHANGELOG.md).

@@ -2,7 +2,9 @@ import * as vscode from 'vscode';
 import * as yaml from 'yaml';
 import { ReplaceParameters } from './replaceParameters';
 
-const localizationClass = 'l10n';
+const parentSection = 'l10nization';
+const appLocalizationsVariableSection = 'appLocalizationsVariable';
+const defaultVariable = 'l10n';
 
 async function getArbFiles(uri: vscode.Uri) {
   const l10nFile = vscode.Uri.parse(`${uri.toString()}/l10n.yaml`);
@@ -53,10 +55,16 @@ async function getChangesForArbFiles(
       toJson(content, key, value)
     );
   });
+
+  const appLocalizationsVariable =
+    vscode.workspace
+      .getConfiguration(parentSection)
+      .get<string>(appLocalizationsVariableSection) ?? defaultVariable;
+
   workspaceEdit.replace(
     replaceParameters.documentUri,
     replaceParameters.range,
-    `${localizationClass}.${key}`
+    `${appLocalizationsVariable}.${key}`
   );
   return workspaceEdit;
 }

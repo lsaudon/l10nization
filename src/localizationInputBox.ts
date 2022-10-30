@@ -5,16 +5,18 @@ import { ReplaceParameters } from './replaceParameters';
 const parentSection = 'l10nization';
 const appLocalizationsVariableSection = 'appLocalizationsVariable';
 const defaultVariable = 'l10n';
+const first = 0;
 
-async function getArbFiles() {
-  const l10nFiles = await vscode.workspace.findFiles(`**/l10n.yaml`);
-  const first = 0;
+async function getArbFiles(projectName: string) {
+  const l10nFiles = await vscode.workspace.findFiles(
+    `**/${projectName}/l10n.yaml`
+  );
   const l10nFile = l10nFiles[first];
   const textDocument = await vscode.workspace.openTextDocument(l10nFile);
   const arbDir = yaml
     .parseDocument(textDocument.getText())
     .get('arb-dir') as string;
-  return vscode.workspace.findFiles(`**/${arbDir}/*.arb`);
+  return vscode.workspace.findFiles(`**/${projectName}/${arbDir}/*.arb`);
 }
 
 function toJson(
@@ -29,11 +31,16 @@ function toJson(
   return JSON.stringify(Object.fromEntries(map), null, 2);
 }
 
+function getProjectName(documentUri: vscode.Uri): string {
+  return documentUri.fsPath.split('/lib/')[first].split('/').pop() ?? '';
+}
+
 async function getChangesForArbFiles(
   key: string,
   replaceParameters: ReplaceParameters
 ): Promise<vscode.WorkspaceEdit> {
-  const files = await getArbFiles();
+  const projectName = getProjectName(replaceParameters.documentUri);
+  const files = await getArbFiles(projectName);
   const results: Thenable<vscode.TextDocument>[] = [];
   files.forEach((file) => {
     results.push(vscode.workspace.openTextDocument(file));

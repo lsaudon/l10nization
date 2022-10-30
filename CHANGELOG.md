@@ -5,6 +5,7 @@
 ### Added
 
 - Flutter project can be in a sub-folder
+- Extract text in right project for multi-project
 
 ## [0.2.0]
 

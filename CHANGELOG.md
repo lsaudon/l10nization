@@ -1,6 +1,6 @@
 # Changelog
 
-## [Future Release]
+## [0.4.0]
 
 - Saved all modified files
 - Delete Added or Changed subtitles in Changelog
@@ -29,6 +29,7 @@
 
 - Add string to all arb files.
 
+[0.4.0]: https://github.com/lsaudon/l10nization/releases/tag/release-0.4.0
 [0.3.2]: https://github.com/lsaudon/l10nization/releases/tag/release-0.3.2
 [0.3.1]: https://github.com/lsaudon/l10nization/releases/tag/release-0.3.1
 [0.2.0]: https://github.com/lsaudon/l10nization/releases/tag/release-0.2.0

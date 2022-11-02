@@ -4,6 +4,7 @@
 
 - Saved all modified files
 - Delete Added or Changed subtitles in Changelog
+- Run flutter pub get after change arb files
 
 ## [0.3.2]
 

@@ -41,6 +41,11 @@
           "type": "string",
           "default": "l10n",
           "description": "Set the variable name for AppLocalizations."
+        },
+        "l10nization.flutterPubGetEnabled": {
+          "type": "bool",
+          "default": "true",
+          "description": "If enabled, run the `flutter.packages.get` command of the `Dart` extension."
         }
       }
     }

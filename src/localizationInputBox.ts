@@ -3,8 +3,13 @@ import * as yaml from 'yaml';
 import { ReplaceParameters } from './replaceParameters';
 
 const parentSection = 'l10nization';
+
 const appLocalizationsVariableSection = 'appLocalizationsVariable';
 const defaultVariable = 'l10n';
+
+const flutterPubGetEnabledSection = 'flutterPubGetEnabled';
+const defaultPubGet = true;
+
 const first = 0;
 
 async function getArbFiles(projectName: string) {
@@ -71,6 +76,13 @@ async function getChangesForArbFiles(
   return workspaceEdit;
 }
 
+async function runIfExist(flutterPackagesGetCommand: string) {
+  const commands = await vscode.commands.getCommands();
+  if (commands.some((command) => command === flutterPackagesGetCommand)) {
+    await vscode.commands.executeCommand(flutterPackagesGetCommand);
+  }
+}
+
 export function localizationInputBox(
   replaceParameters: ReplaceParameters
 ): void {
@@ -84,6 +96,13 @@ export function localizationInputBox(
       setTimeout(f, 1000);
     });
     await vscode.workspace.saveAll(true);
+    const flutterPubGetEnabled =
+      vscode.workspace
+        .getConfiguration(parentSection)
+        .get<string>(flutterPubGetEnabledSection) ?? defaultPubGet;
+    if (flutterPubGetEnabled) {
+      await runIfExist('flutter.packages.get');
+    }
     return vscode.Disposable;
   });
 

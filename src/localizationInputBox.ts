@@ -41,13 +41,13 @@ async function getChangesForArbFiles(
 ): Promise<vscode.WorkspaceEdit> {
   const projectName = getProjectName(replaceParameters.documentUri);
   const files = await getArbFiles(projectName);
-  const results: Thenable<vscode.TextDocument>[] = [];
+  const openTextDocuments: Thenable<vscode.TextDocument>[] = [];
   files.forEach((file) => {
-    results.push(vscode.workspace.openTextDocument(file));
+    openTextDocuments.push(vscode.workspace.openTextDocument(file));
   });
-  const workspaceEdit = new vscode.WorkspaceEdit(),
-    { value } = replaceParameters.keyValuePair;
-  (await Promise.all(results)).forEach((content, index) => {
+  const workspaceEdit = new vscode.WorkspaceEdit();
+  const { value } = replaceParameters.keyValuePair;
+  (await Promise.all(openTextDocuments)).forEach((content, index) => {
     workspaceEdit.replace(
       files[index],
       new vscode.Range(
@@ -77,10 +77,16 @@ export function localizationInputBox(
   const inputBox = vscode.window.createInputBox();
   inputBox.value = replaceParameters.keyValuePair.key;
   inputBox.onDidAccept(async () => {
-    const edit = await getChangesForArbFiles(inputBox.value, replaceParameters);
     inputBox.hide();
-    return vscode.workspace.applyEdit(edit);
+    const edit = await getChangesForArbFiles(inputBox.value, replaceParameters);
+    await vscode.workspace.applyEdit(edit);
+    await new Promise((f) => {
+      setTimeout(f, 1000);
+    });
+    await vscode.workspace.saveAll(true);
+    return vscode.Disposable;
   });
+
   inputBox.onDidHide(() => inputBox.dispose());
   inputBox.show();
 }

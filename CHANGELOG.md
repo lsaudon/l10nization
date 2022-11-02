@@ -1,35 +1,30 @@
 # Changelog
 
-## [0.3.2]
+## [Future Release]
 
-### Added
+- Saved all modified files
+- Delete Added or Changed subtitles in Changelog
+
+## [0.3.2]
 
 - Fix extension on Windows
 - Bump node, eslint
 
 ## [0.3.1]
 
-### Added
-
 - Flutter project can be in a sub-folder
 - Extract text in right project for multi-project
 
 ## [0.2.0]
-
-### Added
 
 - Add setting `l10nization.appLocalizationsVariable`
 - Enable Open VSX
 
 ## [0.1.1]
 
-### Changed
-
 - Disable Open VSX
 
 ## [0.1.0]
-
-### Added
 
 - Add string to all arb files.
 

@@ -3,8 +3,13 @@ import * as yaml from 'yaml';
 import { ReplaceParameters } from './replaceParameters';
 
 const parentSection = 'l10nization';
+
 const appLocalizationsVariableSection = 'appLocalizationsVariable';
 const defaultVariable = 'l10n';
+
+const flutterPubGetEnabledSection = 'flutterPubGetEnabled';
+const defaultPubGet = true;
+
 const first = 0;
 
 async function getArbFiles(projectName: string) {
@@ -41,13 +46,13 @@ async function getChangesForArbFiles(
 ): Promise<vscode.WorkspaceEdit> {
   const projectName = getProjectName(replaceParameters.documentUri);
   const files = await getArbFiles(projectName);
-  const results: Thenable<vscode.TextDocument>[] = [];
+  const openTextDocuments: Thenable<vscode.TextDocument>[] = [];
   files.forEach((file) => {
-    results.push(vscode.workspace.openTextDocument(file));
+    openTextDocuments.push(vscode.workspace.openTextDocument(file));
   });
-  const workspaceEdit = new vscode.WorkspaceEdit(),
-    { value } = replaceParameters.keyValuePair;
-  (await Promise.all(results)).forEach((content, index) => {
+  const workspaceEdit = new vscode.WorkspaceEdit();
+  const { value } = replaceParameters.keyValuePair;
+  (await Promise.all(openTextDocuments)).forEach((content, index) => {
     workspaceEdit.replace(
       files[index],
       new vscode.Range(
@@ -71,16 +76,36 @@ async function getChangesForArbFiles(
   return workspaceEdit;
 }
 
+async function runIfExist(flutterPackagesGetCommand: string) {
+  const commands = await vscode.commands.getCommands();
+  if (commands.some((command) => command === flutterPackagesGetCommand)) {
+    await vscode.commands.executeCommand(flutterPackagesGetCommand);
+  }
+}
+
 export function localizationInputBox(
   replaceParameters: ReplaceParameters
 ): void {
   const inputBox = vscode.window.createInputBox();
   inputBox.value = replaceParameters.keyValuePair.key;
   inputBox.onDidAccept(async () => {
-    const edit = await getChangesForArbFiles(inputBox.value, replaceParameters);
     inputBox.hide();
-    return vscode.workspace.applyEdit(edit);
+    const edit = await getChangesForArbFiles(inputBox.value, replaceParameters);
+    await vscode.workspace.applyEdit(edit);
+    await new Promise((f) => {
+      setTimeout(f, 1000);
+    });
+    await vscode.workspace.saveAll(true);
+    const flutterPubGetEnabled =
+      vscode.workspace
+        .getConfiguration(parentSection)
+        .get<string>(flutterPubGetEnabledSection) ?? defaultPubGet;
+    if (flutterPubGetEnabled) {
+      await runIfExist('flutter.packages.get');
+    }
+    return vscode.Disposable;
   });
+
   inputBox.onDidHide(() => inputBox.dispose());
   inputBox.show();
 }

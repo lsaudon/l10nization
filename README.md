@@ -16,6 +16,8 @@ By default, the variable used for AppLocalizations is `l10n` you can change it i
 "l10nization.appLocalizationsVariable": "yourVariable"
 ```
 
+By default, the extension launches `flutter pub get` via the [Dart extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code). You can disable it in the settings.
+
 ## Release Notes
 
 For full release notes, see the [changelog](CHANGELOG.md).

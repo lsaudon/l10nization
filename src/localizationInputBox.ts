@@ -32,7 +32,7 @@ function toJson(
 }
 
 function getProjectName(documentUri: vscode.Uri): string {
-  return documentUri.fsPath.split('/lib/')[first].split('/').pop() ?? '';
+  return documentUri.path.split('/lib/')[first].split('/').pop() ?? '';
 }
 
 async function getChangesForArbFiles(

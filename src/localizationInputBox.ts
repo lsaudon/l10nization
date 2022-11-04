@@ -15,7 +15,7 @@ const defaultPubGet = true;
 
 const first = 0;
 
-async function getArbFiles(projectName: string) {
+async function getArbFiles(projectName: string): Promise<vscode.Uri[]> {
   const yamlFileName = vscode.workspace
     .getConfiguration(parentSection)
     .get<string>(yamlFileSection, defaultYamlFile);
@@ -23,6 +23,11 @@ async function getArbFiles(projectName: string) {
   const yamlFiles = await vscode.workspace.findFiles(
     `**/${projectName}/${yamlFileName}`
   );
+
+  if (yamlFiles.length === 0) {
+    vscode.window.showErrorMessage(`The ${yamlFileName} file was not found.`);
+    throw new Error(`The ${yamlFileName} file was not found.`);
+  }
 
   const yamlFile = yamlFiles[first];
   const textDocument = await vscode.workspace.openTextDocument(yamlFile);
@@ -54,6 +59,10 @@ async function getChangesForArbFiles(
 ): Promise<vscode.WorkspaceEdit> {
   const projectName = getProjectName(replaceParameters.documentUri);
   const files = await getArbFiles(projectName);
+  if (files.length === 0) {
+    vscode.window.showErrorMessage(`No arb files found.`);
+    throw new Error(`No arb files found.`);
+  }
   const openTextDocuments: Thenable<vscode.TextDocument>[] = [];
   files.forEach((file) => {
     openTextDocuments.push(vscode.workspace.openTextDocument(file));

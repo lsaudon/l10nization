@@ -76,12 +76,16 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
   }
 
   private camelize(value: string): string {
-    const regex = /(?:^\w|[A-Z]|\b\w|\s+)/gu;
-    return value.replace(regex, (match: string, index: number) => {
-      if (+Number(match) === 0) {
-        return '';
+    const valueSplitted = value.split(/[^a-zA-Z0-9]/u);
+    let result = '';
+    for (let index = 0; index < valueSplitted.length; index += 1) {
+      let element = valueSplitted[index];
+      element = element.toLowerCase();
+      if (index !== 0) {
+        element = element.charAt(0).toUpperCase() + element.substring(1);
       }
-      return index === 0 ? match.toLowerCase() : match.toUpperCase();
-    });
+      result += element;
+    }
+    return result;
   }
 }

@@ -43,7 +43,7 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
     value: string
   ): vscode.CodeAction {
     const codeAction = new vscode.CodeAction(
-      `Extract '${value}' to arb files`,
+      `Extract value to arb files`,
       vscode.CodeActionKind.RefactorExtract
     );
     codeAction.command = new LocalizationCommand([

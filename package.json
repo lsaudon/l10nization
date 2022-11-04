@@ -40,12 +40,21 @@
         "l10nization.appLocalizationsVariable": {
           "type": "string",
           "default": "l10n",
-          "description": "Set the variable name for AppLocalizations."
+          "markdownDescription": "Set the variable name for `AppLocalizations`."
+        },
+        "l10nization.yamlFile": {
+          "type": "string",
+          "default": "l10n.yaml",
+          "enum": [
+            "l10n.yaml",
+            "r13n.yaml"
+          ],
+          "markdownDescription": "Set the yaml file for `AppLocalizations`."
         },
         "l10nization.flutterPubGetEnabled": {
           "type": "bool",
           "default": "true",
-          "description": "If enabled, run the `flutter.packages.get` command of the `Dart` extension."
+          "markdownDescription": "If enabled, run the `flutter.packages.get` command of the [Dart extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)."
         }
       }
     }

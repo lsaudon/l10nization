@@ -7,17 +7,25 @@ const parentSection = 'l10nization';
 const appLocalizationsVariableSection = 'appLocalizationsVariable';
 const defaultVariable = 'l10n';
 
+const yamlFileSection = 'yamlFile';
+const defaultYamlFile = 'l10n.yaml';
+
 const flutterPubGetEnabledSection = 'flutterPubGetEnabled';
 const defaultPubGet = true;
 
 const first = 0;
 
 async function getArbFiles(projectName: string) {
-  const l10nFiles = await vscode.workspace.findFiles(
-    `**/${projectName}/l10n.yaml`
+  const yamlFileName = vscode.workspace
+    .getConfiguration(parentSection)
+    .get<string>(yamlFileSection, defaultYamlFile);
+
+  const yamlFiles = await vscode.workspace.findFiles(
+    `**/${projectName}/${yamlFileName}`
   );
-  const l10nFile = l10nFiles[first];
-  const textDocument = await vscode.workspace.openTextDocument(l10nFile);
+
+  const yamlFile = yamlFiles[first];
+  const textDocument = await vscode.workspace.openTextDocument(yamlFile);
   const arbDir = yaml
     .parseDocument(textDocument.getText())
     .get('arb-dir') as string;
@@ -63,10 +71,9 @@ async function getChangesForArbFiles(
     );
   });
 
-  const appLocalizationsVariable =
-    vscode.workspace
-      .getConfiguration(parentSection)
-      .get<string>(appLocalizationsVariableSection) ?? defaultVariable;
+  const appLocalizationsVariable = vscode.workspace
+    .getConfiguration(parentSection)
+    .get<string>(appLocalizationsVariableSection, defaultVariable);
 
   workspaceEdit.replace(
     replaceParameters.documentUri,
@@ -96,10 +103,9 @@ export function localizationInputBox(
       setTimeout(f, 1000);
     });
     await vscode.workspace.saveAll(true);
-    const flutterPubGetEnabled =
-      vscode.workspace
-        .getConfiguration(parentSection)
-        .get<string>(flutterPubGetEnabledSection) ?? defaultPubGet;
+    const flutterPubGetEnabled = vscode.workspace
+      .getConfiguration(parentSection)
+      .get<boolean>(flutterPubGetEnabledSection, defaultPubGet);
     if (flutterPubGetEnabled) {
       await runIfExist('flutter.packages.get');
     }

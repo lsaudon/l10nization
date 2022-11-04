@@ -1,6 +1,6 @@
 # L10nization README
 
-"L10nization" is a tool for extracting text to arb files in a Flutter application.
+"L10nization" is a tool for extracting text to arb files for l10n or [r13n](https://github.com/VeryGoodOpenSource/r13n) in a Flutter application.
 
 ## Features
 
@@ -17,6 +17,13 @@ By default, the variable used for AppLocalizations is `l10n` you can change it i
 ```
 
 By default, the extension launches `flutter pub get` via the [Dart extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code). You can disable it in the settings.
+
+To use the extension with [r13n](https://github.com/VeryGoodOpenSource/r13n), the following parameters must be changed.
+
+```json
+"l10nization.appLocalizationsVariable": "r13n", // or whatever you want.
+"l10nization.yamlFile": "r13n.yaml"
+```
 
 ## Release Notes
 

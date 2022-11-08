@@ -2,9 +2,10 @@ import * as vscode from 'vscode';
 import { KeyValuePair } from './keyValuePair';
 import { LocalizationCommand } from './localizationCommand';
 import { ReplaceParameters } from './replaceParameters';
+import { camelize } from './camelize';
 
-const empty = '',
-  quotes = ['"', "'"];
+const empty = '';
+const quotes = ['"', "'"];
 
 export class LocalizationActionProvider implements vscode.CodeActionProvider {
   public static readonly providedCodeActionKinds = [
@@ -50,7 +51,7 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
       new ReplaceParameters(
         document.uri,
         range,
-        new KeyValuePair(this.camelize(value), value)
+        new KeyValuePair(camelize(value), value)
       )
     ]);
     return codeAction;
@@ -73,19 +74,5 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
       quotes.includes(text[startCharacter]) &&
       quotes.includes(text[endCharacter])
     );
-  }
-
-  private camelize(value: string): string {
-    const valueSplitted = value.normalize('NFD').split(/[^a-zA-Z0-9]/u);
-    let result = '';
-    for (let index = 0; index < valueSplitted.length; index += 1) {
-      let element = valueSplitted[index];
-      element = element.toLowerCase();
-      if (index !== 0) {
-        element = element.charAt(0).toUpperCase() + element.substring(1);
-      }
-      result += element;
-    }
-    return result;
   }
 }

@@ -76,7 +76,7 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
   }
 
   private camelize(value: string): string {
-    const valueSplitted = value.split(/[^a-zA-Z0-9]/u);
+    const valueSplitted = value.normalize('NFD').split(/[^a-zA-Z0-9]/u);
     let result = '';
     for (let index = 0; index < valueSplitted.length; index += 1) {
       let element = valueSplitted[index];

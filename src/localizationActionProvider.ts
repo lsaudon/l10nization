@@ -3,9 +3,9 @@ import { KeyValuePair } from './keyValuePair';
 import { LocalizationCommand } from './localizationCommand';
 import { ReplaceParameters } from './replaceParameters';
 import { camelize } from './camelize';
+import { isNotString } from './stringField';
 
 const empty = '';
-const quotes = ['"', "'"];
 
 export class LocalizationActionProvider implements vscode.CodeActionProvider {
   public static readonly providedCodeActionKinds = [
@@ -32,7 +32,7 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
     const startCharacter = start.character;
     const endCharacter = end.character - 1;
     const { text } = document.lineAt(start.line);
-    if (this.isNotString(text, startCharacter, endCharacter)) {
+    if (isNotString(text, startCharacter, endCharacter)) {
       return empty;
     }
     return text.substring(startCharacter + 1, endCharacter);
@@ -55,24 +55,5 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
       )
     ]);
     return codeAction;
-  }
-
-  private isNotString(
-    text: string,
-    startCharacter: number,
-    endCharacter: number
-  ): boolean {
-    return !this.isString(text, startCharacter, endCharacter);
-  }
-
-  private isString(
-    text: string,
-    startCharacter: number,
-    endCharacter: number
-  ): boolean {
-    return (
-      quotes.includes(text[startCharacter]) &&
-      quotes.includes(text[endCharacter])
-    );
   }
 }

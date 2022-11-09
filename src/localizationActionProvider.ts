@@ -3,9 +3,8 @@ import { KeyValuePair } from './keyValuePair';
 import { LocalizationCommand } from './localizationCommand';
 import { ReplaceParameters } from './replaceParameters';
 import { camelize } from './camelize';
-import { isNotString } from './stringField';
-
-const empty = '';
+import { empty } from './empty';
+import { getStringWithoutEscapes } from './parser/parser';
 
 export class LocalizationActionProvider implements vscode.CodeActionProvider {
   public static readonly providedCodeActionKinds = [
@@ -16,30 +15,16 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
     document: vscode.TextDocument,
     range: vscode.Range
   ): vscode.ProviderResult<vscode.CodeAction[]> {
-    const text = this.retrieveTextToBeLocalized(document, range);
+    const text = getStringWithoutEscapes(document.getText(range));
     if (text === empty) {
       return;
     }
 
-    return [this.createRefactorExtractToL10nFiles(document, range, text)];
-  }
-
-  private retrieveTextToBeLocalized(
-    document: vscode.TextDocument,
-    range: vscode.Range
-  ): string {
-    const { start, end } = range;
-    const startCharacter = start.character;
-    const endCharacter = end.character - 1;
-    const { text } = document.lineAt(start.line);
-    if (isNotString(text, startCharacter, endCharacter)) {
-      return empty;
-    }
-    return text.substring(startCharacter + 1, endCharacter);
+    return [this.createRefactorExtractToL10nFiles(document.uri, range, text)];
   }
 
   private createRefactorExtractToL10nFiles(
-    document: vscode.TextDocument,
+    uri: vscode.Uri,
     range: vscode.Range,
     value: string
   ): vscode.CodeAction {
@@ -49,7 +34,7 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
     );
     codeAction.command = new LocalizationCommand([
       new ReplaceParameters(
-        document.uri,
+        uri,
         range,
         new KeyValuePair(camelize(value), value)
       )

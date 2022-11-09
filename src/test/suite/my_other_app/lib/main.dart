@@ -17,7 +17,11 @@ class App extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       home: Scaffold(
         appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
-        body: const Center(child: Text("Aujourd'hui il FAIT 50°C en été")),
+        body: Column(
+          children: [
+            Text("Hello World"),
+          ],
+        ),
       ),
     );
   }

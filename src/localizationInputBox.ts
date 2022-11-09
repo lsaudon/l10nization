@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as yaml from 'yaml';
 import { ReplaceParameters } from './replaceParameters';
+import { empty } from './empty';
 
 const parentSection = 'l10nization';
 
@@ -50,7 +51,7 @@ function toJson(
 }
 
 function getProjectName(documentUri: vscode.Uri): string {
-  return documentUri.path.split('/lib/')[first].split('/').pop() ?? '';
+  return documentUri.path.split('/lib/')[first].split('/').pop() ?? empty;
 }
 
 async function getChangesForArbFiles(

@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.6.0](https://github.com/lsaudon/l10nization/releases/tag/release-0.6.0)
+
+- ⬆️ Bump webpack
+- ♻️ Parser string value for support multiline
+
 ## [0.5.2](https://github.com/lsaudon/l10nization/releases/tag/release-0.5.2)
 
 - ♻️ Improve the conversion from text to key

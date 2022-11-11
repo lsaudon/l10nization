@@ -108,11 +108,8 @@ export function localizationInputBox(
   inputBox.onDidAccept(async () => {
     inputBox.hide();
     const edit = await getChangesForArbFiles(inputBox.value, replaceParameters);
-    await vscode.workspace.applyEdit(edit);
-    await new Promise((f) => {
-      setTimeout(f, 1000);
-    });
-    await vscode.workspace.saveAll(true);
+    await vscode.workspace.applyEdit(edit, { isRefactoring: true });
+    await vscode.workspace.saveAll();
     const flutterPubGetEnabled = vscode.workspace
       .getConfiguration(parentSection)
       .get<boolean>(flutterPubGetEnabledSection, defaultPubGet);

@@ -1,8 +1,9 @@
 # Changelog
 
-## [0.6.1](https://github.com/lsaudon/l10nization/releases/tag/release-0.6.1)
+## [0.6.2](https://github.com/lsaudon/l10nization/releases/tag/release-0.6.2)
 
 - ♻️ Remove Code smell for saveAll files
+- 🔒️ Fix incomplete string escaping or encoding
 
 ## [0.6.0](https://github.com/lsaudon/l10nization/releases/tag/release-0.6.0)
 

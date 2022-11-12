@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.1](https://github.com/lsaudon/l10nization/releases/tag/release-0.6.1)
+
+- ♻️ Remove Code smell for saveAll files
+
 ## [0.6.0](https://github.com/lsaudon/l10nization/releases/tag/release-0.6.0)
 
 - ⬆️ Bump webpack

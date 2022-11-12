@@ -5,7 +5,7 @@ function charnL(value: string): string {
   if (value === '') {
     return 'empty';
   }
-  return value.replace('\r', '\\r').replace('\n', '\\n');
+  return value.replace(/\r/gu, '\\r').replace(/\n/gu, '\\n');
 }
 
 describe('getStringWithoutEscapes', () => {

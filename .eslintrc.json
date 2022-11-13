@@ -38,7 +38,17 @@
     "@typescript-eslint/no-floating-promises": "off",
     "prettier/prettier": "error",
     "arrow-body-style": "off",
-    "prefer-arrow-callback": "off"
+    "prefer-arrow-callback": "off",
+    "prefer-destructuring": [
+      "error",
+      {
+        "array": false,
+        "object": true
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ]
   },
   "ignorePatterns": ["out", "dist", "**/*.d.ts"]
 }

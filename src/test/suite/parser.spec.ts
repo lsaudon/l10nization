@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getStringWithoutEscapes } from '../../parser/parser';
+import { getStringWithoutEscapes } from '../../extension/parser/parser';
 
 function charnL(value: string): string {
   if (value === '') {

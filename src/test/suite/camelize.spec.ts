@@ -1,4 +1,4 @@
-import { camelize } from '../../camelize';
+import { camelize } from '../../extension/camelize';
 import { expect } from 'chai';
 
 describe('Camelize', () => {

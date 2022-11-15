@@ -19,7 +19,7 @@
     "Other"
   ],
   "engines": {
-    "vscode": "^1.73.0"
+    "vscode": "^1.73.1"
   },
   "keywords": [
     "flutter",

@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 export const executeCodeActionProvider = 'vscode.executeCodeActionProvider';
 
 export function getWorkspaceFolder(): string {
-  return __dirname.replace('\\out\\test', '');
+  return __dirname.replace('\\out\\test', '').replace('/out/test', '');
 }
 
 export function getMyAppMainFile(): vscode.Uri {

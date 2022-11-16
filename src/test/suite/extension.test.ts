@@ -45,7 +45,7 @@ suite('L10nisation Test Suite', () => {
       new vscode.Range(new vscode.Position(21, 17), new vscode.Position(21, 20))
     );
     const { command } = actions[0];
-    if (!command || !command.arguments) {
+    if (!command?.arguments) {
       throw new Error('');
     }
     await vscode.commands.executeCommand(

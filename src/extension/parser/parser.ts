@@ -1,5 +1,5 @@
 import * as P from 'parsimmon';
-import { empty } from '../empty';
+import { empty } from '../../shared/constants';
 import { escapes } from './escape';
 
 export function getStringWithoutEscapes(input: string): string {

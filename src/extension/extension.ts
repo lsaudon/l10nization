@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { EditFilesCommand } from './editFilesCommand';
+import { InputBoxCommand } from './inputBoxCommand';
 import { LocalizationActionProvider } from './localizationActionProvider';
-import { LocalizationCommand } from './localizationCommand';
 import { ReplaceParameters } from './replaceParameters';
 import { applySaveAndRunFlutterPubGet } from './localizationService';
 import { localizationInputBox } from './localizationInputBox';
@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext): void {
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      LocalizationCommand.commandName,
+      InputBoxCommand.commandName,
       (...args: ReplaceParameters[]): void => {
         localizationInputBox(args[0]);
       }

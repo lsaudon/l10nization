@@ -1,9 +1,9 @@
 import * as vscode from 'vscode';
+import { InputBoxCommand } from './inputBoxCommand';
 import { KeyValuePair } from './keyValuePair';
-import { LocalizationCommand } from './localizationCommand';
 import { ReplaceParameters } from './replaceParameters';
 import { camelize } from './camelize';
-import { empty } from './empty';
+import { empty } from '../shared/constants';
 import { getStringWithoutEscapes } from './parser/parser';
 
 export class LocalizationActionProvider implements vscode.CodeActionProvider {
@@ -32,7 +32,7 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
       `Extract value to arb files`,
       vscode.CodeActionKind.RefactorExtract
     );
-    codeAction.command = new LocalizationCommand([
+    codeAction.command = new InputBoxCommand([
       new ReplaceParameters(
         uri,
         range,

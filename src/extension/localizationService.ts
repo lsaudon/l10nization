@@ -1,25 +1,27 @@
 import * as vscode from 'vscode';
 import * as yaml from 'yaml';
+import {
+  appLocalizationsVariableSection,
+  defaultPubGet,
+  defaultVariable,
+  defaultYamlFile,
+  empty,
+  first,
+  flutterPubGetEnabledSection,
+  parentSection,
+  yamlFileSection
+} from '../shared/constants';
 import { ReplaceParameters } from './replaceParameters';
-import { empty } from './empty';
 
-const parentSection = 'l10nization';
-
-const appLocalizationsVariableSection = 'appLocalizationsVariable';
-const defaultVariable = 'l10n';
-
-const yamlFileSection = 'yamlFile';
-const defaultYamlFile = 'l10n.yaml';
-
-const flutterPubGetEnabledSection = 'flutterPubGetEnabled';
-const defaultPubGet = true;
-
-const first = 0;
+function getConfiguration(section: string): vscode.WorkspaceConfiguration {
+  return vscode.workspace.getConfiguration(section);
+}
 
 async function getArbFiles(projectName: string): Promise<vscode.Uri[]> {
-  const yamlFileName = vscode.workspace
-    .getConfiguration(parentSection)
-    .get<string>(yamlFileSection, defaultYamlFile);
+  const yamlFileName = getConfiguration(parentSection).get<string>(
+    yamlFileSection,
+    defaultYamlFile
+  );
 
   const yamlFiles = await vscode.workspace.findFiles(
     `**/${projectName}/${yamlFileName}`
@@ -79,9 +81,10 @@ async function getChangesForArbFiles(
     );
   });
 
-  const appLocalizationsVariable = vscode.workspace
-    .getConfiguration(parentSection)
-    .get<string>(appLocalizationsVariableSection, defaultVariable);
+  const appLocalizationsVariable = getConfiguration(parentSection).get<string>(
+    appLocalizationsVariableSection,
+    defaultVariable
+  );
   workspaceEdit.replace(
     replaceParameters.documentUri,
     replaceParameters.range,
@@ -97,10 +100,11 @@ async function runIfExist(flutterPackagesGetCommand: string) {
   }
 }
 
-async function runFlutterPubGet() {
-  const flutterPubGetEnabled = vscode.workspace
-    .getConfiguration(parentSection)
-    .get<boolean>(flutterPubGetEnabledSection, defaultPubGet);
+async function runFlutterPubGet(): Promise<void> {
+  const flutterPubGetEnabled = getConfiguration(parentSection).get<boolean>(
+    flutterPubGetEnabledSection,
+    defaultPubGet
+  );
   if (flutterPubGetEnabled) {
     await runIfExist('flutter.packages.get');
   }

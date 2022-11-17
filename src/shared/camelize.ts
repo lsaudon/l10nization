@@ -1,4 +1,4 @@
-import { empty } from '../shared/constants';
+import { empty } from './constants';
 
 export function camelize(value: string): string {
   const valueSplitted = value

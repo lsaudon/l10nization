@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
-import { ReplaceParameters } from './replaceParameters';
+import { EditFilesParameters } from './editFilesParameters';
 
 export class EditFilesCommand implements vscode.Command {
   public static readonly commandName = 'l10nization.editFiles';
 
-  constructor(args: ReplaceParameters[]) {
+  constructor(args: EditFilesParameters[]) {
     this.title = 'Edit files';
     this.command = EditFilesCommand.commandName;
     this.arguments = args;
@@ -16,5 +16,5 @@ export class EditFilesCommand implements vscode.Command {
 
   tooltip?: string;
 
-  arguments?: ReplaceParameters[];
+  arguments?: EditFilesParameters[];
 }

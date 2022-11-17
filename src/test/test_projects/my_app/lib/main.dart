@@ -12,6 +12,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    const name = 'name';
+    const otherName = 'otherName';
+
     return MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
@@ -19,6 +22,7 @@ class App extends StatelessWidget {
         appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
         body: Column(
           children: [
+            Text('a $name $otherName ${context.owner.toString()}'),
             Text('a'),
             Text("a"),
             Text('''a'''),

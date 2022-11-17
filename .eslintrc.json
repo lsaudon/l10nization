@@ -48,7 +48,10 @@
       {
         "enforceForRenamedProperties": false
       }
-    ]
+    ],
+    "max-params": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "error"
   },
   "ignorePatterns": ["out", "dist", "**/*.d.ts"]
 }

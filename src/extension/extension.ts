@@ -1,10 +1,11 @@
 import * as vscode from 'vscode';
-import { EditFilesCommand } from './editFilesCommand';
-import { InputBoxCommand } from './inputBoxCommand';
-import { LocalizationActionProvider } from './localizationActionProvider';
-import { ReplaceParameters } from './replaceParameters';
-import { applySaveAndRunFlutterPubGet } from './localizationService';
-import { localizationInputBox } from './localizationInputBox';
+import { CommandParameters } from '../commands/commandParameters';
+import { EditFilesCommand } from '../commands/editFilesCommand';
+import { EditFilesParameters } from '../commands/editFilesParameters';
+import { InputBoxCommand } from '../commands/inputBoxCommand';
+import { LocalizationActionProvider } from '../codeActions/localizationActionProvider';
+import { applySaveAndRunFlutterPubGet } from './applySaveAndRunFlutterPubGet';
+import { setEditFilesParameters } from './setEditFilesParameters';
 
 export function activate(context: vscode.ExtensionContext): void {
   context.subscriptions.push(
@@ -20,17 +21,20 @@ export function activate(context: vscode.ExtensionContext): void {
   context.subscriptions.push(
     vscode.commands.registerCommand(
       InputBoxCommand.commandName,
-      (...args: ReplaceParameters[]): void => {
-        localizationInputBox(args[0]);
+      async (...args: CommandParameters[]): Promise<void> => {
+        const editFilesParameters = await setEditFilesParameters(args[0]);
+        await vscode.commands.executeCommand(
+          EditFilesCommand.commandName,
+          editFilesParameters
+        );
       }
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       EditFilesCommand.commandName,
-      async (...args: ReplaceParameters[]): Promise<void> => {
-        await applySaveAndRunFlutterPubGet(args[0]);
-      }
+      async (...args: EditFilesParameters[]): Promise<void> =>
+        applySaveAndRunFlutterPubGet(args[0])
     )
   );
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## [Future release]()
+
+- ✨ Handle string variables
+
 ## [0.6.2](https://github.com/lsaudon/l10nization/releases/tag/release-0.6.2)
 
 - ♻️ Remove Code smell for saveAll files

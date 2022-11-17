@@ -12,6 +12,7 @@ module.exports = () => {
     infrastructureLogging: {
       level: 'log'
     },
+    mode: 'development',
     module: {
       rules: [
         {

@@ -5,7 +5,7 @@ import {
   getMyAppMainFile,
   stubCreateInputBox
 } from '../helpers';
-import { ReplaceParameters } from '../../extension/replaceParameters';
+import { CommandParameters } from '../../commands/commandParameters';
 import { extensionIdentifier } from '../../shared/constants';
 
 suite('L10nisation Test Suite', () => {
@@ -50,7 +50,7 @@ suite('L10nisation Test Suite', () => {
     }
     await vscode.commands.executeCommand(
       command.command,
-      ...(command.arguments as ReplaceParameters[])
+      ...(command.arguments as CommandParameters[])
     );
 
     assert.equal(inputBox.value, 'aB');

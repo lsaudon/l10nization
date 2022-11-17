@@ -1,10 +1,8 @@
 import * as vscode from 'vscode';
-import { InputBoxCommand } from './inputBoxCommand';
-import { KeyValuePair } from './keyValuePair';
-import { ReplaceParameters } from './replaceParameters';
-import { camelize } from './camelize';
+import { CommandParameters } from '../commands/commandParameters';
+import { InputBoxCommand } from '../commands/inputBoxCommand';
 import { empty } from '../shared/constants';
-import { getStringWithoutEscapes } from './parser/parser';
+import { getStringWithoutEscapes } from '../shared/parser/parser';
 
 export class LocalizationActionProvider implements vscode.CodeActionProvider {
   public static readonly providedCodeActionKinds = [
@@ -20,25 +18,21 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
       return;
     }
 
-    return [this.createRefactorExtractToL10nFiles(document.uri, range, text)];
+    return [
+      this.createRefactorExtractToL10nFiles(
+        new CommandParameters(document.uri, range, text)
+      )
+    ];
   }
 
   private createRefactorExtractToL10nFiles(
-    uri: vscode.Uri,
-    range: vscode.Range,
-    value: string
+    commandParameters: CommandParameters
   ): vscode.CodeAction {
     const codeAction = new vscode.CodeAction(
       `Extract value to arb files`,
       vscode.CodeActionKind.RefactorExtract
     );
-    codeAction.command = new InputBoxCommand([
-      new ReplaceParameters(
-        uri,
-        range,
-        new KeyValuePair(camelize(value), value)
-      )
-    ]);
+    codeAction.command = new InputBoxCommand([commandParameters]);
     return codeAction;
   }
 }

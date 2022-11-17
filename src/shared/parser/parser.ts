@@ -1,5 +1,5 @@
 import * as P from 'parsimmon';
-import { empty } from '../../shared/constants';
+import { empty } from '../constants';
 import { escapes } from './escape';
 
 export function getStringWithoutEscapes(input: string): string {
@@ -19,4 +19,14 @@ export function getStringWithoutEscapes(input: string): string {
     }
   }
   return empty;
+}
+
+export function getVariablesInInterpolation(input: string): string[] {
+  const matches = input.match(/(\$[a-zA-Z0-9]+)|(\{[a-zA-Z0-9.]+(\(\))?\})/giu);
+  if (matches === null) {
+    return [];
+  }
+  return matches.map((a) =>
+    a.replace(/\$/gu, '').replace('{', '').replace('}', '')
+  );
 }

@@ -1,6 +1,6 @@
 # Changelog
 
-## [Future release]()
+## [0.7.0](https://github.com/lsaudon/l10nization/releases/tag/release-0.7.0)
 
 - ✨ Handle string variables
 

@@ -25,6 +25,25 @@ To use the extension with [r13n](https://github.com/VeryGoodOpenSource/r13n), th
 "l10nization.yamlFile": "r13n.yaml"
 ```
 
+### Number format
+
+| Message “format” value    | Output for numberOfDataPoints(1200000) | Avaible |
+| ------------------------- | -------------------------------------- | ------- |
+| "compact"                 | "1.2M"                                 | ✅      |
+| "compactCurrency"\*       | "$1.2M"                                | ❌      |
+| "compactSimpleCurrency"\* | "$1.2M"                                | ❌      |
+| "compactLong"             | "1.2 million"                          | ✅      |
+| "currency"\*              | "USD1,200,000.00"                      | ❌      |
+| "decimalPattern"          | "1,200,000"                            | ✅      |
+| "decimalPercentPattern"\* | "120,000,000%"                         | ❌      |
+| "percentPattern"          | "120,000,000%"                         | ✅      |
+| "scientificPattern"       | "1E6"                                  | ✅      |
+| "simpleCurrency"\*        | "$1,200,000.00"                        | ❌      |
+
+### DateTime format
+
+The format for dateTimes must be entered by hand. **The extension does not check that it is correct.**
+
 ## Release Notes
 
 For full release notes, see the [changelog](CHANGELOG.md).

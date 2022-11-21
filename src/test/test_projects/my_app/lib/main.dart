@@ -14,6 +14,7 @@ class App extends StatelessWidget {
 
     const name = 'name';
     const otherName = 'otherName';
+    const number = 1;
 
     return MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -23,7 +24,7 @@ class App extends StatelessWidget {
         body: Column(
           children: [
             Text('a $name $otherName ${context.owner.toString()}'),
-            Text('a'),
+            Text("a $number"),
             Text("a"),
             Text('''a'''),
             Text("""a"""),

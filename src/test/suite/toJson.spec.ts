@@ -91,4 +91,60 @@ describe('toJson', () => {
   }
 }`);
   });
+
+  it('should return json when message with 1 placeholder int', () => {
+    expect(
+      toJson(defaultArbJson, 'hello', 'Hello $name', [
+        new Placeholder('name', 'name', PlaceholderType.int)
+      ])
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "hello": "Hello {name}",
+  "@hello": {
+    "placeholders": {
+      "name": {
+        "type": "int"
+      }
+    }
+  }
+}`);
+  });
+
+  it('should return json when message with 1 placeholder int with format', () => {
+    expect(
+      toJson(defaultArbJson, 'hello', 'Hello $name', [
+        new Placeholder('name', 'name', PlaceholderType.int, 'compact')
+      ])
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "hello": "Hello {name}",
+  "@hello": {
+    "placeholders": {
+      "name": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  }
+}`);
+  });
+
+  it('should return json when message with 1 placeholder DateTime', () => {
+    expect(
+      toJson(defaultArbJson, 'hello', 'Hello $name', [
+        new Placeholder('name', 'name', PlaceholderType.DateTime, 'yMd')
+      ])
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "hello": "Hello {name}",
+  "@hello": {
+    "placeholders": {
+      "name": {
+        "type": "DateTime",
+        "format": "yMd"
+      }
+    }
+  }
+}`);
+  });
 });

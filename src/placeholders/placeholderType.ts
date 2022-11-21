@@ -1,7 +1,9 @@
 import { QuickPickItem } from 'vscode';
 
 export enum PlaceholderType {
-  String = 'String'
+  String = 'String',
+  int = 'int',
+  DateTime = 'DateTime'
 }
 
 export function getPlaceholderTypes() {

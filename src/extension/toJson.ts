@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Placeholder } from '../placeholders/placeholder';
+import { PlaceholderType } from '../placeholders/placeholderType';
 
 export function toJson(
   text: string,
@@ -22,10 +23,15 @@ export function toJson(
     map.set(key, newValue);
     const placeholdersMap = new Map<string, any>();
     for (const placeholder of placeholders) {
-      placeholdersMap.set(
-        placeholder.name,
-        Object.fromEntries(new Map<string, any>([['type', placeholder.type]]))
-      );
+      const placeholderMap = new Map<string, any>([['type', placeholder.type]]);
+      if (
+        placeholder.type === PlaceholderType.DateTime ||
+        (placeholder.type === PlaceholderType.int &&
+          typeof placeholder.format !== 'undefined')
+      ) {
+        placeholderMap.set('format', placeholder.format);
+      }
+      placeholdersMap.set(placeholder.name, Object.fromEntries(placeholderMap));
     }
     map.set(
       `@${key}`,

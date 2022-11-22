@@ -1,8 +1,9 @@
 # Changelog
 
-## [0.9.0](https://github.com/lsaudon/l10nization/releases/tag/release-0.9.0)
+## [0.9.1](https://github.com/lsaudon/l10nization/releases/tag/release-0.9.1)
 
 - ✨ Handle DateFormat and CustomDateFormat and Number with optionalParameters
+- 🐛 Fix wrong import path
 
 ## [0.8.0](https://github.com/lsaudon/l10nization/releases/tag/release-0.8.0)
 

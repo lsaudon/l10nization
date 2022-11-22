@@ -3,6 +3,8 @@ import { QuickPickItem } from 'vscode';
 export enum PlaceholderType {
   String = 'String',
   int = 'int',
+  num = 'num',
+  double = 'double',
   DateTime = 'DateTime'
 }
 

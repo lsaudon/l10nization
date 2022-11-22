@@ -1,17 +1,12 @@
-import {
-  NumberFormat,
-  NumberFormatItem,
-  getNumberFormat,
-  getNumberFormats
-} from './numberFormat';
-import { showQuickPick } from '../quickPick/showQuickPick';
+import { LionizationPickItem, showQuickPick } from '../quickPick/showQuickPick';
+import { validNumberFormats } from './numberFormat';
 
 export async function showNumberFormatQuickPick(
   variable: string
-): Promise<NumberFormat> {
+): Promise<string> {
   const numberFormatValue = await showQuickPick(
     `Choose the number format for the variable ${variable}`,
-    getNumberFormats().map((p) => new NumberFormatItem(p))
+    validNumberFormats.map((p) => new LionizationPickItem(p))
   );
-  return getNumberFormat(numberFormatValue);
+  return numberFormatValue;
 }

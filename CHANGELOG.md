@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.9.0](https://github.com/lsaudon/l10nization/releases/tag/release-0.9.0)
+
+- ✨ Handle DateFormat and CustomDateFormat and Number with optionalParameters
+
 ## [0.8.0](https://github.com/lsaudon/l10nization/releases/tag/release-0.8.0)
 
 - ⬆️ eslint-plugin & parser

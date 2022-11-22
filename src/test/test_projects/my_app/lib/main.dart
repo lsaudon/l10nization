@@ -24,7 +24,7 @@ class App extends StatelessWidget {
         body: Column(
           children: [
             Text('a $name $otherName ${context.owner.toString()}'),
-            Text("a $number"),
+            Text(l10n.aNumber(number)),
             Text("a"),
             Text('''a'''),
             Text("""a"""),

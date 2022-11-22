@@ -1,4 +1,12 @@
 {
   "@@locale": "en",
-  "counterAppBarTitle": "Counter"
+  "counterAppBarTitle": "Counter",
+  "aNumber": "a {number}",
+  "@aNumber": {
+    "placeholders": {
+      "number": {
+        "type": "num"
+      }
+    }
+  }
 }

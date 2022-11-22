@@ -12,7 +12,7 @@ import { Placeholder } from '../placeholders/placeholder';
 import { PlaceholderType } from '../placeholders/placeholderType';
 import { camelize } from '../shared/camelize';
 import { getVariablesInInterpolation } from '../shared/parser/parser';
-import { showDateFormatQuickPick } from '../placeholders/DateFormatQuickPick';
+import { showDateFormatQuickPick } from '../placeholders/dateFormatQuickPick';
 import { showInputBox } from '../inputBox/showInputBox';
 import { showNumberFormatQuickPick } from '../placeholders/numberFormatQuickPick';
 import { showPlaceholderQuickPick } from '../placeholders/placeholderQuickPick';
@@ -36,8 +36,7 @@ export async function setEditFilesParameters(
       const placeholderType = await showPlaceholderQuickPick(name);
       let placeholder = new Placeholder(name, variable, placeholderType);
       if (placeholderType === PlaceholderType.DateTime) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-        const format: string = await showDateFormatQuickPick(name);
+        const format = await showDateFormatQuickPick(name);
         placeholder = placeholder.addFormat(format);
       } else if (
         placeholderType === PlaceholderType.int ||

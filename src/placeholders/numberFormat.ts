@@ -1,33 +1,37 @@
-import { QuickPickItem } from 'vscode';
+export const validNumberFormats = [
+  'none',
+  'compact',
+  'compactCurrency',
+  'compactSimpleCurrency',
+  'compactLong',
+  'currency',
+  'decimalPattern',
+  'decimalPercentPattern',
+  'percentPattern',
+  'scientificPattern',
+  'simpleCurrency'
+];
 
-export enum NumberFormat {
-  none = 'none',
-  compact = 'compact',
-  // compactCurrency = 'compactCurrency',
-  // compactSimpleCurrency = 'compactSimpleCurrency',
-  compactLong = 'compactLong',
-  // currency = 'currency',
-  decimalPattern = 'decimalPattern',
-  // decimalPercentPattern = 'decimalPercentPattern',
-  percentPattern = 'percentPattern',
-  scientificPattern = 'scientificPattern'
-  // simpleCurrency = 'simpleCurrency'
+export const numberFormatsWithSymbol = ['compactCurrency', 'currency'];
+
+export function includeInSymbol(value: string) {
+  return numberFormatsWithSymbol.includes(value);
 }
 
-export function getNumberFormats() {
-  return Object.keys(NumberFormat).filter((p) => isNaN(Number(p)));
+export const numberFormatsWithDecimalDigits = [
+  'compactCurrency',
+  'compactSimpleCurrency',
+  'currency',
+  'decimalPercentPattern',
+  'simpleCurrency'
+];
+
+export function includeInDecimalDigits(value: string) {
+  return numberFormatsWithDecimalDigits.includes(value);
 }
 
-export function getNumberFormat(numberFormatValue: string) {
-  return Object.values(NumberFormat).filter(
-    (p) => p === numberFormatValue
-  )[0] as NumberFormat;
-}
+export const numberFormatsWithCustomPattern = ['currency'];
 
-export class NumberFormatItem implements QuickPickItem {
-  label: string;
-
-  constructor(label: string) {
-    this.label = label;
-  }
+export function includeInCustomPattern(value: string) {
+  return numberFormatsWithCustomPattern.includes(value);
 }

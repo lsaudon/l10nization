@@ -1,4 +1,12 @@
 {
   "@@locale": "fr",
-  "counterAppBarTitle": "Compteur"
+  "counterAppBarTitle": "Compteur",
+  "aNumber": "a {number}",
+  "@aNumber": {
+    "placeholders": {
+      "number": {
+        "type": "num"
+      }
+    }
+  }
 }

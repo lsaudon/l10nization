@@ -113,7 +113,9 @@ describe('toJson', () => {
   it('should return json when message with 1 placeholder int with format', () => {
     expect(
       toJson(defaultArbJson, 'hello', 'Hello $name', [
-        new Placeholder('name', 'name', PlaceholderType.int, 'compact')
+        new Placeholder('name', 'name', PlaceholderType.int).addFormat(
+          'compact'
+        )
       ])
     ).to.be.equal(`{
   "@@locale": "fr",
@@ -129,10 +131,96 @@ describe('toJson', () => {
 }`);
   });
 
+  it('should return json when message with 1 placeholder int with format with parameters', () => {
+    expect(
+      toJson(defaultArbJson, 'hello', 'Hello $name', [
+        new Placeholder('name', 'name', PlaceholderType.int)
+          .addFormat('currency')
+          .addSymbol('€')
+          .addDecimalDigits(2)
+          .addCustomPattern('###.0#')
+      ])
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "hello": "Hello {name}",
+  "@hello": {
+    "placeholders": {
+      "name": {
+        "type": "int",
+        "format": "currency",
+        "optionalParameters": {
+          "symbol": "€",
+          "decimalDigits": 2,
+          "customPattern": "###.0#"
+        }
+      }
+    }
+  }
+}`);
+  });
+
+  it('should return json when message with 1 placeholder num with format with parameters', () => {
+    expect(
+      toJson(defaultArbJson, 'hello', 'Hello $name', [
+        new Placeholder('name', 'name', PlaceholderType.num)
+          .addFormat('currency')
+          .addSymbol('€')
+          .addDecimalDigits(2)
+          .addCustomPattern('###.0#')
+      ])
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "hello": "Hello {name}",
+  "@hello": {
+    "placeholders": {
+      "name": {
+        "type": "num",
+        "format": "currency",
+        "optionalParameters": {
+          "symbol": "€",
+          "decimalDigits": 2,
+          "customPattern": "###.0#"
+        }
+      }
+    }
+  }
+}`);
+  });
+
+  it('should return json when message with 1 placeholder double with format with parameters', () => {
+    expect(
+      toJson(defaultArbJson, 'hello', 'Hello $name', [
+        new Placeholder('name', 'name', PlaceholderType.double)
+          .addFormat('currency')
+          .addSymbol('€')
+          .addDecimalDigits(2)
+          .addCustomPattern('###.0#')
+      ])
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "hello": "Hello {name}",
+  "@hello": {
+    "placeholders": {
+      "name": {
+        "type": "double",
+        "format": "currency",
+        "optionalParameters": {
+          "symbol": "€",
+          "decimalDigits": 2,
+          "customPattern": "###.0#"
+        }
+      }
+    }
+  }
+}`);
+  });
+
   it('should return json when message with 1 placeholder DateTime', () => {
     expect(
       toJson(defaultArbJson, 'hello', 'Hello $name', [
-        new Placeholder('name', 'name', PlaceholderType.DateTime, 'yMd')
+        new Placeholder('name', 'name', PlaceholderType.DateTime).addFormat(
+          'yMd'
+        )
       ])
     ).to.be.equal(`{
   "@@locale": "fr",
@@ -142,6 +230,28 @@ describe('toJson', () => {
       "name": {
         "type": "DateTime",
         "format": "yMd"
+      }
+    }
+  }
+}`);
+  });
+
+  it('should return json when message with 1 placeholder DateTime not in valid list', () => {
+    expect(
+      toJson(defaultArbJson, 'hello', 'Hello $name', [
+        new Placeholder('name', 'name', PlaceholderType.DateTime).addFormat(
+          'dd/MM/yyyy'
+        )
+      ])
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "hello": "Hello {name}",
+  "@hello": {
+    "placeholders": {
+      "name": {
+        "type": "DateTime",
+        "format": "dd/MM/yyyy",
+        "isCustomDateFormat": "true"
       }
     }
   }

@@ -1,14 +1,20 @@
+/* eslint-disable max-depth */
+/* eslint-disable no-await-in-loop */
+import {
+  includeInCustomPattern,
+  includeInDecimalDigits,
+  includeInSymbol
+} from '../placeholders/numberFormat';
 import { CommandParameters } from '../commands/commandParameters';
 import { EditFilesParameters } from '../commands/editFilesParameters';
 import { KeyValuePair } from './keyValuePair';
-import { NumberFormat } from '../placeholders/numberFormat';
 import { Placeholder } from '../placeholders/placeholder';
 import { PlaceholderType } from '../placeholders/placeholderType';
 import { camelize } from '../shared/camelize';
 import { getVariablesInInterpolation } from '../shared/parser/parser';
+import { showDateFormatQuickPick } from '../placeholders/DateFormatQuickPick';
 import { showInputBox } from '../inputBox/showInputBox';
 import { showNumberFormatQuickPick } from '../placeholders/numberFormatQuickPick';
-import { showPlaceholderFormatInputBox } from '../placeholders/placeholderFormatInputBox';
 import { showPlaceholderQuickPick } from '../placeholders/placeholderQuickPick';
 
 export async function setEditFilesParameters(
@@ -23,32 +29,48 @@ export async function setEditFilesParameters(
   const placeholders: Placeholder[] = [];
   if (Array.isArray(variables)) {
     for (const variable of variables) {
-      // eslint-disable-next-line no-await-in-loop
       const name = await showInputBox(
         `Enter the name of the variable ${variable}`,
         camelize(variable)
       );
-      // eslint-disable-next-line no-await-in-loop
       const placeholderType = await showPlaceholderQuickPick(name);
+      let placeholder = new Placeholder(name, variable, placeholderType);
       if (placeholderType === PlaceholderType.DateTime) {
-        // eslint-disable-next-line no-await-in-loop
-        const format = await showPlaceholderFormatInputBox(name);
-        placeholders.push(
-          new Placeholder(name, variable, placeholderType, format)
-        );
-      } else if (placeholderType === PlaceholderType.int) {
-        // eslint-disable-next-line no-await-in-loop
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+        const format: string = await showDateFormatQuickPick(name);
+        placeholder = placeholder.addFormat(format);
+      } else if (
+        placeholderType === PlaceholderType.int ||
+        placeholderType === PlaceholderType.num ||
+        placeholderType === PlaceholderType.double
+      ) {
         const format = await showNumberFormatQuickPick(name);
-        if (format === NumberFormat.none) {
-          placeholders.push(new Placeholder(name, variable, placeholderType));
-        } else {
-          placeholders.push(
-            new Placeholder(name, variable, placeholderType, format)
-          );
+        if (format !== 'none') {
+          placeholder = placeholder.addFormat(format);
+          if (includeInSymbol(format)) {
+            const symbol = await showInputBox(
+              `Choose the symbol for the variable ${name}`,
+              ''
+            );
+            placeholder = placeholder.addSymbol(symbol);
+          }
+          if (includeInDecimalDigits(format)) {
+            const decimalDigits = await showInputBox(
+              `Choose the decimal digits for the variable ${name}`,
+              ''
+            );
+            placeholder = placeholder.addDecimalDigits(Number(decimalDigits));
+          }
+          if (includeInCustomPattern(format)) {
+            const customPattern = await showInputBox(
+              `Choose the custom pattern for the variable ${name}`,
+              ''
+            );
+            placeholder = placeholder.addCustomPattern(customPattern);
+          }
         }
-      } else {
-        placeholders.push(new Placeholder(name, variable, placeholderType));
       }
+      placeholders.push(placeholder);
     }
   }
 

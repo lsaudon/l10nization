@@ -1,6 +1,8 @@
+/* eslint-disable max-depth */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Placeholder } from '../placeholders/placeholder';
 import { PlaceholderType } from '../placeholders/placeholderType';
+import { notInclude } from '../placeholders/dateFormat';
 
 export function toJson(
   text: string,
@@ -25,12 +27,52 @@ export function toJson(
     for (const placeholder of placeholders) {
       const placeholderMap = new Map<string, any>([['type', placeholder.type]]);
       if (
-        placeholder.type === PlaceholderType.DateTime ||
-        (placeholder.type === PlaceholderType.int &&
-          typeof placeholder.format !== 'undefined')
+        placeholder.type === PlaceholderType.DateTime &&
+        typeof placeholder.format !== 'undefined'
       ) {
         placeholderMap.set('format', placeholder.format);
+        if (notInclude(placeholder.format)) {
+          placeholderMap.set('isCustomDateFormat', 'true');
+        }
       }
+
+      if (
+        (placeholder.type === PlaceholderType.int ||
+          placeholder.type === PlaceholderType.num ||
+          placeholder.type === PlaceholderType.double) &&
+        typeof placeholder.format !== 'undefined'
+      ) {
+        placeholderMap.set('format', placeholder.format);
+        if (
+          typeof placeholder.symbol !== 'undefined' ||
+          typeof placeholder.decimalDigits !== 'undefined' ||
+          typeof placeholder.customPattern !== 'undefined'
+        ) {
+          const optionalParametersMap = new Map<string, any>([]);
+          if (typeof placeholder.symbol !== 'undefined') {
+            optionalParametersMap.set('symbol', placeholder.symbol);
+          }
+          if (typeof placeholder.decimalDigits !== 'undefined') {
+            optionalParametersMap.set(
+              'decimalDigits',
+              placeholder.decimalDigits
+            );
+          }
+
+          if (typeof placeholder.customPattern !== 'undefined') {
+            optionalParametersMap.set(
+              'customPattern',
+              placeholder.customPattern
+            );
+          }
+
+          placeholderMap.set(
+            'optionalParameters',
+            Object.fromEntries(optionalParametersMap)
+          );
+        }
+      }
+
       placeholdersMap.set(placeholder.name, Object.fromEntries(placeholderMap));
     }
     map.set(

@@ -56,6 +56,11 @@
           "type": "bool",
           "default": "true",
           "markdownDescription": "If enabled, run the `flutter.packages.get` command of the [Dart extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)."
+        },
+        "l10nization.arbSort": {
+          "type": "bool",
+          "default": "true",
+          "markdownDescription": "If enabled, sort keys alphabetically except for `@@locale` is first and `@key` are below their `key`."
         }
       }
     }

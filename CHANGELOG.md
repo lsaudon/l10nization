@@ -1,5 +1,9 @@
 # Changelog
 
+## [Future Release](https://github.com/lsaudon/l10nization/releases/tag/release-x.x.x)
+
+- ✨ Sorts keys of arb files
+
 ## [0.9.1](https://github.com/lsaudon/l10nization/releases/tag/release-0.9.1)
 
 - ✨ Handle DateFormat and CustomDateFormat and Number with optionalParameters

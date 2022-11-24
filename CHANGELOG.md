@@ -1,9 +1,10 @@
 # Changelog
 
-## [Future Release](https://github.com/lsaudon/l10nization/releases/tag/release-x.x.x)
+## [0.10.0](https://github.com/lsaudon/l10nization/releases/tag/release-0.10.0)
 
 - ✨ Sorts keys of arb files
 - 🐛 num and double can't have none format
+- ⬆️ Bump prettier from 2.7.1 to 2.8.0
 
 ## [0.9.1](https://github.com/lsaudon/l10nization/releases/tag/release-0.9.1)
 

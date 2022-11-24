@@ -8,7 +8,8 @@ export function toJson(
   text: string,
   key: string,
   value: string,
-  placeholders: Placeholder[]
+  placeholders: Placeholder[],
+  sorted: boolean
 ): string {
   const map = new Map<string, any>(
     Object.entries<string>(JSON.parse(text) as string)
@@ -85,5 +86,32 @@ export function toJson(
     );
   }
 
+  if (sorted) {
+    const mapSorted = new Map(
+      [...map].sort((a, b) => {
+        if (a[0] === '@@locale') {
+          return -1;
+        }
+        if (b[0] === '@@locale') {
+          return 1;
+        }
+        const compared = String(a[0].replace('@', '')).localeCompare(
+          b[0].replace('@', '')
+        );
+        if (compared === 0) {
+          if (a[0].startsWith('@')) {
+            return 1;
+          }
+          if (b[0].startsWith('@')) {
+            return -1;
+          }
+        }
+
+        return compared;
+      })
+    );
+
+    return JSON.stringify(Object.fromEntries(mapSorted), null, 2);
+  }
   return JSON.stringify(Object.fromEntries(map), null, 2);
 }

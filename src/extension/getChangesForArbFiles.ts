@@ -1,6 +1,8 @@
 import * as vscode from 'vscode';
 import {
   appLocalizationsVariableSection,
+  arbSortSection,
+  defaultArbSort,
   defaultVariable,
   parentSection
 } from '../shared/constants';
@@ -27,6 +29,11 @@ export async function getChangesForArbFiles(
   const workspaceEdit = new vscode.WorkspaceEdit();
   const { key, value } = parameters.keyValue;
   const { placeholders } = parameters;
+  const sortArbEnabled = getConfiguration(parentSection).get<boolean>(
+    arbSortSection,
+    defaultArbSort
+  );
+
   (await Promise.all(openTextDocuments)).forEach((content, index) => {
     workspaceEdit.replace(
       files[index],
@@ -34,7 +41,7 @@ export async function getChangesForArbFiles(
         new vscode.Position(0, 0),
         new vscode.Position(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
       ),
-      toJson(content.getText(), key, value, placeholders)
+      toJson(content.getText(), key, value, placeholders, sortArbEnabled)
     );
   });
 

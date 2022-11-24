@@ -20,12 +20,9 @@ class App extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: Scaffold(
-        appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
         body: Column(
           children: [
-            Text('a $name $otherName ${context.owner.toString()}'),
-            Text(l10n.aNumber(number)),
-            Text("a"),
+            Text("a $name $otherName $number"),
             Text('''a'''),
             Text("""a"""),
             Text(r'''a'''),

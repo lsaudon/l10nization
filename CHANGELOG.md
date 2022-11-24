@@ -3,6 +3,7 @@
 ## [Future Release](https://github.com/lsaudon/l10nization/releases/tag/release-x.x.x)
 
 - ✨ Sorts keys of arb files
+- 🐛 num and double can't have none format
 
 ## [0.9.1](https://github.com/lsaudon/l10nization/releases/tag/release-0.9.1)
 

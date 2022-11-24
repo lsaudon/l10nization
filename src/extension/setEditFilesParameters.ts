@@ -1,9 +1,11 @@
 /* eslint-disable max-depth */
 /* eslint-disable no-await-in-loop */
+import { LionizationPickItem, showQuickPick } from '../quickPick/showQuickPick';
 import {
   includeInCustomPattern,
   includeInDecimalDigits,
-  includeInSymbol
+  includeInSymbol,
+  validNumberFormats
 } from '../placeholders/numberFormat';
 import { CommandParameters } from '../commands/commandParameters';
 import { EditFilesParameters } from '../commands/editFilesParameters';
@@ -14,7 +16,6 @@ import { camelize } from '../shared/camelize';
 import { getVariablesInInterpolation } from '../shared/parser/parser';
 import { showDateFormatQuickPick } from '../placeholders/dateFormatQuickPick';
 import { showInputBox } from '../inputBox/showInputBox';
-import { showNumberFormatQuickPick } from '../placeholders/numberFormatQuickPick';
 import { showPlaceholderQuickPick } from '../placeholders/placeholderQuickPick';
 
 export async function setEditFilesParameters(
@@ -43,7 +44,15 @@ export async function setEditFilesParameters(
         placeholderType === PlaceholderType.num ||
         placeholderType === PlaceholderType.double
       ) {
-        const format = await showNumberFormatQuickPick(name);
+        const numberFormats: string[] = [];
+        if (placeholderType === PlaceholderType.int) {
+          numberFormats.push('none');
+        }
+        numberFormats.push(...validNumberFormats);
+        const format = await showQuickPick(
+          `Choose the number format for the variable ${variable}`,
+          numberFormats.map((p) => new LionizationPickItem(p))
+        );
         if (format !== 'none') {
           placeholder = placeholder.addFormat(format);
           if (includeInSymbol(format)) {

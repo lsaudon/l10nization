@@ -1,5 +1,9 @@
 # Changelog
 
+## [Future release](https://github.com/lsaudon/l10nization/releases/tag/release-x.x.x)
+
+- ✨ Add plural placeholders
+
 ## [0.10.0](https://github.com/lsaudon/l10nization/releases/tag/release-0.10.0)
 
 - ✨ Sorts keys of arb files

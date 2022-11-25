@@ -1,6 +1,6 @@
 # Changelog
 
-## [Future release](https://github.com/lsaudon/l10nization/releases/tag/release-x.x.x)
+## [1.0.0](https://github.com/lsaudon/l10nization/releases/tag/release-1.0.0)
 
 - ✨ Add plural placeholders
 

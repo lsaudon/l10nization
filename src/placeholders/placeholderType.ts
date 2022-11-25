@@ -5,7 +5,8 @@ export enum PlaceholderType {
   int = 'int',
   num = 'num',
   double = 'double',
-  DateTime = 'DateTime'
+  DateTime = 'DateTime',
+  plural = 'plural'
 }
 
 export function getPlaceholderTypes() {

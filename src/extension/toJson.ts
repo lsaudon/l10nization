@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable max-depth */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Placeholder } from '../placeholders/placeholder';
@@ -22,11 +23,17 @@ export function toJson(
       newValue = newValue
         .replace(`$\{${placeholder.value}}`, `{${placeholder.name}}`)
         .replace(`$${placeholder.value}`, `{${placeholder.name}}`);
+      if (placeholder.type === PlaceholderType.plural) {
+        newValue = `{${placeholder.name}, plural, other{${newValue}}}`;
+      }
     }
     map.set(key, newValue);
     const placeholdersMap = new Map<string, any>();
     for (const placeholder of placeholders) {
-      const placeholderMap = new Map<string, any>([['type', placeholder.type]]);
+      const placeholderMap = new Map<string, any>([]);
+      if (placeholder.type !== PlaceholderType.plural) {
+        placeholderMap.set('type', placeholder.type);
+      }
       if (
         placeholder.type === PlaceholderType.DateTime &&
         typeof placeholder.format !== 'undefined'

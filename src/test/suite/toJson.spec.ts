@@ -349,4 +349,44 @@ describe('toJson', () => {
   }
 }`);
   });
+
+  it('should return json when message with 1 placeholder plural', () => {
+    expect(
+      toJson(
+        defaultArbJson,
+        'countMessage',
+        'You have $count photos',
+        [new Placeholder('count', 'count', PlaceholderType.plural)],
+        false
+      )
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "countMessage": "{count, plural, other{You have {count} photos}}",
+  "@countMessage": {
+    "placeholders": {
+      "count": {}
+    }
+  }
+}`);
+  });
+
+  it('should return json when message with 1 placeholder plural 2', () => {
+    expect(
+      toJson(
+        defaultArbJson,
+        'countMessage',
+        'You have $otherCount photos',
+        [new Placeholder('otherCount', 'otherCount', PlaceholderType.plural)],
+        false
+      )
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "countMessage": "{otherCount, plural, other{You have {otherCount} photos}}",
+  "@countMessage": {
+    "placeholders": {
+      "otherCount": {}
+    }
+  }
+}`);
+  });
 });

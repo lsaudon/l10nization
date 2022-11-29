@@ -91,7 +91,7 @@
     "@types/parsimmon": "^1.10.6",
     "@types/sinon": "10.0.13",
     "@types/vscode": "^1.73.1",
-    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "@vscode/test-electron": "^2.2.0",
     "chai": "^4.3.7",

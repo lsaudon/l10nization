@@ -1,6 +1,6 @@
 # Changelog
 
-## [X.X.X](https://github.com/lsaudon/l10nization/releases/tag/release-X.X.X)
+## [1.0.1](https://github.com/lsaudon/l10nization/releases/tag/release-1.0.1)
 
 - 🚑 Extension don't work when project folder is root
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## [X.X.X](https://github.com/lsaudon/l10nization/releases/tag/release-X.X.X)
+
+- 🚑 Extension don't work when project folder is root
+
 ## [1.0.0](https://github.com/lsaudon/l10nization/releases/tag/release-1.0.0)
 
 - ✨ Add plural placeholders

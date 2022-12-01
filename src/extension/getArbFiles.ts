@@ -14,18 +14,28 @@ export async function getArbFiles(projectName: string): Promise<vscode.Uri[]> {
     defaultYamlFile
   );
 
-  const yamlFiles = await vscode.workspace.findFiles(
+  let yamlFiles = await vscode.workspace.findFiles(
     `**/${projectName}/${yamlFileName}`
   );
   if (yamlFiles.length === 0) {
-    vscode.window.showErrorMessage(`The ${yamlFileName} file was not found.`);
-    throw new Error(`The ${yamlFileName} file was not found.`);
+    yamlFiles = await vscode.workspace.findFiles(`**/${yamlFileName}`);
   }
 
+  if (yamlFiles.length === 0) {
+    const errorMessage = `The ${yamlFileName} file was not found.`;
+    vscode.window.showErrorMessage(errorMessage);
+    throw new Error(errorMessage);
+  }
   const yamlFile = yamlFiles[first];
   const textDocument = await vscode.workspace.openTextDocument(yamlFile);
   const arbDir = yaml
     .parseDocument(textDocument.getText())
     .get('arb-dir') as string;
-  return vscode.workspace.findFiles(`**/${projectName}/${arbDir}/*.arb`);
+  let arbFiles = await vscode.workspace.findFiles(
+    `**/${projectName}/${arbDir}/*.arb`
+  );
+  if (arbFiles.length === 0) {
+    arbFiles = await vscode.workspace.findFiles(`**/${arbDir}/*.arb`);
+  }
+  return arbFiles;
 }

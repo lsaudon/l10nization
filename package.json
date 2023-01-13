@@ -35,6 +35,13 @@
     "workspaceContains:**/*.dart"
   ],
   "contributes": {
+    "commands": [
+      {
+        "category": "L10nization",
+        "title": "Sort arb files",
+        "command": "l10nization.sortArbFiles"
+      }
+    ],
     "configuration": {
       "title": "L10nization",
       "properties": {

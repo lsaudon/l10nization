@@ -1,13 +1,12 @@
 import * as vscode from 'vscode';
-import { applySaveAndRunFlutterPubGet } from './applySaveAndRunFlutterPubGet';
-import { sortAndSave } from './sortAndSave';
 import { CommandParameters } from '../commands/commandParameters';
 import { EditFilesCommand } from '../commands/editFilesCommand';
 import { EditFilesParameters } from '../commands/editFilesParameters';
 import { InputBoxCommand } from '../commands/inputBoxCommand';
 import { LocalizationActionProvider } from '../codeActions/localizationActionProvider';
-
+import { applySaveAndRunFlutterPubGet } from './applySaveAndRunFlutterPubGet';
 import { setEditFilesParameters } from './setEditFilesParameters';
+import { sortAndSave } from './sortAndSave';
 
 export function activate(context: vscode.ExtensionContext): void {
   context.subscriptions.push(

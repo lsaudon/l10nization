@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.1.0](https://github.com/lsaudon/l10nization/releases/tag/release-1.1.0)
+
+- ✨ Add a command to sort arb files
+- ⬆️ Bump yaml from 2.1.3 to 2.2.1
+- ⬆️ Bump sinon from 15.0.0 to 15.0.1
+- ⬆️ Bump mocha from 10.1.0 to 10.2.0
+- ⬆️ Bump @types/vscode from 1.73.1 to 1.74.0
+- ⬆️ Bump typescript from 4.9.3 to 4.9.4
+- ⬆️ Bump prettier from 2.8.0 to 2.8.2
+- ⬆️ Bump @vscode/test-electron from 2.2.0 to 2.2.2
+- ⬆️ Bump webpack-cli from 5.0.0 to 5.0.1
+- ⬆️ Bump @typescript-eslint/parser from 5.45.0 to 5.48.1
+- ⬆️ Bump @typescript-eslint/eslint-plugin from 5.45.0 to 5.48.1
+- ⬆️ Bump @types/node from 18.11.10 to 18.11.18
+- ⬆️ Bump eslint from 8.28.0 to 8.31.0
+
 ## [1.0.1](https://github.com/lsaudon/l10nization/releases/tag/release-1.0.1)
 
 - 🚑 Extension don't work when project folder is root

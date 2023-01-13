@@ -25,6 +25,10 @@ To use the extension with [r13n](https://github.com/VeryGoodOpenSource/r13n), th
 "l10nization.yamlFile": "r13n.yaml"
 ```
 
+### Sort arb files
+
+You can use the command `L10nization: Sort arb files`.
+
 ### Number format
 
 | Message “format” value  | Output for numberOfDataPoints(1200000) |

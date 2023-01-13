@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.1](https://github.com/lsaudon/l10nization/releases/tag/release-1.1.1)
+
+- 🚨 Fix rule
+
 ## [1.1.0](https://github.com/lsaudon/l10nization/releases/tag/release-1.1.0)
 
 - ✨ Add a command to sort arb files

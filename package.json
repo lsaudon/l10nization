@@ -105,7 +105,7 @@
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "glob": "^8.0.3",
+    "glob": "^8.1.0",
     "mocha": "^10.2.0",
     "parsimmon": "^1.18.1",
     "prettier": "^2.8.3",

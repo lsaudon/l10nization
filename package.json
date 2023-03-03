@@ -92,7 +92,6 @@
   },
   "devDependencies": {
     "@types/chai": "^4.3.4",
-    "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "18.14.5",
     "@types/parsimmon": "^1.10.6",
@@ -105,7 +104,6 @@
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "glob": "^9.2.1",
     "mocha": "^10.2.0",
     "parsimmon": "^1.18.1",
     "prettier": "^2.8.4",

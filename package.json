@@ -106,7 +106,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "mocha": "^10.2.0",
     "parsimmon": "^1.18.1",
-    "prettier": "^2.8.4",
+    "prettier": "^2.8.5",
     "sinon": "^15.0.2",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",

@@ -13,7 +13,7 @@ import { KeyValuePair } from './keyValuePair';
 import { Placeholder } from '../placeholders/placeholder';
 import { PlaceholderType } from '../placeholders/placeholderType';
 import { camelize } from '../shared/camelize';
-import { getVariablesInInterpolation } from '../shared/parser/parser';
+import { extractInterpolatedVariables } from '../shared/parser/parser';
 import { showDateFormatQuickPick } from '../placeholders/dateFormatQuickPick';
 import { showInputBox } from '../inputBox/showInputBox';
 import { showPlaceholderQuickPick } from '../placeholders/placeholderQuickPick';
@@ -26,7 +26,7 @@ export async function setEditFilesParameters(
     camelize(commandParameters.value)
   );
 
-  const variables = getVariablesInInterpolation(commandParameters.value);
+  const variables = extractInterpolatedVariables(commandParameters.value);
   const placeholders: Placeholder[] = [];
   if (Array.isArray(variables)) {
     for (const variable of variables) {

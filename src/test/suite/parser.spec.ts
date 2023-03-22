@@ -1,6 +1,7 @@
+/* eslint-disable no-template-curly-in-string */
 import {
-  getStringWithoutEscapes,
-  getVariablesInInterpolation
+  extractInterpolatedVariables,
+  getUnescapedString
 } from '../../shared/parser/parser';
 import { expect } from 'chai';
 
@@ -11,7 +12,7 @@ function charnL(value: string): string {
   return value.replace(/\r/gu, '\\r').replace(/\n/gu, '\\n');
 }
 
-describe('getStringWithoutEscapes', () => {
+describe('getUnescapedString', () => {
   const tests = [
     { actual: '""', expected: '' },
     { actual: "''", expected: '' },
@@ -40,31 +41,37 @@ describe('getStringWithoutEscapes', () => {
     { actual: "r'''a\r\nb'''", expected: 'a\r\nb' },
     { actual: 'r"""a\r\nb"""', expected: 'a\r\nb' },
     { actual: '"\'"', expected: "'" },
-    { actual: "'\"'", expected: '"' }
+    { actual: "'\"'", expected: '"' },
+    {
+      actual: "'a ${DateFormat('yyyy').parse('2023-03-21')} b'",
+      expected: "a ${DateFormat('yyyy').parse('2023-03-21')} b"
+    }
   ];
   tests.forEach(({ actual, expected }) => {
     it(`should return ${charnL(expected)} when ${charnL(actual)}`, () => {
-      expect(getStringWithoutEscapes(actual)).to.be.eq(expected);
+      expect(getUnescapedString(actual)).to.be.eq(expected);
     });
   });
 });
 
-describe('getVariableInInterpolation', () => {
+describe('extractInterpolatedVariables', () => {
   const tests = [
     { actual: 'a $b c', expected: ['b'] },
     { actual: 'a $b $c d', expected: ['b', 'c'] },
     { actual: 'a $name d', expected: ['name'] },
     { actual: 'a $otherName1 d', expected: ['otherName1'] },
-    // eslint-disable-next-line no-template-curly-in-string
     { actual: 'a $name ${other.name} d', expected: ['name', 'other.name'] },
-    // eslint-disable-next-line no-template-curly-in-string
-    { actual: 'a ${other.toString()} d', expected: ['other.toString()'] }
+    { actual: 'a ${other.toString()} d', expected: ['other.toString()'] },
+    {
+      actual: "a ${DateFormat('yyyy').parse('2023-03-21')} b",
+      expected: ["DateFormat('yyyy').parse('2023-03-21')"]
+    }
   ];
   tests.forEach(({ actual, expected }) => {
     it(`should return ${charnL(expected.toString())} when ${charnL(
       actual
     )}`, () => {
-      expect(getVariablesInInterpolation(actual)).to.be.all.members(expected);
+      expect(extractInterpolatedVariables(actual)).to.be.all.members(expected);
     });
   });
 });

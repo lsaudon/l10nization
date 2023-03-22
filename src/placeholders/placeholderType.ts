@@ -20,9 +20,5 @@ export function getPlaceholderType(placeholderTypeValue: string) {
 }
 
 export class PlaceholderTypeItem implements QuickPickItem {
-  label: string;
-
-  constructor(label: string) {
-    this.label = label;
-  }
+  constructor(readonly label: string) {}
 }

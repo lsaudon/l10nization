@@ -1,11 +1,7 @@
 import * as vscode from 'vscode';
 
 export class LionizationPickItem implements vscode.QuickPickItem {
-  label: string;
-
-  constructor(label: string) {
-    this.label = label;
-  }
+  constructor(readonly label: string) {}
 }
 
 export async function showQuickPick(

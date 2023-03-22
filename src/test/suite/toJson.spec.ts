@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+/* eslint-disable max-lines, no-template-curly-in-string */
 import { Placeholder } from '../../placeholders/placeholder';
 import { PlaceholderType } from '../../placeholders/placeholderType';
 import { expect } from 'chai';
@@ -72,7 +72,6 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'aNameOthernameContextOwnerTostring',
-        // eslint-disable-next-line no-template-curly-in-string
         'a $name $otherName ${context.owner.toString()}',
         [
           new Placeholder('firstName', 'name', PlaceholderType.String),

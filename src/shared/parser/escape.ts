@@ -1,30 +1,26 @@
-class Escape {
-  start: string;
+import { empty } from '../constants';
 
-  startRegExp: RegExp;
+class StringEscapeSequence {
+  private readonly unescapedStringRegex: RegExp;
 
-  endRegExp: RegExp;
-
-  negativeRegExp: RegExp;
-
-  constructor(start: string, end?: string) {
-    this.start = start;
-    this.startRegExp = new RegExp(`${start}`, 'iu');
-    this.endRegExp = new RegExp(`${end ?? start}`, 'iu');
-    this.negativeRegExp = new RegExp(
-      `(.|\r\n|\r|\n)*?(?=${end ?? start})`,
+  constructor(readonly start: string) {
+    this.unescapedStringRegex = new RegExp(
+      `^${start}([\\s\\S]*?)${start.replace('r', '')}$`,
       'iu'
     );
   }
+
+  getUnescapedString = (input: string): string =>
+    (input.match(this.unescapedStringRegex) ?? [])[1].replace(/\\n/gu, '\n');
 }
 
-export const escapes = [
-  new Escape('r"""', '"""'),
-  new Escape("r'''", "'''"),
-  new Escape('r"', '"'),
-  new Escape("r'", "'"),
-  new Escape('"""'),
-  new Escape("'''"),
-  new Escape('"'),
-  new Escape("'")
-];
+export const escapeSequences = [
+  'r"""',
+  "r'''",
+  'r"',
+  "r'",
+  '"""',
+  "'''",
+  '"',
+  "'"
+].map((start) => new StringEscapeSequence(start));

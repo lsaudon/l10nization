@@ -10,11 +10,11 @@ export class EditFilesCommand implements vscode.Command {
     this.arguments = args;
   }
 
-  title: string;
+  readonly title: string;
 
-  command: string;
+  readonly command: string;
 
-  tooltip?: string;
+  readonly tooltip?: string;
 
-  arguments?: EditFilesParameters[];
+  readonly arguments?: EditFilesParameters[];
 }

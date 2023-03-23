@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.2.0](https://github.com/lsaudon/l10nization/releases/tag/release-1.2.0)
+
+- ♻️ Refactor extension
+- 🐛 Find String when same quote in interpolation
+- ➖ Remove parsimmon
+- ⬆️ Bump typescript from 4.9.5 to 5.0.2
+- ⬆️ Bump sinon from 15.0.1 to 15.0.2
+- ⬆️ Bump webpack from 5.75.0 to 5.76.3
+- ⬆️ Bump eslint-config-prettier from 8.6.0 to 8.8.0
+- ⬆️ Bump @types/node from 18.11.19 to 18.15.5
+- ⬆️ Bump @types/vscode from 1.75.0 to 1.76.0
+- ⬆️ Bump @typescript-eslint/eslint-plugin from 5.48.1 to 5.46.0
+- ⬆️ Bump @typescript-eslint/parser from 5.48.1 to 5.56.0
+- ➖ Remove glob
+- ⬆️ Bump eslint from 8.31.0 to 8.36.0
+- ⬆️ Bump prettier from 2.8.2 to 2.8.6
+
 ## [1.1.1](https://github.com/lsaudon/l10nization/releases/tag/release-1.1.1)
 
 - 🚨 Fix rule

@@ -1,5 +1,3 @@
-import { empty } from '../constants';
-
 class StringEscapeSequence {
   private readonly unescapedStringRegex: RegExp;
 

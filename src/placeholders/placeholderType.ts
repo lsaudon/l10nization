@@ -15,7 +15,7 @@ export function getPlaceholderTypes() {
 
 export function getPlaceholderType(placeholderTypeValue: string) {
   return Object.values(PlaceholderType).filter(
-    (p) => p === placeholderTypeValue
+    (p) => p.toString() === placeholderTypeValue
   )[0] as PlaceholderType;
 }
 

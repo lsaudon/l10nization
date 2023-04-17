@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.0](https://github.com/lsaudon/l10nization/releases/tag/release-1.3.0)
+
+- 🐛 sortArbFiles erase all arb files
+- 🚨 Fix lint
+- ⬆️ Bump @types/vscode from 1.76.0 to 1.77.0
+- ⬆️ Bump typescript from 5.0.2 to 5.0.4
+- ⬆️ Bump webpack from 5.76.3 to 5.79.0
+- ⬆️ Bump eslint from 8.36.0 to 8.38.0
+- ⬆️ Bump @typescript-eslint/parser from 5.56.0 to 5.59.0
+- ⬆️ Bump @typescript-eslint/eslint-plugin from 5.56.0 to 5.59.0
+- ⬆️ Bump sinon from 15.0.2 to 15.0.3
+- ⬆️ Bump @types/node from 18.15.5 to 18.15.11
+- ⬆️ Bump prettier from 2.8.6 to 2.8.7
+
 ## [1.2.0](https://github.com/lsaudon/l10nization/releases/tag/release-1.2.0)
 
 - ♻️ Refactor extension

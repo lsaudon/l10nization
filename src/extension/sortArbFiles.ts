@@ -35,9 +35,11 @@ export async function sortArbFiles(): Promise<vscode.WorkspaceEdit> {
         new vscode.Position(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
       ),
       JSON.stringify(
-        sortArb(
-          new Map<string, unknown>(
-            Object.entries<string>(JSON.parse(text) as string)
+        Object.fromEntries(
+          sortArb(
+            new Map<string, unknown>(
+              Object.entries<string>(JSON.parse(text) as string)
+            )
           )
         )
       )

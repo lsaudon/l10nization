@@ -59,6 +59,11 @@
           ],
           "markdownDescription": "Set the yaml file for `AppLocalizations`."
         },
+        "l10nization.haveMetadatas": {
+          "type": "bool",
+          "default": "false",
+          "markdownDescription": "If enabled, add inputBot for description."
+        },
         "l10nization.flutterPubGetEnabled": {
           "type": "bool",
           "default": "true",

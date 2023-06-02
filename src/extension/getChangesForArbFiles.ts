@@ -28,7 +28,7 @@ export async function getChangesForArbFiles(
   });
   const workspaceEdit = new vscode.WorkspaceEdit();
   const { key, value } = parameters.keyValue;
-  const { placeholders } = parameters;
+  const { description, placeholders } = parameters;
   const sortArbEnabled = getConfiguration(parentSection).get<boolean>(
     arbSortSection,
     defaultArbSort
@@ -41,7 +41,14 @@ export async function getChangesForArbFiles(
         new vscode.Position(0, 0),
         new vscode.Position(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
       ),
-      toJson(content.getText(), key, value, placeholders, sortArbEnabled)
+      toJson(
+        content.getText(),
+        key,
+        description,
+        value,
+        placeholders,
+        sortArbEnabled
+      )
     );
   });
 

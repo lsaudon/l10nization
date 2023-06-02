@@ -10,10 +10,29 @@ const defaultArbJson = `{
 
 describe('toJson', () => {
   it('should return json when simple messages', () => {
-    expect(toJson(defaultArbJson, 'helloWorld', 'Hello World', [], false)).to.be
-      .equal(`{
+    expect(toJson(defaultArbJson, 'helloWorld', null, 'Hello World', [], false))
+      .to.be.equal(`{
   "@@locale": "fr",
   "helloWorld": "Hello World"
+}`);
+  });
+
+  it('should return json when message with description', () => {
+    expect(
+      toJson(
+        defaultArbJson,
+        'helloWorld',
+        'Hello World Description',
+        'Hello World',
+        [],
+        false
+      )
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "helloWorld": "Hello World",
+  "@helloWorld": {
+    "description": "Hello World Description"
+  }
 }`);
   });
 
@@ -22,6 +41,7 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'hello',
+        null,
         'Hello $name',
         [new Placeholder('name', 'name', PlaceholderType.String)],
         false
@@ -39,11 +59,36 @@ describe('toJson', () => {
 }`);
   });
 
+  it('should return json when message with 1 placeholder and description', () => {
+    expect(
+      toJson(
+        defaultArbJson,
+        'hello',
+        'Hello by name',
+        'Hello $name',
+        [new Placeholder('name', 'name', PlaceholderType.String)],
+        false
+      )
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "hello": "Hello {name}",
+  "@hello": {
+    "description": "Hello by name",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
+}`);
+  });
+
   it('should return json when message with 2 placeholders', () => {
     expect(
       toJson(
         defaultArbJson,
         'hello',
+        null,
         'Hello $name $otherName',
         [
           new Placeholder('name', 'name', PlaceholderType.String),
@@ -72,6 +117,7 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'aNameOthernameContextOwnerTostring',
+        null,
         'a $name $otherName ${context.owner.toString()}',
         [
           new Placeholder('firstName', 'name', PlaceholderType.String),
@@ -108,6 +154,7 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'hello',
+        null,
         'Hello $name',
         [new Placeholder('name', 'name', PlaceholderType.int)],
         false
@@ -130,6 +177,7 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'hello',
+        null,
         'Hello $name',
         [
           new Placeholder('name', 'name', PlaceholderType.int).addFormat(
@@ -157,6 +205,7 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'hello',
+        null,
         'Hello $name',
         [
           new Placeholder('name', 'name', PlaceholderType.int)
@@ -191,6 +240,7 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'hello',
+        null,
         'Hello $name',
         [
           new Placeholder('name', 'name', PlaceholderType.num)
@@ -225,6 +275,7 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'hello',
+        null,
         'Hello $name',
         [
           new Placeholder('name', 'name', PlaceholderType.double)
@@ -259,6 +310,7 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'hello',
+        null,
         'Hello $name',
         [
           new Placeholder('name', 'name', PlaceholderType.DateTime).addFormat(
@@ -286,6 +338,7 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'hello',
+        null,
         'Hello $name',
         [
           new Placeholder('name', 'name', PlaceholderType.DateTime).addFormat(
@@ -324,6 +377,7 @@ describe('toJson', () => {
   "z": "Z {name}"
 }`,
         'a',
+        null,
         'A $name',
         [new Placeholder('name', 'name', PlaceholderType.String)],
         true
@@ -354,6 +408,7 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'countMessage',
+        null,
         'You have $count photos',
         [new Placeholder('count', 'count', PlaceholderType.plural)],
         false
@@ -374,6 +429,7 @@ describe('toJson', () => {
       toJson(
         defaultArbJson,
         'countMessage',
+        null,
         'You have $otherCount photos',
         [new Placeholder('otherCount', 'otherCount', PlaceholderType.plural)],
         false

@@ -38,7 +38,6 @@ export function activate(context: vscode.ExtensionContext): void {
         applySaveAndRunFlutterPubGet(args[0])
     )
   );
-
   context.subscriptions.push(
     vscode.commands.registerCommand(
       'l10nization.sortArbFiles',

@@ -10,6 +10,8 @@
 
 ![Extract 'Hello World' to arb files](https://github.com/lsaudon/l10nization/blob/main/images/extract-to-arb-files.gif?raw=true)
 
+### App Localizations Variable
+
 By default, the variable used for AppLocalizations is `l10n` you can change it in the parameters as if below:
 
 ```json
@@ -18,12 +20,18 @@ By default, the variable used for AppLocalizations is `l10n` you can change it i
 
 By default, the extension launches `flutter pub get` via the [Dart extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code). You can disable it in the settings.
 
+### For r13n
+
 To use the extension with [r13n](https://github.com/VeryGoodOpenSource/r13n), the following parameters must be changed.
 
 ```json
 "l10nization.appLocalizationsVariable": "r13n", // or whatever you want.
 "l10nization.yamlFile": "r13n.yaml"
 ```
+
+### Add description
+
+You can add the description by enabling `l10nization.haveMetadatas`.
 
 ### Sort arb files
 

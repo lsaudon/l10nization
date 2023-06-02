@@ -10,6 +10,9 @@ export const defaultVariable = 'l10n';
 export const yamlFileSection = 'yamlFile';
 export const defaultYamlFile = 'l10n.yaml';
 
+export const haveMetadatasSection = 'haveMetadatas';
+export const defaultHaveMetadatas = false;
+
 export const flutterPubGetEnabledSection = 'flutterPubGetEnabled';
 export const defaultPubGet = true;
 

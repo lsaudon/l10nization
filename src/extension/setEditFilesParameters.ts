@@ -2,6 +2,11 @@
 /* eslint-disable no-await-in-loop */
 import { LionizationPickItem, showQuickPick } from '../quickPick/showQuickPick';
 import {
+  defaultHaveMetadatas,
+  haveMetadatasSection,
+  parentSection
+} from '../shared/constants';
+import {
   includeInCustomPattern,
   includeInDecimalDigits,
   includeInSymbol,
@@ -14,6 +19,7 @@ import { Placeholder } from '../placeholders/placeholder';
 import { PlaceholderType } from '../placeholders/placeholderType';
 import { camelize } from '../shared/camelize';
 import { extractInterpolatedVariables } from '../shared/parser/parser';
+import { getConfiguration } from './getConfiguration';
 import { showDateFormatQuickPick } from '../placeholders/dateFormatQuickPick';
 import { showInputBox } from '../inputBox/showInputBox';
 import { showPlaceholderQuickPick } from '../placeholders/placeholderQuickPick';
@@ -86,10 +92,21 @@ export async function setEditFilesParameters(
     camelize(commandParameters.value)
   );
 
+  let description = null;
+  if (
+    getConfiguration(parentSection).get<boolean>(
+      haveMetadatasSection,
+      defaultHaveMetadatas
+    )
+  ) {
+    description = await showInputBox('Enter the description', '');
+  }
+
   return new EditFilesParameters(
     commandParameters.uri,
     commandParameters.range,
     new KeyValuePair(key, commandParameters.value),
+    description,
     await Promise.all(
       extractInterpolatedVariables(commandParameters.value).map(getPlaceholder)
     )

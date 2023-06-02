@@ -7,6 +7,7 @@ export class EditFilesParameters {
     readonly uri: vscode.Uri,
     readonly range: vscode.Range,
     readonly keyValue: KeyValuePair,
+    readonly description: string | null,
     readonly placeholders: Placeholder[]
   ) {}
 }

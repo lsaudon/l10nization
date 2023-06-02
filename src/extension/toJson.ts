@@ -83,6 +83,7 @@ const replacePlaceholders = (
 export function toJson(
   text: string,
   key: string,
+  description: string | null,
   value: string,
   placeholders: Placeholder[],
   sorted: boolean
@@ -90,14 +91,21 @@ export function toJson(
   const map = new Map<string, unknown>(
     Object.entries<string>(JSON.parse(text) as string)
   );
-  if (placeholders.length === 0) {
-    map.set(key, value);
-  } else if (placeholders.length > 0) {
-    map.set(key, replacePlaceholders(value, placeholders));
-    map.set(`@${key}`, {
-      placeholders: Object.fromEntries(getPlaceholdersMap(placeholders))
-    });
+  map.set(
+    key,
+    placeholders.length > 0 ? replacePlaceholders(value, placeholders) : value
+  );
+
+  if (description || placeholders.length > 0) {
+    const entry = {
+      ...(description && { description }),
+      ...(placeholders.length > 0 && {
+        placeholders: Object.fromEntries(getPlaceholdersMap(placeholders))
+      })
+    };
+    map.set(`@${key}`, entry);
   }
+
   return JSON.stringify(
     Object.fromEntries(sorted ? sortArb(map) : map),
     null,

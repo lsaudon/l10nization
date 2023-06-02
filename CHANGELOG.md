@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.4.0](https://github.com/lsaudon/l10nization/releases/tag/release-1.4.0)
+
+- 🐛 Crash when multiple variables
+- ⬆️ Upgrade example to dart 3
+- ✨ Add option for description metadata
+- ⬆️ Bump vscode from 1.77.0 to 1.78.1
+- ⬆️ Bump @vscode/test-electron from 2.3.0 to 2.3.2
+- ⬆️ Bump @typescript-eslint/eslint-plugin from 5.59.0 to 5.59.8
+- ⬆️ Bump @typescript-eslint/parser from 5.59.0 to 5.59.8
+- ⬆️ Bump @types/chai from 4.3.4 to 4.3.5
+- ⬆️ Bump yaml from 2.2.1 to 2.3.1
+- ⬆️ Bump prettier from 2.8.7 to 2.8.8
+- ⬆️ Bump eslint from 8.38.0 to 8.41.0
+- ⬆️ Bump webpack-cli from 5.0.1 to 5.1.1
+- ⬆️ Bump webpack from 5.79.0 to 5.85.0
+- ⬆️ Bump sinon from 15.0.3 to 15.1.0
+- ⬆️ Bump @types/node from 18.15.11 to 20.2.5
+
 ## [1.3.1](https://github.com/lsaudon/l10nization/releases/tag/release-1.3.1)
 
 - 🐛 sortArbFiles erase all arb files

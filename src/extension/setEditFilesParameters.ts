@@ -102,13 +102,19 @@ export async function setEditFilesParameters(
     description = await showInputBox('Enter the description', '');
   }
 
+  const variables = extractInterpolatedVariables(commandParameters.value);
+  const placeholders: Placeholder[] = [];
+  if (Array.isArray(variables)) {
+    for (const variable of variables) {
+      placeholders.push(await getPlaceholder(variable));
+    }
+  }
+
   return new EditFilesParameters(
     commandParameters.uri,
     commandParameters.range,
     new KeyValuePair(key, commandParameters.value),
     description,
-    await Promise.all(
-      extractInterpolatedVariables(commandParameters.value).map(getPlaceholder)
-    )
+    placeholders
   );
 }

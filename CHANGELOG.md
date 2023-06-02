@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.4.0](https://github.com/lsaudon/l10nization/releases/tag/release-1.4.0)
+## [1.4.1](https://github.com/lsaudon/l10nization/releases/tag/release-1.4.1)
 
 - 🐛 Crash when multiple variables
 - ⬆️ Upgrade example to dart 3

@@ -82,6 +82,7 @@ const replacePlaceholders = (
 
 export function toJson(
   text: string,
+  isTemplateFile: boolean,
   key: string,
   description: string | null,
   value: string,
@@ -96,7 +97,7 @@ export function toJson(
     placeholders.length > 0 ? replacePlaceholders(value, placeholders) : value
   );
 
-  if (description || placeholders.length > 0) {
+  if (isTemplateFile && (description || placeholders.length > 0)) {
     const entry = {
       ...(description && { description }),
       ...(placeholders.length > 0 && {

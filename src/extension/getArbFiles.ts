@@ -8,7 +8,9 @@ import {
 } from '../shared/constants';
 import { getConfiguration } from './getConfiguration';
 
-export async function getArbFiles(projectName: string): Promise<vscode.Uri[]> {
+export async function getArbFiles(
+  projectName: string
+): Promise<[vscode.Uri[], vscode.Uri | undefined]> {
   const yamlFileName = getConfiguration(parentSection).get<string>(
     yamlFileSection,
     defaultYamlFile
@@ -28,14 +30,22 @@ export async function getArbFiles(projectName: string): Promise<vscode.Uri[]> {
   }
   const yamlFile = yamlFiles[first];
   const textDocument = await vscode.workspace.openTextDocument(yamlFile);
-  const arbDir = yaml
-    .parseDocument(textDocument.getText())
-    .get('arb-dir') as string;
+  const parsedConfiguration = yaml.parseDocument(textDocument.getText());
+  const arbDir = parsedConfiguration.get('arb-dir') as string;
+  const templateArbFileName =
+    (parsedConfiguration.get('template-arb-file') as string | undefined) ??
+    'app_en.arb';
+
   let arbFiles = await vscode.workspace.findFiles(
     `**/${projectName}/${arbDir}/*.arb`
   );
   if (arbFiles.length === 0) {
     arbFiles = await vscode.workspace.findFiles(`**/${arbDir}/*.arb`);
   }
-  return arbFiles;
+
+  const templateArbFile = arbFiles.find((arbFile) =>
+    arbFile.path.endsWith(templateArbFileName)
+  );
+
+  return [arbFiles, templateArbFile];
 }

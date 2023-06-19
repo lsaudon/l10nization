@@ -10,21 +10,24 @@ const defaultArbJson = `{
 
 describe('toJson', () => {
   it('should return json when simple messages', () => {
-    expect(toJson(defaultArbJson, 'helloWorld', null, 'Hello World', [], false))
-      .to.be.equal(`{
+    expect(
+      toJson(defaultArbJson, true, 'helloWorld', null, 'Hello World', [], false)
+    ).to.be.equal(`{
   "@@locale": "fr",
   "helloWorld": "Hello World"
 }`);
   });
 
-  it('should return json when message with description', () => {
+  it('should return json when message with description for template file', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'helloWorld',
         'Hello World Description',
         'Hello World',
         [],
+
         false
       )
     ).to.be.equal(`{
@@ -40,10 +43,12 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'hello',
         null,
         'Hello $name',
         [new Placeholder('name', 'name', PlaceholderType.String)],
+
         false
       )
     ).to.be.equal(`{
@@ -63,6 +68,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'hello',
         'Hello by name',
         'Hello $name',
@@ -87,6 +93,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'hello',
         null,
         'Hello $name $otherName',
@@ -116,6 +123,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'aNameOthernameContextOwnerTostring',
         null,
         'a $name $otherName ${context.owner.toString()}',
@@ -153,6 +161,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'hello',
         null,
         'Hello $name',
@@ -176,6 +185,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'hello',
         null,
         'Hello $name',
@@ -204,6 +214,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'hello',
         null,
         'Hello $name',
@@ -239,6 +250,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'hello',
         null,
         'Hello $name',
@@ -274,6 +286,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'hello',
         null,
         'Hello $name',
@@ -309,6 +322,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'hello',
         null,
         'Hello $name',
@@ -337,6 +351,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'hello',
         null,
         'Hello $name',
@@ -376,6 +391,7 @@ describe('toJson', () => {
   },
   "z": "Z {name}"
 }`,
+        true,
         'a',
         null,
         'A $name',
@@ -407,6 +423,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'countMessage',
         null,
         'You have $count photos',
@@ -428,6 +445,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
+        true,
         'countMessage',
         null,
         'You have $otherCount photos',
@@ -442,6 +460,40 @@ describe('toJson', () => {
       "otherCount": {}
     }
   }
+}`);
+  });
+
+  it('should return json when message with description non template file', () => {
+    expect(
+      toJson(
+        defaultArbJson,
+        false,
+        'helloWorld',
+        'Hello World Description',
+        'Hello World',
+        [],
+        false
+      )
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "helloWorld": "Hello World"
+}`);
+  });
+
+  it('should return json when message with 1 placeholder for non template file', () => {
+    expect(
+      toJson(
+        defaultArbJson,
+        false,
+        'hello',
+        null,
+        'Hello $name',
+        [new Placeholder('name', 'name', PlaceholderType.String)],
+        false
+      )
+    ).to.be.equal(`{
+  "@@locale": "fr",
+  "hello": "Hello {name}"
 }`);
   });
 });

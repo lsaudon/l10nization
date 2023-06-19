@@ -13,7 +13,7 @@ export async function sortArbFiles(): Promise<vscode.WorkspaceEdit> {
   }
 
   const projectName = getProjectName(activeTextEditor.document.uri);
-  const files = await getArbFiles(projectName);
+  const files = (await getArbFiles(projectName))[0];
   if (files.length === 0) {
     const errorMessage = 'No arb files found.';
     vscode.window.showErrorMessage(errorMessage);

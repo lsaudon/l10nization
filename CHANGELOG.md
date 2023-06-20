@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.0](https://github.com/lsaudon/l10nization/releases/tag/release-2.0.0)
+
+- ✨ Add metadata only to template language by @RobertOdrowaz in <https://github.com/lsaudon/l10nization/pull/228>
+- ⬆️ Bump webpack-cli from 5.1.1 to 5.1.4 by @dependabot in <https://github.com/lsaudon/l10nization/pull/223>
+- ⬆️ Bump eslint from 8.41.0 to 8.43.0 by @dependabot in <https://github.com/lsaudon/l10nization/pull/229>
+- ⬆️ Bump webpack from 5.85.0 to 5.87.0 by @dependabot in <https://github.com/lsaudon/l10nization/pull/226>
+- ⬆️ Bump @typescript-eslint/eslint-plugin from 5.59.8 to 5.60.0 by @dependabot in <https://github.com/lsaudon/l10nization/pull/230>
+- ⬆️ Bump @typescript-eslint/parser from 5.59.8 to 5.60.0 by @dependabot in <https://github.com/lsaudon/l10nization/pull/231>
+- ⬆️ Bump @types/node from 20.2.5 to 20.3.1 by @dependabot in <https://github.com/lsaudon/l10nization/pull/234>
+- ⬆️ Bump @vscode/test-electron from 2.3.2 to 2.3.3 by @dependabot in <https://github.com/lsaudon/l10nization/pull/235>
+- ⬆️ Bump @vscode/vscode from 1.78.1 to 1.79.1 by @lsaudon in <https://github.com/lsaudon/l10nization/pull/236>
+- ⬆️ Bump sinon from 15.1.0 to 15.2.0 by @lsaudon in <https://github.com/lsaudon/l10nization/pull/237>
+- 💥 Set right type for settings by @lsaudon in <https://github.com/lsaudon/l10nization/pull/238>
+
 ## [1.4.1](https://github.com/lsaudon/l10nization/releases/tag/release-1.4.1)
 
 - 🐛 Crash when multiple variables

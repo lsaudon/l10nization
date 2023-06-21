@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.1](https://github.com/lsaudon/l10nization/releases/tag/release-2.0.1)
+## [2.0.2](https://github.com/lsaudon/l10nization/releases/tag/release-2.0.2)
 
 - 🐛 Default boolean settings
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.1](https://github.com/lsaudon/l10nization/releases/tag/release-2.0.1)
+
+- 🐛 Default boolean settings
+
 ## [2.0.0](https://github.com/lsaudon/l10nization/releases/tag/release-2.0.0)
 
 - ✨ Add metadata only to template language by @RobertOdrowaz in <https://github.com/lsaudon/l10nization/pull/228>

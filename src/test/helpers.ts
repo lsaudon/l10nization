@@ -14,7 +14,9 @@ export function getMyAppMainFile(): vscode.Uri {
 }
 
 export class InputBoxResult {
-  constructor(public value: string) {}
+  constructor(public value: string) {
+    // do nothing.
+  }
 }
 
 /* eslint-disable func-names */

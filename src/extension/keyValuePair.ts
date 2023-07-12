@@ -1,3 +1,8 @@
 export class KeyValuePair {
-  constructor(readonly key: string, readonly value: string) {}
+  constructor(
+    readonly key: string,
+    readonly value: string
+  ) {
+    // do nothing.
+  }
 }

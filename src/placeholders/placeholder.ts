@@ -13,7 +13,9 @@ export class Placeholder {
     readonly name: string,
     readonly value: string,
     readonly type: PlaceholderType
-  ) {}
+  ) {
+    // do nothing.
+  }
 
   addFormat(value: string): this {
     this.format = value;

@@ -9,5 +9,7 @@ export class EditFilesParameters {
     readonly keyValue: KeyValuePair,
     readonly description: string | null,
     readonly placeholders: Placeholder[]
-  ) {}
+  ) {
+    // do nothing.
+  }
 }

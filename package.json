@@ -101,7 +101,7 @@
     "@types/node": "20.4.1",
     "@types/sinon": "10.0.15",
     "@types/vscode": "^1.79.1",
-    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vscode/test-electron": "^2.3.3",
     "chai": "^4.3.7",

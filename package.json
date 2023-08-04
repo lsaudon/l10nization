@@ -19,7 +19,7 @@
     "Other"
   ],
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.81.0"
   },
   "keywords": [
     "flutter",
@@ -98,9 +98,9 @@
   "devDependencies": {
     "@types/chai": "^4.3.5",
     "@types/mocha": "^10.0.1",
-    "@types/node": "20.4.5",
-    "@types/sinon": "10.0.15",
-    "@types/vscode": "^1.80.0",
+    "@types/node": "20.4.7",
+    "@types/sinon": "10.0.16",
+    "@types/vscode": "^1.81.0",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "@vscode/test-electron": "^2.3.4",
@@ -109,7 +109,7 @@
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-prettier": "^5.0.0",
     "mocha": "^10.2.0",
-    "prettier": "^3.0.0",
+    "prettier": "^3.0.1",
     "sinon": "^15.2.0",
     "ts-loader": "^9.4.4",
     "ts-node": "^10.9.1",

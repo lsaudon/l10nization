@@ -15,5 +15,5 @@ export async function runFlutterPubGet(): Promise<void> {
   ) {
     return;
   }
-  await runIfExist('flutter.packages.get');
+  await runIfExist('flutter.task.genl10n');
 }

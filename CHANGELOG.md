@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.1.0]
+
+- ✨ feat: Replace 'flutter pub get' by 'flutter gen-l10n' #26 Thanks @milindgoel15
+- 🙈 Remove ignore files
+- ⬆️ Bump @types/node from 20.3.1 to 20.4.7
+- ⬆️ Bump @types/sinon from 10.0.15 to 10.0.16
+- ⬆️ Bump @vscode/vscode from 1.79.1 to 1.81.0
+- ⬆️ Bump @typescript-eslint/eslint-plugin from 6.0.0 to 6.2.1
+- ⬆️ Bump @typescript-eslint/parser from 5.60.0 to 6.2.1
+- ⬆️ Bump @vscode/test-electron from 2.3.3 to 2.3.4
+- ⬆️ Bump eslint from 8.43.0 to 8.46.0
+- ⬆️ Bump eslint-config-prettier from 8.8.0 to 8.10.0
+- ⬆️ Bump eslint-plugin-prettier from 4.2.1 to 5.0.0
+- ⬆️ Bump prettier from 2.8.8 to 3.0.1
+- ⬆️ Bump ts-loader from 9.4.3 to 9.4.4
+- ⬆️ Bump typescript from 5.1.3 to 5.1.6
+- ⬆️ Bump webpack from 5.87.0 to 5.88.2
+
 ## [2.0.2](https://github.com/lsaudon/l10nization/releases/tag/release-2.0.2)
 
 - 🐛 Default boolean settings

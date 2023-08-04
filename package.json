@@ -2,7 +2,7 @@
   "icon": "images/logo.png",
   "name": "l10nization",
   "displayName": "L10nization",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "publisher": "lsaudon",
   "description": "A tool for extracting text to arb files in a Flutter application.",
   "author": {

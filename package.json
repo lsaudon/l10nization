@@ -67,7 +67,7 @@
         "l10nization.flutterPubGetEnabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "If enabled, run the `flutter.packages.get` command of the [Dart extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)."
+          "markdownDescription": "If enabled, run the `flutter.task.genl10n` command of the [Dart extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)."
         },
         "l10nization.arbSort": {
           "type": "boolean",

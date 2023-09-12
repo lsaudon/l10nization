@@ -2,9 +2,7 @@ import * as vscode from 'vscode';
 import { notInclude, validDateFormats } from './dateFormat';
 import { LionizationPickItem } from '../quickPick/showQuickPick';
 
-export async function showDateFormatQuickPick(
-  variable: string
-): Promise<string> {
+export async function showDateFormatQuickPick(variable: string): Promise<string> {
   const disposables: vscode.Disposable[] = [];
   try {
     return await new Promise<string>((resolve) => {
@@ -13,11 +11,9 @@ export async function showDateFormatQuickPick(
       quickPick.items = validDateFormats.map((s) => new LionizationPickItem(s));
       quickPick.onDidChangeValue(() => {
         if (notInclude(quickPick.value))
-          quickPick.items = [quickPick.value, ...validDateFormats].map(
-            (label) => ({
-              label
-            })
-          );
+          quickPick.items = [quickPick.value, ...validDateFormats].map((label) => ({
+            label,
+          }));
       });
       disposables.push(
         quickPick.onDidChangeSelection((selected) => {
@@ -28,7 +24,7 @@ export async function showDateFormatQuickPick(
           quickPick.enabled = true;
           quickPick.busy = false;
           quickPick.hide();
-        })
+        }),
       );
       quickPick.show();
     });

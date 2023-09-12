@@ -1,17 +1,8 @@
 /* eslint-disable max-depth */
 /* eslint-disable no-await-in-loop */
 import { LionizationPickItem, showQuickPick } from '../quickPick/showQuickPick';
-import {
-  defaultHaveMetadatas,
-  haveMetadatasSection,
-  parentSection
-} from '../shared/constants';
-import {
-  includeInCustomPattern,
-  includeInDecimalDigits,
-  includeInSymbol,
-  validNumberFormats
-} from '../placeholders/numberFormat';
+import { defaultHaveMetadatas, haveMetadatasSection, parentSection } from '../shared/constants';
+import { includeInCustomPattern, includeInDecimalDigits, includeInSymbol, validNumberFormats } from '../placeholders/numberFormat';
 import { CommandParameters } from '../commands/commandParameters';
 import { EditFilesParameters } from '../commands/editFilesParameters';
 import { KeyValuePair } from './keyValuePair';
@@ -25,10 +16,7 @@ import { showInputBox } from '../inputBox/showInputBox';
 import { showPlaceholderQuickPick } from '../placeholders/placeholderQuickPick';
 
 async function getPlaceholder(variable: string) {
-  const name = await showInputBox(
-    `Enter the name of the variable ${variable}`,
-    camelize(variable)
-  );
+  const name = await showInputBox(`Enter the name of the variable ${variable}`, camelize(variable));
   const placeholderType = await showPlaceholderQuickPick(name);
 
   let placeholder = new Placeholder(name, variable, placeholderType);
@@ -49,29 +37,20 @@ async function getPlaceholder(variable: string) {
       numberFormats.push(...validNumberFormats);
       const format = await showQuickPick(
         `Choose the number format for the variable ${variable}`,
-        numberFormats.map((p) => new LionizationPickItem(p))
+        numberFormats.map((p) => new LionizationPickItem(p)),
       );
       if (format !== 'none') {
         placeholder = placeholder.addFormat(format);
         if (includeInSymbol(format)) {
-          const symbol = await showInputBox(
-            `Choose the symbol for the variable ${name}`,
-            ''
-          );
+          const symbol = await showInputBox(`Choose the symbol for the variable ${name}`, '');
           placeholder = placeholder.addSymbol(symbol);
         }
         if (includeInDecimalDigits(format)) {
-          const decimalDigits = await showInputBox(
-            `Choose the decimal digits for the variable ${name}`,
-            ''
-          );
+          const decimalDigits = await showInputBox(`Choose the decimal digits for the variable ${name}`, '');
           placeholder = placeholder.addDecimalDigits(Number(decimalDigits));
         }
         if (includeInCustomPattern(format)) {
-          const customPattern = await showInputBox(
-            `Choose the custom pattern for the variable ${name}`,
-            ''
-          );
+          const customPattern = await showInputBox(`Choose the custom pattern for the variable ${name}`, '');
           placeholder = placeholder.addCustomPattern(customPattern);
         }
       }
@@ -84,21 +63,11 @@ async function getPlaceholder(variable: string) {
   return placeholder;
 }
 
-export async function setEditFilesParameters(
-  commandParameters: CommandParameters
-): Promise<EditFilesParameters> {
-  const key = await showInputBox(
-    'Enter the message name',
-    camelize(commandParameters.value)
-  );
+export async function setEditFilesParameters(commandParameters: CommandParameters): Promise<EditFilesParameters> {
+  const key = await showInputBox('Enter the message name', camelize(commandParameters.value));
 
   let description = null;
-  if (
-    getConfiguration(parentSection).get<boolean>(
-      haveMetadatasSection,
-      defaultHaveMetadatas
-    )
-  ) {
+  if (getConfiguration(parentSection).get<boolean>(haveMetadatasSection, defaultHaveMetadatas)) {
     description = await showInputBox('Enter the description', '');
   }
 
@@ -110,11 +79,5 @@ export async function setEditFilesParameters(
     }
   }
 
-  return new EditFilesParameters(
-    commandParameters.uri,
-    commandParameters.range,
-    new KeyValuePair(key, commandParameters.value),
-    description,
-    placeholders
-  );
+  return new EditFilesParameters(commandParameters.uri, commandParameters.range, new KeyValuePair(key, commandParameters.value), description, placeholders);
 }

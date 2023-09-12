@@ -3,7 +3,7 @@ export class CommandParameters {
   constructor(
     readonly uri: vscode.Uri,
     readonly range: vscode.Range,
-    readonly value: string
+    readonly value: string,
   ) {
     // do nothing.
   }

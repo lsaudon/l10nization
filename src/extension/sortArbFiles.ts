@@ -20,30 +20,11 @@ export async function sortArbFiles(): Promise<vscode.WorkspaceEdit> {
     throw new Error(errorMessage);
   }
 
-  const textEdits = (
-    await Promise.all(
-      files.map((f) =>
-        vscode.workspace
-          .openTextDocument(f)
-          .then((document) => document.getText())
-      )
-    )
-  ).map((text) =>
+  const textEdits = (await Promise.all(files.map((f) => vscode.workspace.openTextDocument(f).then((document) => document.getText())))).map((text) =>
     vscode.TextEdit.replace(
-      new vscode.Range(
-        new vscode.Position(0, 0),
-        new vscode.Position(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
-      ),
-      JSON.stringify(
-        Object.fromEntries(
-          sortArb(
-            new Map<string, unknown>(
-              Object.entries<string>(JSON.parse(text) as string)
-            )
-          )
-        )
-      )
-    )
+      new vscode.Range(new vscode.Position(0, 0), new vscode.Position(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)),
+      JSON.stringify(Object.fromEntries(sortArb(new Map<string, unknown>(Object.entries<string>(JSON.parse(text) as string))))),
+    ),
   );
 
   const workspaceEdit = new vscode.WorkspaceEdit();

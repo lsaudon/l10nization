@@ -42,7 +42,7 @@ export const validDateFormats = [
   'jz',
   'm',
   'ms',
-  's'
+  's',
 ];
 
 export function notInclude(value: string) {

@@ -1,9 +1,6 @@
 import * as vscode from 'vscode';
 
-export async function showInputBox(
-  title: string,
-  value: string
-): Promise<string> {
+export async function showInputBox(title: string, value: string): Promise<string> {
   const disposables: vscode.Disposable[] = [];
   try {
     return await new Promise<string>((resolve) => {
@@ -18,7 +15,7 @@ export async function showInputBox(
           inputBox.enabled = true;
           inputBox.busy = false;
           inputBox.hide();
-        })
+        }),
       );
       inputBox.show();
     });

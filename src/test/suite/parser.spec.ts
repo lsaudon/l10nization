@@ -1,8 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
-import {
-  extractInterpolatedVariables,
-  getUnescapedString
-} from '../../shared/parser/parser';
+import { extractInterpolatedVariables, getUnescapedString } from '../../shared/parser/parser';
 import { expect } from 'chai';
 
 function charnL(value: string): string {
@@ -44,8 +41,8 @@ describe('getUnescapedString', () => {
     { actual: "'\"'", expected: '"' },
     {
       actual: "'a ${DateFormat('yyyy').parse('2023-03-21')} b'",
-      expected: "a ${DateFormat('yyyy').parse('2023-03-21')} b"
-    }
+      expected: "a ${DateFormat('yyyy').parse('2023-03-21')} b",
+    },
   ];
   tests.forEach(({ actual, expected }) => {
     it(`should return ${charnL(expected)} when ${charnL(actual)}`, () => {
@@ -64,13 +61,11 @@ describe('extractInterpolatedVariables', () => {
     { actual: 'a ${other.toString()} d', expected: ['other.toString()'] },
     {
       actual: "a ${DateFormat('yyyy').parse('2023-03-21')} b",
-      expected: ["DateFormat('yyyy').parse('2023-03-21')"]
-    }
+      expected: ["DateFormat('yyyy').parse('2023-03-21')"],
+    },
   ];
   tests.forEach(({ actual, expected }) => {
-    it(`should return ${charnL(expected.toString())} when ${charnL(
-      actual
-    )}`, () => {
+    it(`should return ${charnL(expected.toString())} when ${charnL(actual)}`, () => {
       expect(extractInterpolatedVariables(actual)).to.be.all.members(expected);
     });
   });

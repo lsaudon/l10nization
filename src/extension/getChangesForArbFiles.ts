@@ -1,11 +1,5 @@
 import * as vscode from 'vscode';
-import {
-  appLocalizationsVariableSection,
-  arbSortSection,
-  defaultArbSort,
-  defaultVariable,
-  parentSection
-} from '../shared/constants';
+import { appLocalizationsVariableSection, arbSortSection, defaultArbSort, defaultVariable, parentSection } from '../shared/constants';
 import { EditFilesParameters } from '../commands/editFilesParameters';
 import { getArbFiles } from './getArbFiles';
 import { getConfiguration } from './getConfiguration';
@@ -13,9 +7,7 @@ import { getFunctionCall } from './getFunctionCall';
 import { getProjectName } from './getProjectName';
 import { toJson } from './toJson';
 
-export async function getChangesForArbFiles(
-  parameters: EditFilesParameters
-): Promise<vscode.WorkspaceEdit> {
+export async function getChangesForArbFiles(parameters: EditFilesParameters): Promise<vscode.WorkspaceEdit> {
   const projectName = getProjectName(parameters.uri);
   const [files, templateFile] = await getArbFiles(projectName);
   if (files.length === 0) {
@@ -33,42 +25,25 @@ export async function getChangesForArbFiles(
   const workspaceEdit = new vscode.WorkspaceEdit();
   const { key, value } = parameters.keyValue;
   const { description, placeholders } = parameters;
-  const sortArbEnabled = getConfiguration(parentSection).get<boolean>(
-    arbSortSection,
-    defaultArbSort
-  );
+  const sortArbEnabled = getConfiguration(parentSection).get<boolean>(arbSortSection, defaultArbSort);
 
   (await Promise.all(openTextDocuments)).forEach((content, index) => {
     workspaceEdit.replace(
       files[index],
-      new vscode.Range(
-        new vscode.Position(0, 0),
-        new vscode.Position(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
-      ),
-      toJson(
-        content.getText(),
-        files[index] === templateFile,
-        key,
-        description,
-        value,
-        placeholders,
-        sortArbEnabled
-      )
+      new vscode.Range(new vscode.Position(0, 0), new vscode.Position(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)),
+      toJson(content.getText(), files[index] === templateFile, key, description, value, placeholders, sortArbEnabled),
     );
   });
 
-  const appLocalizationsVariable = getConfiguration(parentSection).get<string>(
-    appLocalizationsVariableSection,
-    defaultVariable
-  );
+  const appLocalizationsVariable = getConfiguration(parentSection).get<string>(appLocalizationsVariableSection, defaultVariable);
   workspaceEdit.replace(
     parameters.uri,
     parameters.range,
     getFunctionCall(
       appLocalizationsVariable,
       key,
-      placeholders.map((p) => p.value)
-    )
+      placeholders.map((p) => p.value),
+    ),
   );
   return workspaceEdit;
 }

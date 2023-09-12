@@ -8,7 +8,7 @@ export const validNumberFormats = [
   'decimalPercentPattern',
   'percentPattern',
   'scientificPattern',
-  'simpleCurrency'
+  'simpleCurrency',
 ];
 
 export const numberFormatsWithSymbol = ['compactCurrency', 'currency'];
@@ -17,13 +17,7 @@ export function includeInSymbol(value: string) {
   return numberFormatsWithSymbol.includes(value);
 }
 
-export const numberFormatsWithDecimalDigits = [
-  'compactCurrency',
-  'compactSimpleCurrency',
-  'currency',
-  'decimalPercentPattern',
-  'simpleCurrency'
-];
+export const numberFormatsWithDecimalDigits = ['compactCurrency', 'compactSimpleCurrency', 'currency', 'decimalPercentPattern', 'simpleCurrency'];
 
 export function includeInDecimalDigits(value: string) {
   return numberFormatsWithDecimalDigits.includes(value);

@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import { CommandParameters } from '../commands/commandParameters';
 import { InputBoxCommand } from '../commands/inputBoxCommand';
-import { empty } from '../shared/constants';
 import { getUnescapedString } from '../shared/parser/parser';
 
 export class LocalizationActionProvider implements vscode.CodeActionProvider {
@@ -9,7 +8,7 @@ export class LocalizationActionProvider implements vscode.CodeActionProvider {
 
   provideCodeActions(document: vscode.TextDocument, range: vscode.Range): vscode.ProviderResult<vscode.CodeAction[]> {
     const text = getUnescapedString(document.getText(range));
-    if (text === empty) {
+    if (text === '') {
       return;
     }
 

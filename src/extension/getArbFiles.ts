@@ -1,10 +1,9 @@
 import * as vscode from 'vscode';
 import * as yaml from 'yaml';
-import { defaultYamlFile, first, parentSection, yamlFileSection } from '../shared/constants';
-import { getConfiguration } from './getConfiguration';
+import { getYamlFileName } from '../shared/configuration';
 
 export async function getArbFiles(projectName: string): Promise<[vscode.Uri[], vscode.Uri | undefined]> {
-  const yamlFileName = getConfiguration(parentSection).get<string>(yamlFileSection, defaultYamlFile);
+  const yamlFileName = getYamlFileName;
 
   let yamlFiles = await vscode.workspace.findFiles(`**/${projectName}/${yamlFileName}`);
   if (yamlFiles.length === 0) {
@@ -16,7 +15,7 @@ export async function getArbFiles(projectName: string): Promise<[vscode.Uri[], v
     vscode.window.showErrorMessage(errorMessage);
     throw new Error(errorMessage);
   }
-  const yamlFile = yamlFiles[first];
+  const yamlFile = yamlFiles[0];
   const textDocument = await vscode.workspace.openTextDocument(yamlFile);
   const parsedConfiguration = yaml.parseDocument(textDocument.getText());
   const arbDir = parsedConfiguration.get('arb-dir') as string;

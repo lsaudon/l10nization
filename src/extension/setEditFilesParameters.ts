@@ -1,7 +1,7 @@
 /* eslint-disable max-depth */
 /* eslint-disable no-await-in-loop */
 import { LionizationPickItem, showQuickPick } from '../quickPick/showQuickPick';
-import { defaultHaveDescription, haveDescriptionSection, parentSection } from '../shared/constants';
+
 import { includeInCustomPattern, includeInDecimalDigits, includeInSymbol, validNumberFormats } from '../placeholders/numberFormat';
 import { CommandParameters } from '../commands/commandParameters';
 import { EditFilesParameters } from '../commands/editFilesParameters';
@@ -10,7 +10,7 @@ import { Placeholder } from '../placeholders/placeholder';
 import { PlaceholderType } from '../placeholders/placeholderType';
 import { camelize } from '../shared/camelize';
 import { extractInterpolatedVariables } from '../shared/parser/parser';
-import { getConfiguration } from './getConfiguration';
+import { getHaveDescription } from '../shared/configuration';
 import { showDateFormatQuickPick } from '../placeholders/dateFormatQuickPick';
 import { showInputBox } from '../inputBox/showInputBox';
 import { showPlaceholderQuickPick } from '../placeholders/placeholderQuickPick';
@@ -67,7 +67,7 @@ export async function setEditFilesParameters(commandParameters: CommandParameter
   const key = await showInputBox('Enter the message name', camelize(commandParameters.value));
 
   let description = null;
-  if (getConfiguration(parentSection).get<boolean>(haveDescriptionSection, defaultHaveDescription)) {
+  if (getHaveDescription) {
     description = await showInputBox('Enter the description', '');
   }
 

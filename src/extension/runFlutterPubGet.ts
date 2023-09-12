@@ -1,9 +1,8 @@
-import { defaultGeneration, generationEnabledSection, parentSection } from '../shared/constants';
-import { getConfiguration } from './getConfiguration';
+import { getGenerationActivted } from '../shared/configuration';
 import { runIfExist } from './runIfExist';
 
 export async function runGeneration(): Promise<void> {
-  if (!getConfiguration(parentSection).get<boolean>(generationEnabledSection, defaultGeneration)) {
+  if (!getGenerationActivted) {
     return;
   }
   await runIfExist('flutter.task.genl10n');

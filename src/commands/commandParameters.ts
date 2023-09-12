@@ -4,7 +4,5 @@ export class CommandParameters {
     readonly uri: vscode.Uri,
     readonly range: vscode.Range,
     readonly value: string,
-  ) {
-    // do nothing.
-  }
+  ) {}
 }

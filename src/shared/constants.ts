@@ -13,6 +13,9 @@ export const defaultYamlFile = 'l10n.yaml';
 export const haveDescriptionSection = 'haveDescription';
 export const defaultHaveDescription = false;
 
+export const copyMetadataInAllFilesSection = 'copyMetadataInAllFiles';
+export const defaultCopyMetadataInAllFiles = true;
+
 export const generationEnabledSection = 'generationEnabled';
 export const defaultGeneration = true;
 

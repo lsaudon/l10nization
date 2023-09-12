@@ -70,6 +70,11 @@
           "default": false,
           "markdownDescription": "If enabled, add inputBot for description."
         },
+        "l10nization.copyMetadataInAllFiles": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "If enabled, metadata are copied to all files, otherwise only to the `template-arb-file`."
+        },
         "l10nization.flutterPubGetEnabled": {
           "type": "boolean",
           "default": true,

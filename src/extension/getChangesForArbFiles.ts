@@ -1,5 +1,13 @@
 import * as vscode from 'vscode';
-import { appLocalizationsVariableSection, arbSortSection, defaultArbSort, defaultVariable, parentSection } from '../shared/constants';
+import {
+  appLocalizationsVariableSection,
+  arbSortSection,
+  copyMetadataInAllFilesSection,
+  defaultArbSort,
+  defaultCopyMetadataInAllFiles,
+  defaultVariable,
+  parentSection,
+} from '../shared/constants';
 import { EditFilesParameters } from '../commands/editFilesParameters';
 import { getArbFiles } from './getArbFiles';
 import { getConfiguration } from './getConfiguration';
@@ -28,10 +36,12 @@ export async function getChangesForArbFiles(parameters: EditFilesParameters): Pr
   const sortArbEnabled = getConfiguration(parentSection).get<boolean>(arbSortSection, defaultArbSort);
 
   (await Promise.all(openTextDocuments)).forEach((content, index) => {
+    const file = files[index];
+    const isMetadataEnabled = getConfiguration(parentSection).get<boolean>(copyMetadataInAllFilesSection, defaultCopyMetadataInAllFiles);
     workspaceEdit.replace(
-      files[index],
+      file,
       new vscode.Range(new vscode.Position(0, 0), new vscode.Position(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)),
-      toJson(content.getText(), files[index] === templateFile, key, description, value, placeholders, sortArbEnabled),
+      toJson(content.getText(), isMetadataEnabled || file === templateFile, key, description, value, placeholders, sortArbEnabled),
     );
   });
 

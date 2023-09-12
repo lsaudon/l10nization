@@ -1,6 +1,26 @@
 # Changelog
 
-## [2.1.0]
+## [3.0.0](https://github.com/lsaudon/l10nization/releases/tag/release-3.0.0)
+
+- 💡 Remove comment
+- ♻️ Configuration part
+- 💥 Add metadata to all files by default can disabled via copyMetadataInAllFiles settings
+- 💥 haveMetadatas configuration is deprecated use haveDescription
+- 💥 flutterPubGetEnabled configuration is deprecated use generationEnabled
+- 🎨 Format code with new rules
+- ⬆️ Bump yaml from 2.3.1 to 2.3.2
+- ⬆️ Bump typescript from 5.1.6 to 5.2.2
+- ⬆️ Bump prettier from 3.0.1 to 3.0.3
+- ⬆️ Bump chai from 4.3.5 to 4.3.8
+- ⬆️ Bump @vscode/vscode from 1.81.0 to 1.82.0
+- ⬆️ Bump actions/checkout from 3 to 4
+- ⬆️ Bump eslint from 8.46.0 to 8.49.0
+- ⬆️ Bump @typescript-eslint/eslint-plugin from 6.2.1 to 6.7.0
+- ⬆️ Bump @typescript-eslint/parser from 6.2.1 to 6.7.0
+- ⬆️ Bump @types/node from 20.4.7 to 20.6.0
+- ⬆️ Bump eslint-config-prettier from 8.10.0 to 9.0.0
+
+## [2.1.0](https://github.com/lsaudon/l10nization/releases/tag/release-2.1.0)
 
 - ✨ feat: Replace 'flutter pub get' by 'flutter gen-l10n' #26 Thanks @milindgoel15
 - 🙈 Remove ignore files

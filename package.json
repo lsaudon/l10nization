@@ -62,6 +62,12 @@
         "l10nization.haveMetadatas": {
           "type": "boolean",
           "default": false,
+          "markdownDescription": "If enabled, add inputBot for description.",
+          "deprecationMessage": "Deprecated: Please use l10nization.haveDescription instead."
+        },
+        "l10nization.haveDescription": {
+          "type": "boolean",
+          "default": false,
           "markdownDescription": "If enabled, add inputBot for description."
         },
         "l10nization.flutterPubGetEnabled": {

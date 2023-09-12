@@ -18,7 +18,5 @@ export function getPlaceholderType(placeholderTypeValue: string) {
 }
 
 export class PlaceholderTypeItem implements QuickPickItem {
-  constructor(readonly label: string) {
-    // do nothing.
-  }
+  constructor(readonly label: string) {}
 }

@@ -26,6 +26,4 @@ export function activate(context: vscode.ExtensionContext): void {
   context.subscriptions.push(vscode.commands.registerCommand('l10nization.sortArbFiles', async (): Promise<void> => sortAndSave()));
 }
 
-export function deactivate(): void {
-  // Do nothing.
-}
+export function deactivate(): void {}

@@ -59,7 +59,7 @@ const replacePlaceholders = (value: string, placeholders: Placeholder[]): string
 
 export function toJson(
   text: string,
-  isTemplateFile: boolean,
+  isMetadataEnabled: boolean,
   key: string,
   description: string | null,
   value: string,
@@ -69,7 +69,7 @@ export function toJson(
   const map = new Map<string, unknown>(Object.entries<string>(JSON.parse(text) as string));
   map.set(key, placeholders.length > 0 ? replacePlaceholders(value, placeholders) : value);
 
-  if (isTemplateFile && (description || placeholders.length > 0)) {
+  if (isMetadataEnabled && (description || placeholders.length > 0)) {
     const entry = {
       ...(description && { description }),
       ...(placeholders.length > 0 && {

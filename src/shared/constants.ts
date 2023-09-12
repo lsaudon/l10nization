@@ -13,8 +13,8 @@ export const defaultYamlFile = 'l10n.yaml';
 export const haveMetadatasSection = 'haveMetadatas';
 export const defaultHaveMetadatas = false;
 
-export const flutterPubGetEnabledSection = 'flutterPubGetEnabled';
-export const defaultPubGet = true;
+export const generationEnabledSection = 'generationEnabled';
+export const defaultGeneration = true;
 
 export const arbSortSection = 'arbSort';
 export const defaultArbSort = true;

@@ -1,16 +1,7 @@
 import * as vscode from 'vscode';
-import {
-  appLocalizationsVariableSection,
-  arbSortSection,
-  copyMetadataInAllFilesSection,
-  defaultArbSort,
-  defaultCopyMetadataInAllFiles,
-  defaultVariable,
-  parentSection,
-} from '../shared/constants';
+import { getAppLocalizationsVariable, getCopyMetadataInAllFiles, getSortArbEnabled } from '../shared/configuration';
 import { EditFilesParameters } from '../commands/editFilesParameters';
 import { getArbFiles } from './getArbFiles';
-import { getConfiguration } from './getConfiguration';
 import { getFunctionCall } from './getFunctionCall';
 import { getProjectName } from './getProjectName';
 import { toJson } from './toJson';
@@ -33,11 +24,10 @@ export async function getChangesForArbFiles(parameters: EditFilesParameters): Pr
   const workspaceEdit = new vscode.WorkspaceEdit();
   const { key, value } = parameters.keyValue;
   const { description, placeholders } = parameters;
-  const sortArbEnabled = getConfiguration(parentSection).get<boolean>(arbSortSection, defaultArbSort);
-
+  const sortArbEnabled = getSortArbEnabled;
   (await Promise.all(openTextDocuments)).forEach((content, index) => {
     const file = files[index];
-    const isMetadataEnabled = getConfiguration(parentSection).get<boolean>(copyMetadataInAllFilesSection, defaultCopyMetadataInAllFiles);
+    const isMetadataEnabled = getCopyMetadataInAllFiles;
     workspaceEdit.replace(
       file,
       new vscode.Range(new vscode.Position(0, 0), new vscode.Position(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)),
@@ -45,7 +35,7 @@ export async function getChangesForArbFiles(parameters: EditFilesParameters): Pr
     );
   });
 
-  const appLocalizationsVariable = getConfiguration(parentSection).get<string>(appLocalizationsVariableSection, defaultVariable);
+  const appLocalizationsVariable = getAppLocalizationsVariable;
   workspaceEdit.replace(
     parameters.uri,
     parameters.range,

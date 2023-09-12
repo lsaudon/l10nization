@@ -1,7 +1,7 @@
 /* eslint-disable max-depth */
 /* eslint-disable no-await-in-loop */
 import { LionizationPickItem, showQuickPick } from '../quickPick/showQuickPick';
-import { defaultHaveMetadatas, haveMetadatasSection, parentSection } from '../shared/constants';
+import { defaultHaveDescription, haveDescriptionSection, parentSection } from '../shared/constants';
 import { includeInCustomPattern, includeInDecimalDigits, includeInSymbol, validNumberFormats } from '../placeholders/numberFormat';
 import { CommandParameters } from '../commands/commandParameters';
 import { EditFilesParameters } from '../commands/editFilesParameters';
@@ -67,7 +67,7 @@ export async function setEditFilesParameters(commandParameters: CommandParameter
   const key = await showInputBox('Enter the message name', camelize(commandParameters.value));
 
   let description = null;
-  if (getConfiguration(parentSection).get<boolean>(haveMetadatasSection, defaultHaveMetadatas)) {
+  if (getConfiguration(parentSection).get<boolean>(haveDescriptionSection, defaultHaveDescription)) {
     description = await showInputBox('Enter the description', '');
   }
 

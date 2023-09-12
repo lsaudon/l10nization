@@ -11,8 +11,6 @@ describe('Camelize', () => {
   });
 
   it('should return without accent when with accent', () => {
-    expect(
-      camelize("Aujourd'hui nous sommes en été, il fait 50°C")
-    ).to.be.equal('aujourdHuiNousSommesEnEteIlFait50C');
+    expect(camelize("Aujourd'hui nous sommes en été, il fait 50°C")).to.be.equal('aujourdHuiNousSommesEnEteIlFait50C');
   });
 });

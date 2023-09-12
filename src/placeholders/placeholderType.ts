@@ -6,7 +6,7 @@ export enum PlaceholderType {
   num = 'num',
   double = 'double',
   DateTime = 'DateTime',
-  plural = 'plural'
+  plural = 'plural',
 }
 
 export function getPlaceholderTypes() {
@@ -14,9 +14,7 @@ export function getPlaceholderTypes() {
 }
 
 export function getPlaceholderType(placeholderTypeValue: string) {
-  return Object.values(PlaceholderType).filter(
-    (p) => p.toString() === placeholderTypeValue
-  )[0] as PlaceholderType;
+  return Object.values(PlaceholderType).filter((p) => p.toString() === placeholderTypeValue)[0] as PlaceholderType;
 }
 
 export class PlaceholderTypeItem implements QuickPickItem {

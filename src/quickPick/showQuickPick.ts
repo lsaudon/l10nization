@@ -6,10 +6,7 @@ export class LionizationPickItem implements vscode.QuickPickItem {
   }
 }
 
-export async function showQuickPick(
-  title: string,
-  items: LionizationPickItem[]
-): Promise<string> {
+export async function showQuickPick(title: string, items: LionizationPickItem[]): Promise<string> {
   const disposables: vscode.Disposable[] = [];
   try {
     return await new Promise<string>((resolve) => {
@@ -25,7 +22,7 @@ export async function showQuickPick(
           quickPick.enabled = true;
           quickPick.busy = false;
           quickPick.hide();
-        })
+        }),
       );
       quickPick.show();
     });

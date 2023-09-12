@@ -1,24 +1,12 @@
 import * as vscode from 'vscode';
 import * as yaml from 'yaml';
-import {
-  defaultYamlFile,
-  first,
-  parentSection,
-  yamlFileSection
-} from '../shared/constants';
+import { defaultYamlFile, first, parentSection, yamlFileSection } from '../shared/constants';
 import { getConfiguration } from './getConfiguration';
 
-export async function getArbFiles(
-  projectName: string
-): Promise<[vscode.Uri[], vscode.Uri | undefined]> {
-  const yamlFileName = getConfiguration(parentSection).get<string>(
-    yamlFileSection,
-    defaultYamlFile
-  );
+export async function getArbFiles(projectName: string): Promise<[vscode.Uri[], vscode.Uri | undefined]> {
+  const yamlFileName = getConfiguration(parentSection).get<string>(yamlFileSection, defaultYamlFile);
 
-  let yamlFiles = await vscode.workspace.findFiles(
-    `**/${projectName}/${yamlFileName}`
-  );
+  let yamlFiles = await vscode.workspace.findFiles(`**/${projectName}/${yamlFileName}`);
   if (yamlFiles.length === 0) {
     yamlFiles = await vscode.workspace.findFiles(`**/${yamlFileName}`);
   }
@@ -32,20 +20,14 @@ export async function getArbFiles(
   const textDocument = await vscode.workspace.openTextDocument(yamlFile);
   const parsedConfiguration = yaml.parseDocument(textDocument.getText());
   const arbDir = parsedConfiguration.get('arb-dir') as string;
-  const templateArbFileName =
-    (parsedConfiguration.get('template-arb-file') as string | undefined) ??
-    'app_en.arb';
+  const templateArbFileName = (parsedConfiguration.get('template-arb-file') as string | undefined) ?? 'app_en.arb';
 
-  let arbFiles = await vscode.workspace.findFiles(
-    `**/${projectName}/${arbDir}/*.arb`
-  );
+  let arbFiles = await vscode.workspace.findFiles(`**/${projectName}/${arbDir}/*.arb`);
   if (arbFiles.length === 0) {
     arbFiles = await vscode.workspace.findFiles(`**/${arbDir}/*.arb`);
   }
 
-  const templateArbFile = arbFiles.find((arbFile) =>
-    arbFile.path.endsWith(templateArbFileName)
-  );
+  const templateArbFile = arbFiles.find((arbFile) => arbFile.path.endsWith(templateArbFileName));
 
   return [arbFiles, templateArbFile];
 }

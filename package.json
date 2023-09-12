@@ -92,7 +92,6 @@
     "lint": "eslint src --ext ts --fix",
     "format": "prettier --ignore-path .gitignore --config .prettierrc  \"**/*.+(js|ts|json|md|yaml|.prettierrc)\" --write",
     "lint-format": "npm run lint && npm run format",
-    "test": "node ./out/test/runTest.js",
     "unit-test": "mocha -r ts-node/register ./src/test/**/*.spec.ts"
   },
   "devDependencies": {

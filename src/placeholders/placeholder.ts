@@ -12,7 +12,7 @@ export class Placeholder {
   constructor(
     readonly name: string,
     readonly value: string,
-    readonly type: PlaceholderType
+    readonly type: PlaceholderType,
   ) {
     // do nothing.
   }

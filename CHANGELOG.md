@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.0.1](https://github.com/lsaudon/l10nization/releases/tag/release-3.0.1)
+
+- 🐛 haveDescription #314
+- ⬆️ Bump @types/node from 20.6.0 to 20.6.2
+- ⬆️ Bump sinon from 15.2.0 to 16.0.0
+
 ## [3.0.0](https://github.com/lsaudon/l10nization/releases/tag/release-3.0.0)
 
 - 💡 Remove comment

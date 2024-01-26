@@ -19,7 +19,7 @@
     "Other"
   ],
   "engines": {
-    "vscode": "^1.83.0"
+    "vscode": "^1.85.0"
   },
   "keywords": [
     "flutter",
@@ -112,26 +112,26 @@
     "unit-test": "mocha -r ts-node/register ./src/test/**/*.spec.ts"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.7",
-    "@types/mocha": "^10.0.2",
-    "@types/node": "20.8.4",
-    "@types/sinon": "10.0.19",
-    "@types/vscode": "^1.83.0",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
-    "@vscode/test-electron": "^2.3.5",
-    "chai": "^4.3.10",
-    "eslint": "^8.51.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.11.7",
+    "@types/sinon": "17.0.3",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "@vscode/test-electron": "^2.3.9",
+    "chai": "^5.0.3",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
     "mocha": "^10.2.0",
-    "prettier": "^3.0.3",
-    "sinon": "^16.1.0",
-    "ts-loader": "^9.5.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2",
-    "webpack": "^5.88.2",
+    "prettier": "^3.2.4",
+    "sinon": "^17.0.1",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "webpack": "^5.90.0",
     "webpack-cli": "^5.1.4",
-    "yaml": "^2.3.2"
+    "yaml": "^2.3.4"
   }
 }

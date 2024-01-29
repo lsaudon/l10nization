@@ -78,6 +78,14 @@ export function toJson(
     };
     map.set(`@${key}`, entry);
   }
-
-  return JSON.stringify(Object.fromEntries(sorted ? sortArb(map) : map), null, 2);
+  return JSON.stringify(
+    Object.fromEntries(sorted ? sortArb(map) : map),
+    (_key: string, _value: unknown): unknown => {
+      if (typeof _value === 'string') {
+        return _value.replace(/\\'/gu, "'");
+      }
+      return _value;
+    },
+    2,
+  );
 }

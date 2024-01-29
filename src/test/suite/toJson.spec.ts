@@ -16,6 +16,13 @@ describe('toJson', () => {
 }`);
   });
 
+  it('should return json when mesages with double backslash and apostrophe', () => {
+    expect(toJson(defaultArbJson, true, 'helloWorld', null, "Hello\\'World", [], false)).to.be.equal(`{
+  "@@locale": "fr",
+  "helloWorld": "Hello'World"
+}`);
+  });
+
   it('should return json when message with description for template file', () => {
     expect(
       toJson(

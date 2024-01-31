@@ -1,5 +1,31 @@
 # Changelog
 
+## [3.1.0](https://github.com/lsaudon/l10nization/releases/tag/release-3.1.0)
+
+- 🐛 resolve path when dot-dot #374
+- ⬆️ Bump actions/setup-node from v3 to v4
+- ⬆️ Bump github/codeql-action from v2 to v3
+- ⬆️ Bump actions/dependency-review-action from v3 to v4
+- ⬆️ Bump @types/chai from 4.3.6 to 4.3.11
+- ⬆️ Bump @types/mocha from 10.0.1 to 10.0.6
+- ⬆️ Bump @types/node from 20.6.2 to 20.11.13
+- ⬆️ Bump @types/sinon from 10.0.16 to 17.0.3
+- ⬆️ Bump @types/vscode from 1.82.0 to 1.85.0
+- ⬆️ Bump @typescript-eslint/eslint-plugin from 6.7.2 to 6.20.0
+- ⬆️ Bump @typescript-eslint/parser from 6.7.2 to 6.20.0
+- ⬆️ Bump @vscode/test-electron from 2.3.4 to 2.3.9
+- ⬆️ Bump chai from 4.3.8 to 4.4.1
+- ⬆️ Bump eslint from 8.49.0 to 8.56.0
+- ⬆️ Bump eslint-config-prettier from 9.0.0 to 9.1.0
+- ⬆️ Bump eslint-plugin-prettier from 5.0.0 to 5.1.3
+- ⬆️ Bump prettier from 3.0.3 to 3.2.4
+- ⬆️ Bump sinon from 16.0.0 to 17.0.1
+- ⬆️ Bump ts-loader from 9.4.4 to 9.5.1,
+- ⬆️ Bump ts-node from 10.9.1 to 10.9.2
+- ⬆️ Bump typescript from 5.2.2 to 5.3.3
+- ⬆️ Bump webpack from 5.88.2 to 5.90.0
+- ⬆️ Bump yaml from 2.3.2 to 2.3.4
+
 ## [3.0.1](https://github.com/lsaudon/l10nization/releases/tag/release-3.0.1)
 
 - 🐛 haveDescription #314

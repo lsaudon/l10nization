@@ -33,6 +33,12 @@ To use the extension with [r13n](https://github.com/VeryGoodOpenSource/r13n), th
 
 You can add the description by enabling `l10nization.haveMetadatas`.
 
+### Add message in
+
+You can choose if you want add new message with `addNewMessagesIn` in .
+- `all`: all files
+- `template`: only in template file
+
 ### Sort arb files
 
 You can use the command `L10nization: Sort arb files`.

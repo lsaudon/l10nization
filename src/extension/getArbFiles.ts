@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as yaml from 'yaml';
-import { getYamlFileName } from '../shared/configuration';
+import { AddMessageInStatus, getAddNewMessagesIn, getYamlFileName } from '../shared/configuration';
 import { resolvePath } from '../shared/resolvePath';
 
 async function findYamlFiles(projectName: string, yamlFileName: string): Promise<vscode.Uri[]> {
@@ -41,6 +41,22 @@ export async function getArbFiles(projectName: string): Promise<[vscode.Uri[], v
 
   const templateArbFileName = (parsedConfiguration.get('template-arb-file') as string | undefined) ?? 'app_en.arb';
   const templateArbFile = arbFiles.find((arbFile) => arbFile.path.endsWith(templateArbFileName));
-
-  return [arbFiles, templateArbFile];
+  const addMessageInStatus = getAddNewMessagesIn;
+  switch (addMessageInStatus) {
+    case AddMessageInStatus.All:
+      return [arbFiles, templateArbFile];
+    case AddMessageInStatus.Template: {
+      if (typeof templateArbFile === 'undefined') {
+        const errorMessage = `template-arb-file not found.`;
+        vscode.window.showErrorMessage(errorMessage);
+        throw new Error(errorMessage);
+      }
+      return [[templateArbFile], templateArbFile];
+    }
+    default: {
+      const errorMessage = `This AddMessageInStatus is unknown.`;
+      vscode.window.showErrorMessage(errorMessage);
+      throw new Error(errorMessage);
+    }
+  }
 }

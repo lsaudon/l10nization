@@ -36,6 +36,7 @@ You can add the description by enabling `l10nization.haveMetadatas`.
 ### Add message in
 
 You can choose if you want add new message with `addNewMessagesIn` in .
+
 - `all`: all files
 - `template`: only in template file
 

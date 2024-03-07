@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.2.0](https://github.com/lsaudon/l10nization/releases/tag/release-3.2.0)
+
+- 💥 Add option for add message only in template file
+- 💥 Replace \\' by '
+- ⬆️ Bump @types/chai from 4.3.11 to 4.3.12
+- ⬆️ Bump @types/node from 20.11.13 to 20.11.25
+- ⬆️ Bump @types/vscode from 1.85.0 to 1.87.0
+- ⬆️ Bump @typescript-eslint/eslint-plugin from 6.20.0 to 7.1.1
+- ⬆️ Bump @typescript-eslint/parser from 6.20.0 to 7.1.1
+- ⬆️ Bump eslint from 8.56.0 to 8.57.0
+- ⬆️ Bump mocha from 10.2.0 to 10.3.0
+- ⬆️ Bump prettier from 3.2.4 to 3.2.5
+- ⬆️ Bump typescript from 5.3.3 to 5.4.2
+- ⬆️ Bump webpack from 5.90.0 to 5.90.3
+- ⬆️ Bump yaml from 2.3.4 to 2.4.1
+
 ## [3.1.0](https://github.com/lsaudon/l10nization/releases/tag/release-3.1.0)
 
 - 🐛 resolve path when dot-dot #374

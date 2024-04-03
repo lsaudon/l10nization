@@ -1,5 +1,3 @@
-import { getFormatArbEnabled } from '../shared/configuration';
-
 export function sortArb(map: Map<string, unknown>): Map<string, unknown> {
   return new Map(
     [...map].sort((a, b) => {
@@ -22,14 +20,4 @@ export function sortArb(map: Map<string, unknown>): Map<string, unknown> {
       return compared;
     }),
   );
-}
-
-export function getSortedArb(text: string) {
-  const sorted = Object.fromEntries(sortArb(new Map<string, unknown>(Object.entries<string>(JSON.parse(text) as string))));
-
-  if (getFormatArbEnabled) {
-    return JSON.stringify(sorted, null, 2);
-  }
-
-  return JSON.stringify(sorted);
 }

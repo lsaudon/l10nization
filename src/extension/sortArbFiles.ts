@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { getArbFiles } from './getArbFiles';
 import { getProjectName } from './getProjectName';
-import { getSortedArb } from './sortArb';
+import { getSortedArb } from './getSortedArb';
 
 export async function sortArbFiles(): Promise<vscode.WorkspaceEdit> {
   const { activeTextEditor } = vscode.window;

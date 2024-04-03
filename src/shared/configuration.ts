@@ -13,3 +13,5 @@ export const getCopyMetadataInAllFiles = getConfiguration.get<boolean>('copyMeta
 export const getSortArbEnabled = getConfiguration.get<boolean>('arbSort', true);
 export const getGenerationActivted = getConfiguration.get<boolean>('flutterPubGetEnabled', true);
 export const getAddNewMessagesIn = getConfiguration.get<string>('addNewMessagesIn', 'all') as AddMessageInStatus;
+export const getSortArbOnSave = getConfiguration.get<boolean>('sortOnSave', true);
+export const getFormatArbEnabled = getConfiguration.get<boolean>('formatArb', true);

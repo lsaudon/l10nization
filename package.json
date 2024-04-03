@@ -32,7 +32,8 @@
   "license": "MIT",
   "activationEvents": [
     "onLanguage:dart",
-    "workspaceContains:**/*.dart"
+    "workspaceContains:**/*.dart",
+    "onLan"
   ],
   "contributes": {
     "commands": [
@@ -99,6 +100,16 @@
             "template"
           ],
           "markdownDescription": "`all` copy in each files, `template` copy only in `template-arb-file`"
+        },
+        "l10nization.sortOnSave": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "If enabled, automatically runs sort on save"
+        },
+        "l10nization.formatArb": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "If enabled, formats file on save"
         }
       }
     }

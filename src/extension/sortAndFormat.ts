@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { getSortedArb } from './sortArb';
+import { getSortedArb } from './getSortedArb';
 
 export async function sortAndFormat(document: vscode.TextDocument, editor: vscode.TextEditor): Promise<void> {
   const { version } = document;

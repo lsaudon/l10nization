@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.3.0](https://github.com/lsaudon/l10nization/releases/tag/release-3.3.0)
+
+- 💥 Add option to run sort & format when manually editing by @schindler-s
+- 💥 Formatting when running "Sort arb Files" by @schindler-s
+- 🐛 "generationEnabled" not being used by @schindler-s
+- ⬆️ Bump @types/chai from 4.3.12 to 4.3.13
+- ⬆️ Bump @types/node from 20.11.25 to 20.12.4
+- ⬆️ Bump @types/vscode from 1.87.0 to 1.88.0
+- ⬆️ Bump @typescript-eslint/eslint-plugin from 7.1.1 to 7.5.0
+- ⬆️ Bump @typescript-eslint/parser from 7.1.1 to 7.5.0
+- ⬆️ Bump mocha from 10.3.0 to 10.4.0
+- ⬆️ Bump typescript from 5.4.2 to 5.4.4
+- ⬆️ Bump webpack from 5.90.3 to 5.91.0
+
 ## [3.2.0](https://github.com/lsaudon/l10nization/releases/tag/release-3.2.0)
 
 - 💥 Add option for add message only in template file

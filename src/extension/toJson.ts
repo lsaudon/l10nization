@@ -1,3 +1,4 @@
+import { L10nObject } from './l10nObject';
 import { Placeholder } from '../placeholders/placeholder';
 import { PlaceholderType } from '../placeholders/placeholderType';
 import { notInclude } from '../placeholders/dateFormat';
@@ -57,26 +58,21 @@ const replacePlaceholders = (value: string, placeholders: Placeholder[]): string
     return p.type === PlaceholderType.plural ? `{${p.name}, plural, other{${current}}}` : current;
   }, value);
 
-export function toJson(
-  text: string,
-  isMetadataEnabled: boolean,
-  key: string,
-  description: string | null,
-  value: string,
-  placeholders: Placeholder[],
-  sorted: boolean,
-): string {
+export function toJson(text: string, l10nKey: L10nObject | null, sorted: boolean): string {
   const map = new Map<string, unknown>(Object.entries<string>(JSON.parse(text) as string));
-  map.set(key, placeholders.length > 0 ? replacePlaceholders(value, placeholders) : value);
+  if (l10nKey) {
+    const { isMetadataEnabled, key, description, value, placeholders } = l10nKey;
+    map.set(key, placeholders.length > 0 ? replacePlaceholders(value, placeholders) : value);
 
-  if (isMetadataEnabled && (description || placeholders.length > 0)) {
-    const entry = {
-      ...(description && { description }),
-      ...(placeholders.length > 0 && {
-        placeholders: Object.fromEntries(getPlaceholdersMap(placeholders)),
-      }),
-    };
-    map.set(`@${key}`, entry);
+    if (isMetadataEnabled && (description || placeholders.length > 0)) {
+      const entry = {
+        ...(description && { description }),
+        ...(placeholders.length > 0 && {
+          placeholders: Object.fromEntries(getPlaceholdersMap(placeholders)),
+        }),
+      };
+      map.set(`@${key}`, entry);
+    }
   }
   return JSON.stringify(
     Object.fromEntries(sorted ? sortArb(map) : map),

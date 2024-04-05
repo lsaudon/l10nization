@@ -5,13 +5,83 @@ export enum AddMessageInStatus {
   Template = 'template',
 }
 
-const getConfiguration = vscode.workspace.getConfiguration('l10nization');
-export const getYamlFileName = getConfiguration.get<string>('yamlFile', 'l10n.yaml');
-export const getAppLocalizationsVariable = getConfiguration.get<string>('appLocalizationsVariable', 'l10n');
-export const getHaveDescription = getConfiguration.get<boolean>('haveDescription', false);
-export const getCopyMetadataInAllFiles = getConfiguration.get<boolean>('copyMetadataInAllFiles', true);
-export const getSortArbEnabled = getConfiguration.get<boolean>('arbSort', true);
-export const getGenerationActivted = getConfiguration.get<boolean>('flutterPubGetEnabled', true);
-export const getAddNewMessagesIn = getConfiguration.get<string>('addNewMessagesIn', 'all') as AddMessageInStatus;
-export const getSortArbOnSave = getConfiguration.get<boolean>('sortOnSave', true);
-export const getFormatArbEnabled = getConfiguration.get<boolean>('formatArb', true);
+export class Configuration {
+  // eslint-disable-next-line no-use-before-define
+  private static instance: Configuration;
+  private yamlFileName!: string;
+  private appLocalizationsVariable!: string;
+  private haveDescription!: boolean;
+  private copyMetadataInAllFiles!: boolean;
+  private sortArbEnabled!: boolean;
+  private generationActivated!: boolean;
+  private addNewMessagesIn!: AddMessageInStatus;
+  private organizeOnSave!: boolean;
+
+  private constructor() {
+    this.reload();
+  }
+
+  public static getInstance(): Configuration {
+    if (!Configuration.instance) {
+      Configuration.instance = new Configuration();
+    }
+    return Configuration.instance;
+  }
+
+  public reload() {
+    const config = vscode.workspace.getConfiguration('l10nization');
+    this.yamlFileName = config.get<string>('yamlFile', 'l10n.yaml');
+    this.appLocalizationsVariable = config.get<string>('appLocalizationsVariable', 'l10n');
+    this.haveDescription = config.get<boolean>('haveDescription', false);
+    this.copyMetadataInAllFiles = config.get<boolean>('copyMetadataInAllFiles', true);
+    this.sortArbEnabled = config.get<boolean>('arbSort', true);
+    this.generationActivated = config.get<boolean>('generationEnabled', true);
+    this.addNewMessagesIn = config.get<string>('addNewMessagesIn', 'all') as AddMessageInStatus;
+    this.organizeOnSave = config.get<boolean>('organizeOnSave', true);
+  }
+
+  public getYamlFileName(): string {
+    return this.yamlFileName;
+  }
+
+  public getAppLocalizationsVariable(): string {
+    return this.appLocalizationsVariable;
+  }
+
+  public getHaveDescription(): boolean {
+    return this.haveDescription;
+  }
+
+  public getCopyMetadataInAllFiles(): boolean {
+    return this.copyMetadataInAllFiles;
+  }
+
+  public getSortArbEnabled(): boolean {
+    return this.sortArbEnabled;
+  }
+
+  public getGenerationActivated(): boolean {
+    return this.generationActivated;
+  }
+
+  public getAddNewMessagesIn(): AddMessageInStatus {
+    return this.addNewMessagesIn;
+  }
+
+  public getOrganizeOnSave(): boolean {
+    return this.organizeOnSave;
+  }
+
+  public toString(): string {
+    return `
+        YamlFileName: ${this.yamlFileName}
+        AppLocalizationsVariable: ${this.appLocalizationsVariable}
+        HaveDescription: ${this.haveDescription}
+        CopyMetadataInAllFiles: ${this.copyMetadataInAllFiles}
+        SortArbEnabled: ${this.sortArbEnabled}
+        GenerationActivated: ${this.generationActivated}
+        AddNewMessagesIn: ${this.addNewMessagesIn}
+        OrganizeOnSave: ${this.organizeOnSave}
+      `;
+  }
+}

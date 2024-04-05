@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { getArbFiles } from './getArbFiles';
 import { getProjectName } from './getProjectName';
-import { getSortedArb } from './getSortedArb';
+import { toJson } from './toJson';
 
 export async function sortArbFiles(): Promise<vscode.WorkspaceEdit> {
   const { activeTextEditor } = vscode.window;
@@ -23,7 +23,7 @@ export async function sortArbFiles(): Promise<vscode.WorkspaceEdit> {
   const textEdits = (await Promise.all(files.map((f) => vscode.workspace.openTextDocument(f).then((document) => document.getText())))).map((text) =>
     vscode.TextEdit.replace(
       new vscode.Range(new vscode.Position(0, 0), new vscode.Position(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)),
-      getSortedArb(text),
+      toJson(text, null, true),
     ),
   );
 

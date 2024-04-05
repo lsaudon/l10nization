@@ -1,4 +1,5 @@
 /* eslint-disable max-lines, no-template-curly-in-string */
+import { L10nObject } from '../../extension/l10nObject';
 import { Placeholder } from '../../placeholders/placeholder';
 import { PlaceholderType } from '../../placeholders/placeholderType';
 import { expect } from 'chai';
@@ -10,32 +11,21 @@ const defaultArbJson = `{
 
 describe('toJson', () => {
   it('should return json when simple messages', () => {
-    expect(toJson(defaultArbJson, true, 'helloWorld', null, 'Hello World', [], false)).to.be.equal(`{
+    expect(toJson(defaultArbJson, new L10nObject(true, 'helloWorld', null, 'Hello World', []), false)).to.be.equal(`{
   "@@locale": "fr",
   "helloWorld": "Hello World"
 }`);
   });
 
   it('should return json when mesages with double backslash and apostrophe', () => {
-    expect(toJson(defaultArbJson, true, 'helloWorld', null, "Hello\\'World", [], false)).to.be.equal(`{
+    expect(toJson(defaultArbJson, new L10nObject(true, 'helloWorld', null, "Hello\\'World", []), false)).to.be.equal(`{
   "@@locale": "fr",
   "helloWorld": "Hello'World"
 }`);
   });
 
   it('should return json when message with description for template file', () => {
-    expect(
-      toJson(
-        defaultArbJson,
-        true,
-        'helloWorld',
-        'Hello World Description',
-        'Hello World',
-        [],
-
-        false,
-      ),
-    ).to.be.equal(`{
+    expect(toJson(defaultArbJson, new L10nObject(true, 'helloWorld', 'Hello World Description', 'Hello World', []), false)).to.be.equal(`{
   "@@locale": "fr",
   "helloWorld": "Hello World",
   "@helloWorld": {
@@ -48,11 +38,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
-        true,
-        'hello',
-        null,
-        'Hello $name',
-        [new Placeholder('name', 'name', PlaceholderType.String)],
+        new L10nObject(true, 'hello', null, 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.String)]),
 
         false,
       ),
@@ -70,8 +56,9 @@ describe('toJson', () => {
   });
 
   it('should return json when message with 1 placeholder and description', () => {
-    expect(toJson(defaultArbJson, true, 'hello', 'Hello by name', 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.String)], false)).to.be
-      .equal(`{
+    expect(
+      toJson(defaultArbJson, new L10nObject(true, 'hello', 'Hello by name', 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.String)]), false),
+    ).to.be.equal(`{
   "@@locale": "fr",
   "hello": "Hello {name}",
   "@hello": {
@@ -89,11 +76,10 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
-        true,
-        'hello',
-        null,
-        'Hello $name $otherName',
-        [new Placeholder('name', 'name', PlaceholderType.String), new Placeholder('otherName', 'otherName', PlaceholderType.String)],
+        new L10nObject(true, 'hello', null, 'Hello $name $otherName', [
+          new Placeholder('name', 'name', PlaceholderType.String),
+          new Placeholder('otherName', 'otherName', PlaceholderType.String),
+        ]),
         false,
       ),
     ).to.be.equal(`{
@@ -116,15 +102,11 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
-        true,
-        'aNameOthernameContextOwnerTostring',
-        null,
-        'a $name $otherName ${context.owner.toString()}',
-        [
+        new L10nObject(true, 'aNameOthernameContextOwnerTostring', null, 'a $name $otherName ${context.owner.toString()}', [
           new Placeholder('firstName', 'name', PlaceholderType.String),
           new Placeholder('lastName', 'otherName', PlaceholderType.String),
           new Placeholder('contextOwnerTostring', 'context.owner.toString()', PlaceholderType.String),
-        ],
+        ]),
         false,
       ),
     ).to.be.equal(`{
@@ -147,7 +129,8 @@ describe('toJson', () => {
   });
 
   it('should return json when message with 1 placeholder int', () => {
-    expect(toJson(defaultArbJson, true, 'hello', null, 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.int)], false)).to.be.equal(`{
+    expect(toJson(defaultArbJson, new L10nObject(true, 'hello', null, 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.int)]), false)).to.be
+      .equal(`{
   "@@locale": "fr",
   "hello": "Hello {name}",
   "@hello": {
@@ -161,8 +144,13 @@ describe('toJson', () => {
   });
 
   it('should return json when message with 1 placeholder int with format', () => {
-    expect(toJson(defaultArbJson, true, 'hello', null, 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.int).addFormat('compact')], false)).to.be
-      .equal(`{
+    expect(
+      toJson(
+        defaultArbJson,
+        new L10nObject(true, 'hello', null, 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.int).addFormat('compact')]),
+        false,
+      ),
+    ).to.be.equal(`{
   "@@locale": "fr",
   "hello": "Hello {name}",
   "@hello": {
@@ -180,11 +168,9 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
-        true,
-        'hello',
-        null,
-        'Hello $name',
-        [new Placeholder('name', 'name', PlaceholderType.int).addFormat('currency').addSymbol('€').addDecimalDigits(2).addCustomPattern('###.0#')],
+        new L10nObject(true, 'hello', null, 'Hello $name', [
+          new Placeholder('name', 'name', PlaceholderType.int).addFormat('currency').addSymbol('€').addDecimalDigits(2).addCustomPattern('###.0#'),
+        ]),
         false,
       ),
     ).to.be.equal(`{
@@ -210,11 +196,9 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
-        true,
-        'hello',
-        null,
-        'Hello $name',
-        [new Placeholder('name', 'name', PlaceholderType.num).addFormat('currency').addSymbol('€').addDecimalDigits(2).addCustomPattern('###.0#')],
+        new L10nObject(true, 'hello', null, 'Hello $name', [
+          new Placeholder('name', 'name', PlaceholderType.num).addFormat('currency').addSymbol('€').addDecimalDigits(2).addCustomPattern('###.0#'),
+        ]),
         false,
       ),
     ).to.be.equal(`{
@@ -240,11 +224,9 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
-        true,
-        'hello',
-        null,
-        'Hello $name',
-        [new Placeholder('name', 'name', PlaceholderType.double).addFormat('currency').addSymbol('€').addDecimalDigits(2).addCustomPattern('###.0#')],
+        new L10nObject(true, 'hello', null, 'Hello $name', [
+          new Placeholder('name', 'name', PlaceholderType.double).addFormat('currency').addSymbol('€').addDecimalDigits(2).addCustomPattern('###.0#'),
+        ]),
         false,
       ),
     ).to.be.equal(`{
@@ -267,8 +249,13 @@ describe('toJson', () => {
   });
 
   it('should return json when message with 1 placeholder DateTime', () => {
-    expect(toJson(defaultArbJson, true, 'hello', null, 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.DateTime).addFormat('yMd')], false)).to
-      .be.equal(`{
+    expect(
+      toJson(
+        defaultArbJson,
+        new L10nObject(true, 'hello', null, 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.DateTime).addFormat('yMd')]),
+        false,
+      ),
+    ).to.be.equal(`{
   "@@locale": "fr",
   "hello": "Hello {name}",
   "@hello": {
@@ -284,7 +271,11 @@ describe('toJson', () => {
 
   it('should return json when message with 1 placeholder DateTime not in valid list', () => {
     expect(
-      toJson(defaultArbJson, true, 'hello', null, 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.DateTime).addFormat('dd/MM/yyyy')], false),
+      toJson(
+        defaultArbJson,
+        new L10nObject(true, 'hello', null, 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.DateTime).addFormat('dd/MM/yyyy')]),
+        false,
+      ),
     ).to.be.equal(`{
   "@@locale": "fr",
   "hello": "Hello {name}",
@@ -314,11 +305,7 @@ describe('toJson', () => {
   },
   "z": "Z {name}"
 }`,
-        true,
-        'a',
-        null,
-        'A $name',
-        [new Placeholder('name', 'name', PlaceholderType.String)],
+        new L10nObject(true, 'a', null, 'A $name', [new Placeholder('name', 'name', PlaceholderType.String)]),
         true,
       ),
     ).to.be.equal(`{
@@ -343,8 +330,13 @@ describe('toJson', () => {
   });
 
   it('should return json when message with 1 placeholder plural', () => {
-    expect(toJson(defaultArbJson, true, 'countMessage', null, 'You have $count photos', [new Placeholder('count', 'count', PlaceholderType.plural)], false)).to
-      .be.equal(`{
+    expect(
+      toJson(
+        defaultArbJson,
+        new L10nObject(true, 'countMessage', null, 'You have $count photos', [new Placeholder('count', 'count', PlaceholderType.plural)]),
+        false,
+      ),
+    ).to.be.equal(`{
   "@@locale": "fr",
   "countMessage": "{count, plural, other{You have {count} photos}}",
   "@countMessage": {
@@ -359,11 +351,7 @@ describe('toJson', () => {
     expect(
       toJson(
         defaultArbJson,
-        true,
-        'countMessage',
-        null,
-        'You have $otherCount photos',
-        [new Placeholder('otherCount', 'otherCount', PlaceholderType.plural)],
+        new L10nObject(true, 'countMessage', null, 'You have $otherCount photos', [new Placeholder('otherCount', 'otherCount', PlaceholderType.plural)]),
         false,
       ),
     ).to.be.equal(`{
@@ -378,14 +366,15 @@ describe('toJson', () => {
   });
 
   it('should return json when message with description non template file', () => {
-    expect(toJson(defaultArbJson, false, 'helloWorld', 'Hello World Description', 'Hello World', [], false)).to.be.equal(`{
+    expect(toJson(defaultArbJson, new L10nObject(false, 'helloWorld', 'Hello World Description', 'Hello World', []), false)).to.be.equal(`{
   "@@locale": "fr",
   "helloWorld": "Hello World"
 }`);
   });
 
   it('should return json when message with 1 placeholder for non template file', () => {
-    expect(toJson(defaultArbJson, false, 'hello', null, 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.String)], false)).to.be.equal(`{
+    expect(toJson(defaultArbJson, new L10nObject(false, 'hello', null, 'Hello $name', [new Placeholder('name', 'name', PlaceholderType.String)]), false)).to.be
+      .equal(`{
   "@@locale": "fr",
   "hello": "Hello {name}"
 }`);

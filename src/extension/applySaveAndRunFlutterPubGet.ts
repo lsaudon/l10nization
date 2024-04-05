@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { EditFilesParameters } from '../commands/editFilesParameters';
 import { getChangesForArbFiles } from './getChangesForArbFiles';
-import { runGeneration } from './runFlutterPubGet';
+import { runGeneration } from './runGeneration';
 
 export async function applySaveAndRunGeneration(editFilesParameters: EditFilesParameters): Promise<void> {
   const { workspace } = vscode;

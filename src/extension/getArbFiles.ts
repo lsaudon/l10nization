@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as yaml from 'yaml';
-import { AddMessageInStatus, getAddNewMessagesIn, getYamlFileName } from '../shared/configuration';
+import { AddMessageInStatus, Configuration } from '../shared/configuration';
 import { resolvePath } from '../shared/resolvePath';
 
 async function findYamlFiles(projectName: string, yamlFileName: string): Promise<vscode.Uri[]> {
@@ -24,7 +24,7 @@ async function findArbFiles(projectName: string, arbDir: string): Promise<vscode
 }
 
 export async function getArbFiles(projectName: string): Promise<[vscode.Uri[], vscode.Uri | undefined]> {
-  const yamlFileName = getYamlFileName;
+  const yamlFileName = Configuration.getInstance().getYamlFileName();
   const yamlFiles = await findYamlFiles(projectName, yamlFileName);
 
   if (yamlFiles.length === 0) {
@@ -41,7 +41,7 @@ export async function getArbFiles(projectName: string): Promise<[vscode.Uri[], v
 
   const templateArbFileName = (parsedConfiguration.get('template-arb-file') as string | undefined) ?? 'app_en.arb';
   const templateArbFile = arbFiles.find((arbFile) => arbFile.path.endsWith(templateArbFileName));
-  const addMessageInStatus = getAddNewMessagesIn;
+  const addMessageInStatus = Configuration.getInstance().getAddNewMessagesIn();
   switch (addMessageInStatus) {
     case AddMessageInStatus.All:
       return [arbFiles, templateArbFile];

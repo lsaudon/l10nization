@@ -2,7 +2,7 @@
   "icon": "images/logo.png",
   "name": "l10nization",
   "displayName": "L10nization",
-  "version": "3.2.0",
+  "version": "3.2.2",
   "publisher": "lsaudon",
   "description": "A tool for extracting text to arb files in a Flutter application.",
   "author": {
@@ -90,6 +90,10 @@
           "type": "boolean",
           "default": true,
           "markdownDescription": "If enabled, sort keys alphabetically except for `@@locale` is first and `@key` are below their `key`."
+        }, "l10nization.organizeOnSave": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "If enabled and editing arb files manually, when saving runs sort if enabled and formats file"
         },
         "l10nization.addNewMessagesIn": {
           "type": "string",

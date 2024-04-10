@@ -1,10 +1,19 @@
 # Changelog
 
+## [3.3.1](https://github.com/lsaudon/l10nization/releases/tag/release-3.3.1)
+
+- 🐛 generation not running on already formatted file by @schindler-s
+- ⬆️ Bump @types/node from 20.12.4 to 20.12.7
+- ⬆️ Bump @typescript-eslint/eslint-plugin from 7.5.0 to 7.6.0
+- ⬆️ Bump @typescript-eslint/parser from 7.5.0 to 7.6.0
+- ⬆️ Bump typescript from 5.4.4 to 5.4.5
+
 ## [3.3.0](https://github.com/lsaudon/l10nization/releases/tag/release-3.3.0)
 
 - 💥 Add option to run sort & format when manually editing by @schindler-s
 - 💥 Formatting when running "Sort arb Files" by @schindler-s
 - 🐛 "generationEnabled" not being used by @schindler-s
+- 🐛 config not being reloaded/updated by @schindler-s
 - ⬆️ Bump @types/chai from 4.3.12 to 4.3.13
 - ⬆️ Bump @types/node from 20.11.25 to 20.12.4
 - ⬆️ Bump @types/vscode from 1.87.0 to 1.88.0

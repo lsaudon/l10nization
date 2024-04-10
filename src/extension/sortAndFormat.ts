@@ -15,7 +15,6 @@ export async function sortAndFormat(document: vscode.TextDocument, editor: vscod
 
   if (text !== result && editor.document.version === version) {
     await editor.edit((edit) => edit.replace(replaceRange, result));
-
-    await runGeneration();
   }
+  await runGeneration();
 }

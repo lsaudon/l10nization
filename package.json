@@ -19,7 +19,7 @@
     "Other"
   ],
   "engines": {
-    "vscode": "^1.88.0"
+    "vscode": "^1.94.0"
   },
   "keywords": [
     "flutter",
@@ -117,35 +117,37 @@
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "check-lint": "eslint src --ext ts",
+    "check-lint": "eslint src",
     "check-format": "prettier --ignore-path .gitignore --config .prettierrc  \"**/*.+(js|ts|json|md|yaml|.prettierrc)\" --check",
     "check-lint-format": "npm run check-lint && npm run check-format",
-    "lint": "eslint src --ext ts --fix",
+    "lint": "eslint src --fix",
     "format": "prettier --ignore-path .gitignore --config .prettierrc  \"**/*.+(js|ts|json|md|yaml|.prettierrc)\" --write",
     "lint-format": "npm run lint && npm run format",
     "unit-test": "mocha -r ts-node/register ./src/test/**/*.spec.ts"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.14",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "20.12.7",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.12.0",
+    "@types/chai": "^5.0.0",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "22.7.5",
     "@types/sinon": "17.0.3",
-    "@types/vscode": "^1.88.0",
-    "@typescript-eslint/eslint-plugin": "^7.6.0",
-    "@typescript-eslint/parser": "^7.6.0",
-    "@vscode/test-electron": "^2.3.9",
-    "chai": "^4.4.1",
-    "eslint": "^8.57.0",
+    "@types/vscode": "^1.94.0",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "@vscode/test-electron": "^2.4.1",
+    "chai": "^4.5.0",
+    "eslint": "^9.12.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "mocha": "^10.4.0",
-    "prettier": "^3.2.5",
-    "sinon": "^17.0.1",
+    "eslint-plugin-prettier": "^5.2.1",
+    "mocha": "^10.7.3",
+    "prettier": "^3.3.3",
+    "sinon": "^19.0.2",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5",
-    "webpack": "^5.91.0",
+    "typescript": "^5.6.3",
+    "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4",
-    "yaml": "^2.4.1"
+    "yaml": "^2.5.1"
   }
 }

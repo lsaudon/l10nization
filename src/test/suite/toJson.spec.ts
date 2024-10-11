@@ -1,4 +1,4 @@
-/* eslint-disable max-lines, no-template-curly-in-string */
+/* eslint-disable no-template-curly-in-string */
 import { L10nObject } from '../../extension/l10nObject';
 import { Placeholder } from '../../placeholders/placeholder';
 import { PlaceholderType } from '../../placeholders/placeholderType';

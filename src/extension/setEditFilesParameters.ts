@@ -1,4 +1,3 @@
-/* eslint-disable max-depth */
 /* eslint-disable no-await-in-loop */
 import { LionizationPickItem, showQuickPick } from '../quickPick/showQuickPick';
 

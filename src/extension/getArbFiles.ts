@@ -4,10 +4,13 @@ import { AddMessageInStatus, Configuration } from '../shared/configuration';
 import { resolvePath } from '../shared/resolvePath';
 
 async function findYamlFiles(projectName: string, yamlFileName: string): Promise<vscode.Uri[]> {
-  //ignore fvm directory because most of time , fvm creates its own l10n files
-  const allYamlFiles = await vscode.workspace.findFiles(`**/${yamlFileName}`, '**/.fvm/**');
-  const projectYaml = allYamlFiles.find((f) => f.fsPath.includes(projectName));
-  return projectYaml ? [projectYaml] : allYamlFiles;
+  // Exclude hidden SDK and build folders
+  const excludeGlobs = '{**/.fvm/**,**/.dart_tool/**,**/build/**}';
+  const yamlFiles = await vscode.workspace.findFiles(`**/${projectName}/${yamlFileName}`, excludeGlobs);
+  if (yamlFiles.length !== 0) {
+    return yamlFiles;
+  }
+  return await vscode.workspace.findFiles(`**/${yamlFileName}`, excludeGlobs);
 }
 
 async function findFiles(include: string): Promise<vscode.Uri[]> {

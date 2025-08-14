@@ -4,11 +4,10 @@ import { AddMessageInStatus, Configuration } from '../shared/configuration';
 import { resolvePath } from '../shared/resolvePath';
 
 async function findYamlFiles(projectName: string, yamlFileName: string): Promise<vscode.Uri[]> {
-  const yamlFiles = await vscode.workspace.findFiles(`**/${projectName}/${yamlFileName}`);
-  if (yamlFiles.length !== 0) {
-    return yamlFiles;
-  }
-  return await vscode.workspace.findFiles(`**/${yamlFileName}`);
+  //ignore fvm directory because most of time , fvm creates its own l10n files
+  const allYamlFiles = await vscode.workspace.findFiles(`**/${yamlFileName}`, '**/.fvm/**');
+  const projectYaml = allYamlFiles.find((f) => f.fsPath.includes(projectName));
+  return projectYaml ? [projectYaml] : allYamlFiles;
 }
 
 async function findFiles(include: string): Promise<vscode.Uri[]> {
@@ -16,11 +15,17 @@ async function findFiles(include: string): Promise<vscode.Uri[]> {
 }
 
 async function findArbFiles(projectName: string, arbDir: string): Promise<vscode.Uri[]> {
-  const arbFiles = await findFiles(`**/${projectName}/${arbDir}/*.arb`);
-  if (arbFiles.length !== 0) {
-    return arbFiles;
+  const pattern1 = `**/${projectName}/${arbDir}/*.arb`;
+  const arbFiles1 = await findFiles(pattern1);
+
+  if (arbFiles1.length !== 0) {
+    return arbFiles1;
   }
-  return await findFiles(`**/${arbDir}/*.arb`);
+
+  const pattern2 = `**/${arbDir}/*.arb`;
+  const arbFiles2 = await findFiles(pattern2);
+
+  return arbFiles2;
 }
 
 export async function getArbFiles(projectName: string): Promise<[vscode.Uri[], vscode.Uri | undefined]> {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_other_app/l10n/arb/app_localizations.dart';
 import 'package:my_other_app/l10n/l10n.dart';
 
 Future<void> main() async {

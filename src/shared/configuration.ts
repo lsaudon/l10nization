@@ -6,7 +6,6 @@ export enum AddMessageInStatus {
 }
 
 export class Configuration {
-  // eslint-disable-next-line no-use-before-define
   private static instance: Configuration;
   private yamlFileName!: string;
   private appLocalizationsVariable!: string;

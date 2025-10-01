@@ -1,4 +1,3 @@
-/* eslint-disable no-template-curly-in-string */
 import { extractInterpolatedVariables, getUnescapedString } from '../../shared/parser/parser';
 import { expect } from 'chai';
 

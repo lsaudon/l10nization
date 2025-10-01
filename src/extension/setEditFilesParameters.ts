@@ -1,4 +1,3 @@
-/* eslint-disable no-await-in-loop */
 import { LionizationPickItem, showQuickPick } from '../quickPick/showQuickPick';
 
 import { includeInCustomPattern, includeInDecimalDigits, includeInSymbol, validNumberFormats } from '../placeholders/numberFormat';

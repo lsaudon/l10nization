@@ -138,7 +138,7 @@
     "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
-    "mocha": "^11.7.3",
+    "mocha": "^11.7.4",
     "prettier": "^3.6.2",
     "ts-loader": "^9.5.4",
     "ts-node": "^10.9.2",

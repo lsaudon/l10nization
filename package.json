@@ -1,150 +1,139 @@
 {
-  "icon": "images/logo.png",
-  "name": "l10nization",
-  "displayName": "L10nization",
-  "version": "3.4.2",
-  "publisher": "lsaudon",
-  "description": "A tool for extracting text to arb files in a Flutter application.",
-  "author": {
-    "name": "Lucas SAUDON"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lsaudon/l10nization.git"
-  },
-  "bugs": {
-    "url": "https://github.com/lsaudon/l10nization/issues"
-  },
-  "categories": [
-    "Other"
-  ],
-  "engines": {
-    "vscode": "^1.104.0"
-  },
-  "keywords": [
-    "flutter",
-    "dart",
-    "l10n",
-    "r13n",
-    "localization",
-    "arb"
-  ],
-  "license": "MIT",
-  "activationEvents": [
-    "onLanguage:dart",
-    "workspaceContains:**/*.dart"
-  ],
-  "contributes": {
-    "commands": [
-      {
-        "category": "L10nization",
-        "title": "Sort arb files",
-        "command": "l10nization.sortArbFiles"
-      }
-    ],
-    "configuration": {
-      "title": "L10nization",
-      "properties": {
-        "l10nization.appLocalizationsVariable": {
-          "type": "string",
-          "default": "l10n",
-          "markdownDescription": "Set the variable name for `AppLocalizations`."
-        },
-        "l10nization.yamlFile": {
-          "type": "string",
-          "default": "l10n.yaml",
-          "enum": [
-            "l10n.yaml",
-            "r13n.yaml"
-          ],
-          "markdownDescription": "Set the yaml file for `AppLocalizations`."
-        },
-        "l10nization.haveMetadatas": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "If enabled, add inputBox for description.",
-          "deprecationMessage": "Deprecated: Please use l10nization.haveDescription instead."
-        },
-        "l10nization.haveDescription": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "If enabled, add inputBox for description."
-        },
-        "l10nization.copyMetadataInAllFiles": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "If enabled, metadata are copied to all files, otherwise only to the `template-arb-file`."
-        },
-        "l10nization.flutterPubGetEnabled": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "If enabled, run the `flutter.task.genl10n` command of the [Dart extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code).",
-          "deprecationMessage": "Deprecated: Please use l10nization.generationEnabled instead."
-        },
-        "l10nization.generationEnabled": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "If enabled, run the `flutter.task.genl10n` command of the [Dart extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)."
-        },
-        "l10nization.arbSort": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "If enabled, sort keys alphabetically except for `@@locale` is first and `@key` are below their `key`."
-        },
-        "l10nization.organizeOnSave": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "If enabled and editing arb files manually, when saving runs sort if enabled and formats file"
-        },
-        "l10nization.addNewMessagesIn": {
-          "type": "string",
-          "default": "all",
-          "enum": [
-            "all",
-            "template"
-          ],
-          "markdownDescription": "`all` copy in each files, `template` copy only in `template-arb-file`"
-        }
-      }
-    }
-  },
-  "main": "./dist/extension.js",
-  "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "webpack",
-    "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "check-lint": "eslint src",
-    "check-format": "prettier --ignore-path .gitignore --config .prettierrc  \"**/*.+(js|ts|json|md|yaml|.prettierrc)\" --check",
-    "check-lint-format": "npm run check-lint && npm run check-format",
-    "lint": "eslint src --fix",
-    "format": "prettier --ignore-path .gitignore --config .prettierrc  \"**/*.+(js|ts|json|md|yaml|.prettierrc)\" --write",
-    "lint-format": "npm run lint && npm run format",
-    "unit-test": "mocha -r ts-node/register ./src/test/**/*.spec.ts"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^10.0.1",
-    "@types/chai": "^5.2.2",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "24.9.1",
-    "@types/vscode": "^1.104.0",
-    "@typescript-eslint/eslint-plugin": "^8.67.0",
-    "@typescript-eslint/parser": "^8.67.0",
-    "chai": "^6.2.0",
-    "eslint": "^9.38.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "mocha": "^11.7.4",
-    "prettier": "^3.6.2",
-    "ts-loader": "^9.6.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3",
-    "webpack": "^5.109.2",
-    "webpack-cli": "^6.0.1",
-    "yaml": "^2.9.0"
-  }
+	"icon": "images/logo.png",
+	"name": "l10nization",
+	"displayName": "L10nization",
+	"version": "3.4.2",
+	"publisher": "lsaudon",
+	"description": "A tool for extracting text to arb files in a Flutter application.",
+	"author": {
+		"name": "Lucas SAUDON"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lsaudon/l10nization.git"
+	},
+	"bugs": {
+		"url": "https://github.com/lsaudon/l10nization/issues"
+	},
+	"categories": [
+		"Other"
+	],
+	"engines": {
+		"vscode": "^1.137.0"
+	},
+	"keywords": [
+		"flutter",
+		"dart",
+		"l10n",
+		"r13n",
+		"localization",
+		"arb"
+	],
+	"license": "MIT",
+	"activationEvents": [
+		"onLanguage:dart",
+		"workspaceContains:**/*.dart"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"category": "L10nization",
+				"title": "Sort arb files",
+				"command": "l10nization.sortArbFiles"
+			}
+		],
+		"configuration": {
+			"title": "L10nization",
+			"properties": {
+				"l10nization.appLocalizationsVariable": {
+					"type": "string",
+					"default": "l10n",
+					"markdownDescription": "Set the variable name for `AppLocalizations`."
+				},
+				"l10nization.yamlFile": {
+					"type": "string",
+					"default": "l10n.yaml",
+					"enum": [
+						"l10n.yaml",
+						"r13n.yaml"
+					],
+					"markdownDescription": "Set the yaml file for `AppLocalizations`."
+				},
+				"l10nization.haveMetadatas": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "If enabled, add inputBox for description.",
+					"deprecationMessage": "Deprecated: Please use l10nization.haveDescription instead."
+				},
+				"l10nization.haveDescription": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "If enabled, add inputBox for description."
+				},
+				"l10nization.copyMetadataInAllFiles": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "If enabled, metadata are copied to all files, otherwise only to the `template-arb-file`."
+				},
+				"l10nization.flutterPubGetEnabled": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "If enabled, run the `flutter.task.genl10n` command of the [Dart extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code).",
+					"deprecationMessage": "Deprecated: Please use l10nization.generationEnabled instead."
+				},
+				"l10nization.generationEnabled": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "If enabled, run the `flutter.task.genl10n` command of the [Dart extension](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)."
+				},
+				"l10nization.arbSort": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "If enabled, sort keys alphabetically except for `@@locale` is first and `@key` are below their `key`."
+				},
+				"l10nization.organizeOnSave": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "If enabled and editing arb files manually, when saving runs sort if enabled and formats file"
+				},
+				"l10nization.addNewMessagesIn": {
+					"type": "string",
+					"default": "all",
+					"enum": [
+						"all",
+						"template"
+					],
+					"markdownDescription": "`all` copy in each files, `template` copy only in `template-arb-file`"
+				}
+			}
+		}
+	},
+	"main": "./dist/extension.js",
+	"scripts": {
+		"vscode:prepublish": "npm run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "npm run compile-tests && npm run compile && npm run check-lint",
+		"check-lint": "biome check src",
+		"check-format": "biome format .",
+		"check-lint-format": "npm run check-lint && npm run check-format",
+		"lint": "biome check --write src",
+		"format": "biome format --write .",
+		"lint-format": "npm run lint && npm run format",
+		"test": "vitest run"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.13",
+		"@types/node": "^26.5.1",
+		"@types/vscode": "^1.137.0",
+		"ts-loader": "^9.6.2",
+		"typescript": "^6.0.3",
+		"vitest": "^5.0.0",
+		"webpack": "^5.111.0",
+		"webpack-cli": "^7.2.3",
+		"yaml": "^2.9.1"
+	}
 }

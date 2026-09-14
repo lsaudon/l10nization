@@ -1,14 +1,22 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "ES2022",
-    "lib": ["ES2022"],
-    "sourceMap": true,
-    "rootDir": "src",
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": true
-  },
-  "exclude": [".vscode-test", "node_modules", "out", "src/test/test_projects"]
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "ES2022",
+		"lib": ["ES2022"],
+		"sourceMap": true,
+		"rootDir": "src",
+		"types": ["node", "vitest/globals"],
+		"strict": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUnusedParameters": true,
+		"noUnusedLocals": true,
+		"exactOptionalPropertyTypes": true,
+		"noUncheckedIndexedAccess": true,
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitOverride": true,
+		"skipLibCheck": true
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": [".vscode-test", "node_modules", "out", "vitest.config.ts", "src/test/test_projects"]
 }

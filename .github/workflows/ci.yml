@@ -1,17 +1,29 @@
-name: Node.js CI
+name: CI
 
 on:
   push:
-    branches: ['main']
+    branches: [main]
   pull_request:
-    branches: ['main']
+    branches: [main]
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
     steps:
       - uses: actions/checkout@v7
+
       - uses: actions/setup-node@v7
+        with:
+          cache: npm
+
       - run: npm ci
-      - run: npm run check-lint-format
-      - run: npm run unit-test
+
+      - run: npm run check-format
+
+      - run: npm run check-lint
+
+      - run: npm test -- --run

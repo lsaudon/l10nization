@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.4.2](https://github.com/lsaudon/l10nization/releases/tag/release-3.4.2)
+
+- 🔧 Maintenance release for the current package version
+- ✅ Keep changelog aligned with the published extension metadata
+- ⬆️ Project tooling and compatibility updates
+
 ## [3.3.1](https://github.com/lsaudon/l10nization/releases/tag/release-3.3.1)
 
 - 🐛 generation not running on already formatted file by @schindler-s

@@ -130,7 +130,7 @@
 		"@types/node": "^26.6.1",
 		"@types/vscode": "^1.137.0",
 		"ts-loader": "^9.6.2",
-		"typescript": "^6.0.3",
+		"typescript": "^7.0.2",
 		"vitest": "^5.0.1",
 		"webpack": "^5.111.0",
 		"webpack-cli": "^7.2.3",
